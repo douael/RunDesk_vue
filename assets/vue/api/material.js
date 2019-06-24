@@ -1,17 +1,16 @@
 import axios from 'axios';
 
 export default {
-    create (name,isActive,serialNum) {
+    create(name, isActive, serialNumber) {
         return axios.post(
-            '/api/material/create',
-            {
+            '/api/material/create', {
                 name: name,
                 isActive: isActive,
-                serialNum: serialNum
+                serialNumber: serialNumber
             }
         );
     },
-    getAll () {
+    getAll() {
         return axios.get('/api/materials');
     },
 }

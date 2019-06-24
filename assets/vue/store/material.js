@@ -8,19 +8,19 @@ export default {
         materials: [],
     },
     getters: {
-        isLoading (state) {
+        isLoading(state) {
             return state.isLoading;
         },
-        hasError (state) {
+        hasError(state) {
             return state.error !== null;
         },
-        error (state) {
+        error(state) {
             return state.error;
         },
-        hasMaterials (state) {
+        hasMaterials(state) {
             return state.materials.length > 0;
         },
-        materials (state) {
+        materials(state) {
             return state.materials;
         },
     },
@@ -56,14 +56,13 @@ export default {
         },
     },
     actions: {
-        createMaterial ({commit}, payload) {
+        createMaterial({ commit }, payload) {
             commit('CREATING_MATERIAL');
-            console.log(payload);
-            return MaterialAPI.create(name,isActive,serialNum)
+            return MaterialAPI.create(payload.name, payload.isActive, payload.serialNumber)
                 .then(res => commit('CREATING_MATERIAL_SUCCESS', res.data))
                 .catch(err => commit('CREATING_MATERIAL_ERROR', err));
         },
-        fetchMaterials ({commit}) {
+        fetchMaterials({ commit }) {
             commit('FETCHING_MATERIALS');
             return MaterialAPI.getAll()
                 .then(res => commit('FETCHING_MATERIALS_SUCCESS', res.data))

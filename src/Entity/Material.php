@@ -22,7 +22,7 @@ class Material
     private $name;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer")
      */
     private $isActive;
 
@@ -48,12 +48,12 @@ class Material
         return $this;
     }
 
-    public function getIsActive(): ?bool
+    public function getIsActive(): ?int
     {
         return $this->isActive;
     }
 
-    public function setIsActive(bool $isActive): self
+    public function setIsActive(int $isActive): self
     {
         $this->isActive = $isActive;
 

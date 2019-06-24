@@ -9,11 +9,10 @@
                 <div class="form-row">
                     <div class="col-8">
                         <input v-model="name" type="text" class="form-control">
-                        <input v-model="isActive" type="text" class="form-control">
-                        <input v-model="serialNum" type="text" class="form-control">
+                        <input v-model="serialNumber" type="text" class="form-control">
                     </div>
                     <div class="col-4">
-                        <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNum.length == 0" type="button" class="btn btn-primary">Create</button>
+                        <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Create</button>
                     </div>
                 </div>
             </form>
@@ -25,7 +24,7 @@
 
         <div v-else-if="hasError" class="row col">
             <error-name :error="error"></error-name>
-            <error-serialNum :error="error"></error-serialNum>
+            <error-serialNumber :error="error"></error-serialNumber>
 
         </div>
         <div v-else-if="!hasMaterials" class="row col">
@@ -33,8 +32,7 @@
         </div>
 
         <div v-else v-for="material in materials" class="row col">
-            <material :name="material.name"></material>
-            <material :serialNum="material.serialNum"></material>
+            <material :name="material.name" :isActive="material.isActive" :serialNumber="material.serialNumber"></material>
         </div>
     </div>
 </template>
@@ -52,8 +50,8 @@
         data () {
             return {
                 name: '',
-                isActive: '',
-                serialNum: '',
+                isActive: false,
+                serialNumber: '',
             };
         },
         created () {
@@ -81,7 +79,7 @@
         },
         methods: {
             createMaterial () {
-                let payload = {name: this.$data.name, isActive: this.$data.isActive,serialNum: this.$data.serialNum};
+                let payload = {name: this.$data.name, isActive: this.$data.isActive,serialNumber: this.$data.serialNumber};
 
                 this.$store.dispatch('material/createMaterial', payload);
             },

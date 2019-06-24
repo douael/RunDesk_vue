@@ -21,14 +21,16 @@ final class MaterialService
 
     /**
      * @param string $name
+     * @param integer $isActive
+     * @param string $serialNumber
      * @return Material
      */
-    public function createMaterial(string $name,boolean $isActive, string $serialNum): Material
+    public function createMaterial(string $name,int $isActive, string $serialNumber): Material
     {
         $materialEntity = new Material();
         $materialEntity->setName($name);
         $materialEntity->setIsActive($isActive);
-        $materialEntity->setSerialNumber($serialNum);
+        $materialEntity->setSerialNumber($serialNumber);
         $this->em->persist($materialEntity);
         $this->em->flush();
 
