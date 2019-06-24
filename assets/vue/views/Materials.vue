@@ -5,14 +5,20 @@
         </div>
 
         <div class="row col" v-if="canCreateMaterial">
-            <form>
+            <form style="width:100%">
                 <div class="form-row">
-                    <div class="col-8">
-                        <input v-model="name" type="text" class="form-control">
-                        <input v-model="serialNumber" type="text" class="form-control">
-                    </div>
-                    <div class="col-4">
-                        <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Create</button>
+                    <div class="col-12">
+                        <div class="col-6">
+                            <label :for="name" class="mr-2">{{ labels.name }}</label>
+                            <input v-model="name" type="text" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label :for="serialNumber" class="mr-2">{{ labels.serialNumber }}</label>
+                            <input v-model="serialNumber" type="text" class="form-control">
+                        </div>
+                        <div class="col-12">
+                            <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Create</button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -52,6 +58,10 @@
                 name: '',
                 isActive: false,
                 serialNumber: '',
+                labels: {
+                    name: 'Nom du matériel',
+                    serialNumber: 'Numero de serie'
+        },
             };
         },
         created () {
