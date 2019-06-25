@@ -67,10 +67,10 @@ final class ApiMaterialController extends AbstractController
     {
 
         $id = $request->request->get('id');
+        var_dump($id);
         $name = $request->request->get('name');
         $isActive = $request->request->get('isActive');
         $serialNumber = $request->request->get('serialNumber');
-        var_dump($id);die;
         $materialEntity = $this->materialService->editMaterial($id,$name,$isActive,$serialNumber);
         $data = $this->serializer->serialize($materialEntity, 'json');
 

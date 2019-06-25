@@ -10,10 +10,10 @@ export default {
             }
         );
     },
-    edit(idMaterial, name, isActive, serialNumber) {
+    edit(id, name, isActive, serialNumber) {
         return axios.post(
             '/api/material/update', {
-                idMaterial: idMaterial,
+                id: id,
                 name: name,
                 isActive: isActive,
                 serialNumber: serialNumber

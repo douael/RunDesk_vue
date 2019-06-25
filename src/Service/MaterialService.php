@@ -47,7 +47,7 @@ final class MaterialService
      */
     public function editMaterial(int $id, string $name,int $isActive, string $serialNumber): Material
     {
-        die;
+        //var_dump($id);
         $materialEntity = new Material($id);
         $materialEntity->setName($name);
         $materialEntity->setIsActive($isActive);
