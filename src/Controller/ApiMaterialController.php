@@ -6,9 +6,11 @@ use App\Service\MaterialService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Repository\MaterialRepository;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
  * Class ApiMaterialController
@@ -43,6 +45,9 @@ final class ApiMaterialController extends AbstractController
     public function createAction(Request $request): JsonResponse
     {
         $name = $request->request->get('name');
+        if (empty($name)) {
+            throw new BadRequestHttpException('name cannot be empty');
+        }
         $isActive = $request->request->get('isActive');
         $serialNumber = $request->request->get('serialNumber');
         $materialEntity = $this->materialService->createMaterial($name,$isActive,$serialNumber);
@@ -52,6 +57,26 @@ final class ApiMaterialController extends AbstractController
     }
 
     /**
+     * @Rest\Post("/api/material/update", name="editMaterial")
+     * @param Request $request
+     * @param MaterialRepository $materialRepository
+     * @return JsonResponse
+     * @IsGranted("ROLE_FOO")
+     */
+    public function editAction(MaterialRepository $materialRepository, Request $request): JsonResponse
+    {
+
+        $id = $request->request->get('id');
+        $name = $request->request->get('name');
+        $isActive = $request->request->get('isActive');
+        $serialNumber = $request->request->get('serialNumber');
+        var_dump($id);die;
+        $materialEntity = $this->materialService->editMaterial($id,$name,$isActive,$serialNumber);
+        $data = $this->serializer->serialize($materialEntity, 'json');
+
+        return new JsonResponse($data, 200, [], true);
+    }
+    /**
      * @Rest\Get("/api/materials", name="getAllMaterials")
      * @return JsonResponse
      */
@@ -59,7 +84,6 @@ final class ApiMaterialController extends AbstractController
     {
         $materialEntities = $this->materialService->getAll();
         $data = $this->serializer->serialize($materialEntities, 'json');
-
         return new JsonResponse($data, 200, [], true);
     }
 }

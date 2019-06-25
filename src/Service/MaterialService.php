@@ -28,6 +28,8 @@ final class MaterialService
     public function createMaterial(string $name,int $isActive, string $serialNumber): Material
     {
         $materialEntity = new Material();
+        $materialEntity->getId($id);
+        var_dump($materialEntity);die;
         $materialEntity->setName($name);
         $materialEntity->setIsActive($isActive);
         $materialEntity->setSerialNumber($serialNumber);
@@ -37,6 +39,24 @@ final class MaterialService
         return $materialEntity;
     }
 
+    /**
+     * @param string $name
+     * @param integer $isActive
+     * @param string $serialNumber
+     * @return Material
+     */
+    public function editMaterial(int $id, string $name,int $isActive, string $serialNumber): Material
+    {
+        die;
+        $materialEntity = new Material($id);
+        $materialEntity->setName($name);
+        $materialEntity->setIsActive($isActive);
+        $materialEntity->setSerialNumber($serialNumber);
+        $this->em->persist($materialEntity);
+        $this->em->flush();
+
+        return $materialEntity;
+    }
     /**
      * @return object[]
      */

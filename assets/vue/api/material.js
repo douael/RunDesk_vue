@@ -10,6 +10,16 @@ export default {
             }
         );
     },
+    edit(idMaterial, name, isActive, serialNumber) {
+        return axios.post(
+            '/api/material/update', {
+                idMaterial: idMaterial,
+                name: name,
+                isActive: isActive,
+                serialNumber: serialNumber
+            }
+        );
+    },
     getAll() {
         return axios.get('/api/materials');
     },
