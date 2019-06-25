@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Carbon\Carbon;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -61,11 +63,17 @@ class User implements UserInterface
     private $updated;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Request", mappedBy="user")
+     */
+    private $requests;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->roles = [];
+        $this->requests = new ArrayCollection();
     }
 
     /**
@@ -204,5 +212,36 @@ class User implements UserInterface
     public function getUpdated(): ?\DateTime
     {
         return $this->updated;
+    }
+
+    /**
+     * @return Collection|Request[]
+     */
+    public function getRequests(): Collection
+    {
+        return $this->requests;
+    }
+
+    public function addRequest(Request $request): self
+    {
+        if (!$this->requests->contains($request)) {
+            $this->requests[] = $request;
+            $request->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRequest(Request $request): self
+    {
+        if ($this->requests->contains($request)) {
+            $this->requests->removeElement($request);
+            // set the owning side to null (unless already changed)
+            if ($request->getUser() === $this) {
+                $request->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -31,6 +31,16 @@ class Material
      */
     private $serialNumber;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="materials")
+     */
+    private $category;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Borrowing", mappedBy="material", cascade={"persist", "remove"})
+     */
+    private $borrowing;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +78,36 @@ class Material
     public function setSerialNumber(string $serialNumber): self
     {
         $this->serialNumber = $serialNumber;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getBorrowing(): ?Borrowing
+    {
+        return $this->borrowing;
+    }
+
+    public function setBorrowing(?Borrowing $borrowing): self
+    {
+        $this->borrowing = $borrowing;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newMaterial = $borrowing === null ? null : $this;
+        if ($newMaterial !== $borrowing->getMaterial()) {
+            $borrowing->setMaterial($newMaterial);
+        }
 
         return $this;
     }
