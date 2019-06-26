@@ -57,7 +57,7 @@ final class ApiMaterialController extends AbstractController
     }
 
     /**
-     * @Rest\Post("/api/material/update", name="editMaterial")
+     * @Rest\Post("/api/material/edit", name="editMaterial")
      * @param Request $request
      * @param MaterialRepository $materialRepository
      * @return JsonResponse
@@ -65,13 +65,11 @@ final class ApiMaterialController extends AbstractController
      */
     public function editAction(MaterialRepository $materialRepository, Request $request): JsonResponse
     {
-
+        //var_dump($request->request);
         $id = $request->request->get('id');
-        var_dump($id);
-        $name = $request->request->get('name');
         $isActive = $request->request->get('isActive');
-        $serialNumber = $request->request->get('serialNumber');
-        $materialEntity = $this->materialService->editMaterial($id,$name,$isActive,$serialNumber);
+        //var_dump($isActive['isActive']);
+        $materialEntity = $this->materialService->editMaterial($id,$isActive);
         $data = $this->serializer->serialize($materialEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);

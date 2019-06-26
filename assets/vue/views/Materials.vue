@@ -98,12 +98,7 @@
                 let payload = {name: this.$data.name, isActive: this.$data.isActive,serialNumber: this.$data.serialNumber};
 
                 this.$store.dispatch('material/createMaterial', payload);
-            },
-            editMaterial () {
-                let payload = {idMaterial: this.$data.id ,name: this.$data.name, isActive: this.$data.isActive,serialNumber: this.$data.serialNumber};
-
-                this.$store.dispatch('material/editMaterial', payload);
-            },
+            }
             
         },
     }
