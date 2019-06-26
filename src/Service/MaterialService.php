@@ -49,10 +49,11 @@ final class MaterialService
      */
     public function editMaterial(int $id,int $isActive): Material
     {
-        var_dump($id);
-        $material = $this->materialRepository->find($id);
+        
+        $material = $this->em->getRepository(Material::class)->find($id);
+        //var_dump($bla);
+
         $material->setIsActive($isActive);
-        $this->em->persist($material);
         $this->em->flush();
 
         return $material;

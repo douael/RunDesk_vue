@@ -43,10 +43,10 @@ export default {
             state.isLoading = true;
             state.error = null;
         },
-        ['EDITING_MATERIAL_SUCCESS'](state, material) {
+        ['EDITING_MATERIAL_SUCCESS'](state) {
             state.isLoading = false;
             state.error = null;
-            state.materials.unshift(material);
+            document.location.reload(true);
         },
         ['EDITING_MATERIAL_ERROR'](state, error) {
             state.isLoading = false;
@@ -79,7 +79,7 @@ export default {
         editMaterial({ commit }, payload, ) {
             commit('EDITING_MATERIAL');
             return MaterialAPI.edit(payload.id, payload.isActive)
-                .then(res => commit('EDITING_MATERIAL_SUCCESS', res.data))
+                .then(res => commit('EDITING_MATERIAL_SUCCESS'))
                 .catch(err => commit('EDITING_MATERIAL_ERROR', err));
         },
         fetchMaterials({ commit }) {
