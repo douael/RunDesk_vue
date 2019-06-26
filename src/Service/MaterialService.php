@@ -55,6 +55,27 @@ final class MaterialService
 
         return $material;
     }
+    
+    /**
+     * @param integer $id
+     * @param string $name
+     * @param integer $isActive
+     * @param string $serialNumber
+     * @return Material
+     */
+    public function updateMaterial(int $id,string $name, int $isActive,string $serialNumber): Material
+    {
+        
+        $material = $this->em->getRepository(Material::class)->find($id);
+        //var_dump($bla);
+
+        $material->setIsActive($isActive);
+        $material->setName($name);
+        $material->setSerialNumber($serialNumber);
+        $this->em->flush();
+
+        return $material;
+    }
     /**
      * @return object[]
      */

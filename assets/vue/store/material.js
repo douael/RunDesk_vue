@@ -82,6 +82,12 @@ export default {
                 .then(res => commit('EDITING_MATERIAL_SUCCESS'))
                 .catch(err => commit('EDITING_MATERIAL_ERROR', err));
         },
+        updateMaterial({ commit }, payload, ) {
+            commit('EDITING_MATERIAL');
+            return MaterialAPI.update(payload.id,payload.name, payload.isActive,payload.serialNumber)
+                .then(res => commit('EDITING_MATERIAL_SUCCESS'))
+                .catch(err => commit('EDITING_MATERIAL_ERROR', err));
+        },
         fetchMaterials({ commit }) {
             commit('FETCHING_MATERIALS');
             return MaterialAPI.getAll()

@@ -30,15 +30,12 @@
                                 </div>
                                 <input type="hidden" id="isActive" name="isActive" class="form-control" :value="isActive">
 
-                                <div class="col-12">
-                                    <button @click="editMaterial(id)" :disabled="name.length === 0 || serialNumber.length == 0" type="button" class="btn btn-primary">Edit</button>
-                                </div>
                             </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
-                            @click.prevent="updateTag">
+                            @click="editMaterial(id,name,isActive,serialNumber)">
                     Modify
                     </button>
                 </div>
@@ -70,6 +67,11 @@
             },
             openModal(id){
                 $('#bv-modal-example'+id).modal();
+            },
+            editMaterial(id,name,isActive,serialNumber){
+                let payload = {id: id,name:name, isActive: isActive,serialNumber: serialNumber};
+
+                this.$store.dispatch('material/updateMaterial', payload);
             },
         }
     }
