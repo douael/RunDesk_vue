@@ -2,7 +2,7 @@
     <div class="card w-100 mt-2" >
         <div class="card-body" >
             <form >
-            Nom de l'objet : <strong>{{ name }}</strong> Numero de série : <strong>{{ serialNumber }}{{id}}</strong>
+            Nom de l'objet : <strong>{{ name }}</strong> Numero de série : <strong>{{ serialNumber }}</strong>
             <button type="button" class="btn btn-primary m-1" data-toggle="modal" :data-target="'#update-material' + id" 
                @click="action = 'edit'">
                 <i class="fa fa-edit"></i> Modifier

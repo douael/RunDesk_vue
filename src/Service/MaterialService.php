@@ -31,14 +31,11 @@ final class MaterialService
     public function createMaterial(string $name,int $isActive, string $serialNumber): Material
     {
         $materialEntity = new Material();
-        $materialEntity->getId($id);
-        var_dump($materialEntity);die;
         $materialEntity->setName($name);
         $materialEntity->setIsActive($isActive);
         $materialEntity->setSerialNumber($serialNumber);
         $this->em->persist($materialEntity);
         $this->em->flush();
-
         return $materialEntity;
     }
 
