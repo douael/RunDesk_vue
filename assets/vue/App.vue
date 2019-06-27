@@ -11,6 +11,9 @@
                         <a class="nav-link">Home</a>
                     </router-link>
                     
+                    <router-link class="nav-item" tag="li" to="/categorys" active-class="active">
+                        <a class="nav-link">Categories</a>
+                    </router-link>
                     <router-link class="nav-item" tag="li" to="/materials" active-class="active">
                         <a class="nav-link">Materials</a>
                     </router-link>
