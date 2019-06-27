@@ -10,7 +10,10 @@
                     <router-link class="nav-item" tag="li" to="/home" active-class="active">
                         <a class="nav-link">Home</a>
                     </router-link>
-                    
+                    <router-link class="nav-item" tag="li" to="/dashboard" active-class="active">
+                        <a class="nav-link">Dashboard</a>
+                    </router-link>
+
                     <router-link class="nav-item" tag="li" to="/materials" active-class="active">
                         <a class="nav-link">Materials</a>
                     </router-link>
