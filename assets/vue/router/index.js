@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 import store from '../store';
 import Home from '../views/Home';
 import Login from '../views/Login';
-import Posts from '../views/Posts';
 import Materials from '../views/Materials';
 
 Vue.use(VueRouter);
@@ -13,7 +12,6 @@ let router = new VueRouter({
     routes: [
         { path: '/home', component: Home },
         { path: '/login', component: Login },
-        { path: '/posts', component: Posts, meta: { requiresAuth: true } },
         { path: '/materials', component: Materials, meta: { requiresAuth: true } },
         { path: '*', redirect: '/home' }
     ],
