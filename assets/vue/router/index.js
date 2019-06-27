@@ -14,6 +14,7 @@ let router = new VueRouter({
         { path: '/home', component: Home },
         { path: '/login', component: Login },
         { path: '/categorys', component: Categorys, meta: { requiresAuth: true } },
+        { path: '/materials', component: Materials, meta: { requiresAuth: true } },
         { path: '*', redirect: '/home' }
     ],
 });
