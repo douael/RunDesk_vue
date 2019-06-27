@@ -19,6 +19,14 @@ export default {
         );
     },
     
+    delete(id) {
+        return axios.post(
+            '/api/material/delete', {
+                id: id
+            }
+        );
+    },
+    
     update(id, name, isActive, serialNumber) {
         return axios.post(
             '/api/material/update', {

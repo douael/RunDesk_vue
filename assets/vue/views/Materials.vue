@@ -16,7 +16,7 @@
                             <label :for="serialNumber" class="mr-2">{{ labels.serialNumber }}</label>
                             <input v-model="serialNumber" type="text" class="form-control">
                         </div>
-                        <div class="col-12">
+                        <div class="col-12" style="margin-top:10px;">
                             <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Create</button>
                         </div>
                     </div>

@@ -95,6 +95,29 @@ final class ApiMaterialController extends AbstractController
         return new JsonResponse($data, 200, [], true);
     }
     /**
+     * @Rest\Post("/api/material/delete", name="deleteMaterial")
+     * @param MaterialRepository $materialRepository
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function delete(MaterialRepository $materialRepository, Request $request): JsonResponse
+    {
+        
+        $id = $request->request->get('id');
+        // var_dump($id);
+       $em = $this->getDoctrine()->getManager();
+       $materials = $materialRepository->findById($id);
+       foreach ($materials as $material) {
+            $em->remove($material);
+        }
+
+       $em->flush();
+
+       $data = $this->serializer->serialize($materials, 'json');
+
+        return new JsonResponse($data, 200, [], true);
+    }  
+    /**
      * @Rest\Get("/api/materials", name="getAllMaterials")
      * @return JsonResponse
      */

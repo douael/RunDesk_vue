@@ -25,6 +25,10 @@
         </nav>
 
         <router-view></router-view>
+
+        <div class="bg-light mt-4 text-center">
+            Copyright 2019 - Rundesk
+        </div>
     </div>
 </template>
 
