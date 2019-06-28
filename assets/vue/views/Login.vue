@@ -1,24 +1,32 @@
 <template>
-    <div>
-        <div class="row col">
-            <h1>Login</h1>
-        </div>
+<div class="authentication-bg authentication-bg-pattern">
+    <div class="account-pages mt-5 mb-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-pattern">
 
-        <div class="row col">
-            <form>
-                <div class="form-row">
-                    <div class="col-4">
-                        <input v-model="login" type="text" class="form-control">
-                    </div>
-                    <div class="col-4">
-                        <input v-model="password" type="password" class="form-control">
-                    </div>
-                    <div class="col-4">
-                        <button @click="performLogin()" :disabled="login.length === 0 || password.length === 0 || isLoading" type="button" class="btn btn-primary">Login</button>
-                    </div>
+            <div class="card-body p-4">
+                <div class="text-center w-75 m-auto">
+                    <img src="assets/images/logo-dark.png" alt="" height="22">
+                <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin panel.</p>
+              </div>
+            <form method="POST">
+
+                <div class="form-group mb-3">
+                  <label for="email">Email address</label>
+                  <input v-model="login"  type="text" class="form-control">
                 </div>
-            </form>
-        </div>
+                <div class="form-group mb-3">
+                  <label for="password">Password</label>
+                  <input v-model="password" class="form-control" type="password" >
+                </div>
+                    <div class="form-group mb-0 text-center">
+                        <button @click="performLogin()" :disabled="login.length === 0 || password.length === 0 || isLoading" type="button" class="btn btn-primary btn-block">Login</button>
+                </div>
+                </form>
+                </div> <!-- end card-body -->
+          </div>
 
         <div v-if="isLoading" class="row col">
             <p>Loading...</p>
@@ -27,7 +35,7 @@
         <div v-else-if="hasError" class="row col">
             <error-message :error="error"></error-message>
         </div>
-    </div>
+    </div></div></div></div></div>
 </template>
 
 <script>
@@ -51,7 +59,7 @@
                 if (typeof redirect !== 'undefined') {
                     this.$router.push({path: redirect});
                 } else {
-                    this.$router.push({path: '/home'});
+                    this.$router.push({path: '/dashboard'});
                 }
             }
         },
@@ -77,7 +85,7 @@
                             if (typeof redirect !== 'undefined') {
                                 this.$router.push({path: redirect});
                             } else {
-                                this.$router.push({path: '/home'});
+                                this.$router.push({path: '/dashboard'});
                             }
                         }
                     });

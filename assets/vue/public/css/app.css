@@ -1,0 +1,10 @@
+.authentication-bg {
+    background-color: #f7f7f7;
+    background-size: cover;
+    background-position: center
+}
+
+.authentication-bg-pattern {
+    background-image: url(../public/img/bg-pattern.png);
+    background-color: #6658dd
+}
