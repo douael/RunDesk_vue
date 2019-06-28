@@ -7,10 +7,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul v-if="isAuthenticated" class="navbar-nav">
+
                     <router-link class="nav-item" tag="li" to="/home" active-class="active">
                         <a class="nav-link">Home</a>
                     </router-link>
                     
+                    <router-link class="nav-item" tag="li" to="/dashboard" active-class="active">
+                        <a class="nav-link">Dashboard</a>
+                    </router-link>
                     <router-link class="nav-item" tag="li" to="/categorys" active-class="active">
                         <a class="nav-link">Categories</a>
                     </router-link>
@@ -31,13 +35,17 @@
                     </router-link>
                 </ul>
             </div>
+
         </nav>
+        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
 
         <router-view></router-view>
+         </main>
 
-        <div class="bg-light mt-4 text-center">
+        <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             Copyright 2019 - Rundesk
         </div>
+    </div>
     </div>
 </template>
 
@@ -72,4 +80,5 @@
             },
         },
     }
+    
 </script>
