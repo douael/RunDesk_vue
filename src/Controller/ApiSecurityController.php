@@ -37,7 +37,7 @@ final class ApiSecurityController extends AbstractController
     }
 
     /**
-     * @Route("/api/user/create", name="register")
+     * @Route("/api/register/create", name="register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return JsonResponse
