@@ -15,6 +15,13 @@
             <li class="nav-item">
               <a class="nav-link" href="/materials">Materials</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/categorys">Categories</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
           </ul>
 
         </nav>
@@ -61,4 +68,5 @@
             },
         },
     }
+    
 </script>
