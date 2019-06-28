@@ -6,7 +6,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul v-if="isAuthenticated" class="navbar-nav">
                     <router-link class="nav-item" tag="li" to="/home" active-class="active">
                         <a class="nav-link">Home</a>
                     </router-link>
@@ -14,12 +14,21 @@
                     <router-link class="nav-item" tag="li" to="/categorys" active-class="active">
                         <a class="nav-link">Categories</a>
                     </router-link>
-                    <router-link class="nav-item" tag="li" to="/materials" active-class="active">
+                    <router-link class="nav-item"tag="li" to="/materials" active-class="active">
                         <a class="nav-link">Materials</a>
                     </router-link>
-                    <li class="nav-item" v-if="isAuthenticated">
+                    <li class="nav-item">
                         <a class="nav-link" href="/api/security/logout">Logout</a>
                     </li>
+                </ul> 
+                <ul v-if="!isAuthenticated" class="navbar-nav">
+                    <router-link class="nav-item" tag="li" to="/home" active-class="active">
+                        <a class="nav-link">Home</a>
+                    </router-link>
+                    
+                    <router-link class="nav-item" tag="li" to="/login" active-class="active">
+                        <a class="nav-link">Login</a>
+                    </router-link>
                 </ul>
             </div>
         </nav>
