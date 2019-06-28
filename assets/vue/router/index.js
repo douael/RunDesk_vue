@@ -15,7 +15,7 @@ let router = new VueRouter({
     routes: [
         { path: '/home', component: Home },
         { path: '/login', component: Login },
-        { path: '/dashboard', component: Dashboard },
+        { path: '/dashboard', component: Dashboard, meta: { requiresAuth: true } },
         { path: '/categorys', component: Categorys, meta: { requiresAuth: true } },
         { path: '/employees', component: Employees, meta: { requiresAuth: true } },
         { path: '/materials', component: Materials, meta: { requiresAuth: true } },
