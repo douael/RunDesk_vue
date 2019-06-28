@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\request;
+use App\Entity\Request;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class RequestService
