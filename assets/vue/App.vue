@@ -33,6 +33,10 @@
                     <router-link class="nav-item" tag="li" to="/login" active-class="active">
                         <a class="nav-link">Login</a>
                     </router-link>
+
+                    <router-link class="nav-item" tag="li" to="/register" active-class="active">
+                        <a class="nav-link">Register</a>
+                    </router-link>
                 </ul>
         </nav>
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
