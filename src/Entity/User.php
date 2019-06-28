@@ -208,22 +208,4 @@ class User implements UserInterface
         return $this->updated;
     }
 
-    /**
-     * @return Collection|Request[]
-     */
-    public function getRequests(): Collection
-    {
-        return $this->requests;
-    }
-
-    public function addRequest(Request $request): self
-    {
-        if (!$this->requests->contains($request)) {
-            $this->requests[] = $request;
-            $request->setUser($this);
-        }
-
-        return $this;
-    }
-
 }
