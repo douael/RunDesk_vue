@@ -18,7 +18,7 @@ export default {
             }
         );
     },
-    
+
     delete(id) {
         return axios.post(
             '/api/category/delete', {
@@ -26,7 +26,7 @@ export default {
             }
         );
     },
-    
+
     update(id, name, type, quantity) {
         return axios.post(
             '/api/category/update', {

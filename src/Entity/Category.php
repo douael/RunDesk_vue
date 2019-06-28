@@ -33,11 +33,6 @@ class Category
      */
     private $quantity;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Material", mappedBy="category")
-     */
-    private $materials;
-
 
     public function __construct()
     {
@@ -85,34 +80,5 @@ class Category
         return $this;
     }
 
-    /**
-     * @return Collection|Material[]
-     */
-    public function getMaterials(): Collection
-    {
-        return $this->materials;
-    }
 
-    public function addMaterial(Material $material): self
-    {
-        if (!$this->materials->contains($material)) {
-            $this->materials[] = $material;
-            $material->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMaterial(Material $material): self
-    {
-        if ($this->materials->contains($material)) {
-            $this->materials->removeElement($material);
-            // set the owning side to null (unless already changed)
-            if ($material->getCategory() === $this) {
-                $material->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
 }

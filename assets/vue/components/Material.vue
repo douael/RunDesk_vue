@@ -2,7 +2,7 @@
     <div class="card w-100 mt-2" >
         <div class="card-body" >
             <form >
-            Nom de l'objet : <strong>{{ name }}</strong> Numero de série : <strong>{{ serialNumber }}</strong>
+            Nom de l'objet : <strong>{{ name }}</strong> Numero de série : <strong>{{ serialNumber }} </strong>Categorie :  <strong>{{category.name }}</strong>
             
             <button type="button" class="btn btn-danger" data-toggle="modal" style="right: 100px;position: absolute;width:120px;" @click="deleteModal(id,name)" 
               >
@@ -33,6 +33,14 @@
                                 <div class="col-6">
                                     <input v-model="serialNumber" type="text" class="form-control">
                                 </div>
+                                <div class="col-6">
+                                  <select class="form-control" name="category" v-model="category" >
+                                      <option v-for="Othercategory in categorys" v-bind:value="Othercategory.id" >
+                                      {{ Othercategory.name }}
+                                      </option>
+                                      
+                                  </select>
+                                </div>
                                 <input type="hidden" id="isActive" name="isActive" class="form-control" :value="isActive">
 
                             </div>
@@ -40,7 +48,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
-                            @click="editMaterial(id,name,isActive,serialNumber)">
+                            @click="editMaterial(id,name,isActive,serialNumber,category)">
                     Modify
                     </button>
                 </div>
@@ -83,7 +91,15 @@
     
     export default {
         name: 'material',
-        props: ['id','name','isActive','serialNumber'],
+        props: ['id','name','isActive','serialNumber','category'],
+        created () {
+            this.$store.dispatch('category/fetchCategorys');
+        },
+        computed:{
+          categorys () {
+                return this.$store.getters['category/categorys'];
+            },
+        },
         methods : {
             activateMaterial (id) {
                 //let id=document.getElementById("id").value; 
@@ -104,8 +120,8 @@
             deleteModal(id,name){
                 $('#delete-material'+id).modal();
             },
-            editMaterial(id,name,isActive,serialNumber){
-                let payload = {id: id,name:name, isActive: isActive,serialNumber: serialNumber};
+            editMaterial(id,name,isActive,serialNumber,category){
+                let payload = {id: id,name:name, isActive: isActive,serialNumber: serialNumber,category: category};
 
                 this.$store.dispatch('material/updateMaterial', payload);
             },

@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 export default {
-    create(name, isActive, serialNumber) {
+    create(name, isActive, serialNumber, category) {
         return axios.post(
             '/api/material/create', {
                 name: name,
                 isActive: isActive,
-                serialNumber: serialNumber
+                serialNumber: serialNumber,
+                category: category
             }
         );
     },
@@ -18,7 +19,7 @@ export default {
             }
         );
     },
-    
+
     delete(id) {
         return axios.post(
             '/api/material/delete', {
@@ -26,14 +27,15 @@ export default {
             }
         );
     },
-    
-    update(id, name, isActive, serialNumber) {
+
+    update(id, name, isActive, serialNumber, category) {
         return axios.post(
             '/api/material/update', {
                 id: id,
                 name: name,
                 isActive: isActive,
-                serialNumber: serialNumber
+                serialNumber: serialNumber,
+                category: category
             }
         );
     },
