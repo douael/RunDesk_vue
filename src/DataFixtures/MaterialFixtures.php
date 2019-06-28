@@ -21,7 +21,7 @@ final class MaterialFixtures extends Fixture implements DependentFixtureInterfac
         $materialEntity->setName('material1');
         $materialEntity->setIsActive(1);
         $materialEntity->setSerialNumber('25E2D34DE56');
-        //$materialEntity->setCategory($this->getReference(CategoryFixtures::CATEGORY_REFERENCE));
+        $materialEntity->setCategory($this->getReference(CategoryFixtures::CATEGORY_REFERENCE));
         $manager->persist($materialEntity);
         $manager->flush();
 
@@ -29,7 +29,7 @@ final class MaterialFixtures extends Fixture implements DependentFixtureInterfac
         $material->setName('material2');
         $material->setIsActive(0);
         $material->setSerialNumber('25E2D34DE56');
-        //$material->setCategory($this->getReference(CategoryFixtures::CATEGORY_REFERENCE));
+        $material->setCategory($this->getReference(CategoryFixtures::CATEGORY_REFERENCE));
         $manager->persist($material);
         $this->addReference(self::MATERIAL_REFERENCE, $material);
 

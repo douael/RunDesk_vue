@@ -49,8 +49,9 @@ final class ApiMaterialController extends AbstractController
             throw new BadRequestHttpException('name cannot be empty');
         }
         $isActive = $request->request->get('isActive');
+        $category = $request->request->get('category');
         $serialNumber = $request->request->get('serialNumber');
-        $materialEntity = $this->materialService->createMaterial($name,$isActive,$serialNumber);
+        $materialEntity = $this->materialService->createMaterial($name,$isActive,$serialNumber, $category);
         $data = $this->serializer->serialize($materialEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
@@ -88,8 +89,9 @@ final class ApiMaterialController extends AbstractController
         $name = $request->request->get('name');
         $isActive = $request->request->get('isActive');
         $serialNumber = $request->request->get('serialNumber');
+        $category = $request->request->get('category');
         //var_dump($isActive['isActive']);
-        $materialEntity = $this->materialService->updateMaterial($id,$name,$isActive,$serialNumber);
+        $materialEntity = $this->materialService->updateMaterial($id,$name,$isActive,$serialNumber, $category);
         $data = $this->serializer->serialize($materialEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
@@ -124,6 +126,7 @@ final class ApiMaterialController extends AbstractController
     public function getAllActions(): JsonResponse
     {
         $materialEntities = $this->materialService->getAll();
+        
         $data = $this->serializer->serialize($materialEntities, 'json');
         return new JsonResponse($data, 200, [], true);
     }
