@@ -1,34 +1,32 @@
 <template>
-    <div class="container" >
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <router-link class="navbar-brand" to="/home">App</router-link>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <router-link class="nav-item" tag="li" to="/home" active-class="active">
-                        <a class="nav-link">Home</a>
-                    </router-link>
-                    
-                    <router-link class="nav-item" tag="li" to="/categorys" active-class="active">
-                        <a class="nav-link">Categories</a>
-                    </router-link>
-                    <router-link class="nav-item" tag="li" to="/materials" active-class="active">
-                        <a class="nav-link">Materials</a>
-                    </router-link>
-                    <li class="nav-item" v-if="isAuthenticated">
-                        <a class="nav-link" href="/api/security/logout">Logout</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" style="display: inline-block;position: fixed;">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Overview <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/materials">Materials</a>
+            </li>
+          </ul>
+
         </nav>
+        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
 
         <router-view></router-view>
+         </main>
 
-        <div class="bg-light mt-4 text-center">
+        <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             Copyright 2019 - Rundesk
         </div>
+    </div>
     </div>
 </template>
 
