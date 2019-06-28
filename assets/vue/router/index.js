@@ -5,6 +5,7 @@ import Home from '../views/Home';
 import Login from '../views/Login';
 import Materials from '../views/Materials';
 import Categorys from '../views/Categorys';
+import Employees from '../views/Employees';
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,7 @@ let router = new VueRouter({
         { path: '/home', component: Home },
         { path: '/login', component: Login },
         { path: '/categorys', component: Categorys, meta: { requiresAuth: true } },
+        { path: '/employees', component: Employees, meta: { requiresAuth: true } },
         { path: '/materials', component: Materials, meta: { requiresAuth: true } },
         { path: '*', redirect: '/home' }
     ],

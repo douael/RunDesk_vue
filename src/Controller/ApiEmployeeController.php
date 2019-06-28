@@ -47,8 +47,8 @@ final class ApiEmployeeController extends AbstractController
         $lastname = $request->request->get('lastname');
         $firstname = $request->request->get('firstname');
         $site = $request->request->get('site');
-        $user_id = $request->request->get('user_id');
-        $employeeEntity = $this->employeeService->createEmployee($lastname, $firstname, $site, $user_id);
+        // $user_id = $request->request->get('user_id');
+        $employeeEntity = $this->employeeService->createEmployee($lastname, $firstname, $site);
         $data = $this->serializer->serialize($employeeEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
@@ -69,9 +69,9 @@ final class ApiEmployeeController extends AbstractController
         $lastname = $request->request->get('lastname');
         $firstname = $request->request->get('firstname');
         $site = $request->request->get('site');
-        $user_id = $request->request->get('user_id');
+        // $user_id = $request->request->get('user_id');
 
-        $employeeEntity = $this->employeeService->updateEmployee($lastname, $firstname, $site, $user_id);
+        $employeeEntity = $this->employeeService->updateEmployee($lastname, $firstname, $site);
         $data = $this->serializer->serialize($employeeEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);

@@ -17,6 +17,9 @@
                     <router-link class="nav-item" tag="li" to="/materials" active-class="active">
                         <a class="nav-link">Materials</a>
                     </router-link>
+                    <router-link class="nav-item" tag="li" to="/employees" active-class="active">
+                        <a class="nav-link">Employees</a>
+                    </router-link>
                     <li class="nav-item" v-if="isAuthenticated">
                         <a class="nav-link" href="/api/security/logout">Logout</a>
                     </li>
