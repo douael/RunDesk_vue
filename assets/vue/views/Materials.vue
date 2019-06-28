@@ -16,6 +16,14 @@
                             <label :for="serialNumber" class="mr-2">{{ labels.serialNumber }}</label>
                             <input v-model="serialNumber" type="text" class="form-control">
                         </div>
+                        <div class="col-6">
+                            <label :for="category" class="mr-2">{{ labels.category }}</label>
+                            <select class="form-control" name="category" v-model="category" >
+                                <option v-for="category in categorys" v-bind:value="category">
+                                {{ category.name }}
+                                </option>
+                            </select>
+                            </div>
                         <div class="col-12" style="margin-top:10px;">
                             <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Create</button>
                         </div>
@@ -38,7 +46,7 @@
         </div>
 
         <div v-else v-for="material in materials" class="row col">
-                <material :id="material.id" :name="material.name" :isActive="material.isActive" :serialNumber="material.serialNumber"></material>
+                <material :id="material.id" :category="material.category" :name="material.name" :isActive="material.isActive" :serialNumber="material.serialNumber"></material>
                 
                
         </div>
@@ -61,14 +69,17 @@
                 isActive: false,
                 serialNumber: '',
                 id: '',
+                category:'',
                 labels: {
                     name: 'Nom du matériel',
-                    serialNumber: 'Numero de serie'
+                    serialNumber: 'Numero de serie',
+                    category: 'Categorie'
         },
             };
         },
         created () {
             this.$store.dispatch('material/fetchMaterials');
+            this.$store.dispatch('category/fetchCategorys');
         },
         computed: {
             isLoading () {
@@ -86,6 +97,10 @@
             materials () {
                 return this.$store.getters['material/materials'];
             },
+            
+            categorys () {
+                return this.$store.getters['category/categorys'];
+            },
             canCreateMaterial () {
                 return this.$store.getters['security/hasRole']('ROLE_FOO');
             },
@@ -95,7 +110,7 @@
         },
         methods: {
             createMaterial () {
-                let payload = {name: this.$data.name, isActive: this.$data.isActive,serialNumber: this.$data.serialNumber};
+                let payload = {name: this.$data.name, isActive: this.$data.isActive,serialNumber: this.$data.serialNumber,category: this.$data.category};
 
                 this.$store.dispatch('material/createMaterial', payload);
             }

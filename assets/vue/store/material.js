@@ -86,7 +86,7 @@ export default {
     actions: {
         createMaterial({ commit }, payload) {
             commit('CREATING_MATERIAL');
-            return MaterialAPI.create(payload.name, payload.isActive, payload.serialNumber)
+            return MaterialAPI.create(payload.name, payload.isActive, payload.serialNumber, payload.category)
                 .then(res => commit('CREATING_MATERIAL_SUCCESS', res.data))
                 .catch(err => commit('CREATING_MATERIAL_ERROR', err));
         },
@@ -96,7 +96,7 @@ export default {
                 .then(res => commit('EDITING_MATERIAL_SUCCESS'))
                 .catch(err => commit('EDITING_MATERIAL_ERROR', err));
         },
-        
+
         deleteMaterial({ commit }, id, ) {
             commit('DELETING_MATERIAL');
             return MaterialAPI.delete(id)
@@ -105,7 +105,7 @@ export default {
         },
         updateMaterial({ commit }, payload, ) {
             commit('EDITING_MATERIAL');
-            return MaterialAPI.update(payload.id,payload.name, payload.isActive,payload.serialNumber)
+            return MaterialAPI.update(payload.id, payload.name, payload.isActive, payload.serialNumber, payload.category)
                 .then(res => commit('EDITING_MATERIAL_SUCCESS'))
                 .catch(err => commit('EDITING_MATERIAL_ERROR', err));
         },
