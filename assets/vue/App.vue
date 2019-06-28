@@ -10,10 +10,10 @@
                     <router-link class="nav-item" tag="li" to="/home" active-class="active">
                         <a class="nav-link">Home</a>
                     </router-link>
-                    <router-link class="nav-item" tag="li" to="/posts" active-class="active">
-                        <a class="nav-link">Posts</a>
-                    </router-link>
                     
+                    <router-link class="nav-item" tag="li" to="/categorys" active-class="active">
+                        <a class="nav-link">Categories</a>
+                    </router-link>
                     <router-link class="nav-item" tag="li" to="/materials" active-class="active">
                         <a class="nav-link">Materials</a>
                     </router-link>
@@ -25,6 +25,10 @@
         </nav>
 
         <router-view></router-view>
+
+        <div class="bg-light mt-4 text-center">
+            Copyright 2019 - Rundesk
+        </div>
     </div>
 </template>
 

@@ -16,7 +16,7 @@
                             <label :for="serialNumber" class="mr-2">{{ labels.serialNumber }}</label>
                             <input v-model="serialNumber" type="text" class="form-control">
                         </div>
-                        <div class="col-12">
+                        <div class="col-12" style="margin-top:10px;">
                             <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Create</button>
                         </div>
                     </div>
@@ -38,7 +38,9 @@
         </div>
 
         <div v-else v-for="material in materials" class="row col">
-            <material :name="material.name" :isActive="material.isActive" :serialNumber="material.serialNumber"></material>
+                <material :id="material.id" :name="material.name" :isActive="material.isActive" :serialNumber="material.serialNumber"></material>
+                
+               
         </div>
     </div>
 </template>
@@ -58,6 +60,7 @@
                 name: '',
                 isActive: false,
                 serialNumber: '',
+                id: '',
                 labels: {
                     name: 'Nom du matériel',
                     serialNumber: 'Numero de serie'
@@ -85,6 +88,9 @@
             },
             canCreateMaterial () {
                 return this.$store.getters['security/hasRole']('ROLE_FOO');
+            },
+            canEditMaterial () {
+                return this.$store.getters['security/hasRole']('ROLE_FOO');
             }
         },
         methods: {
@@ -92,7 +98,8 @@
                 let payload = {name: this.$data.name, isActive: this.$data.isActive,serialNumber: this.$data.serialNumber};
 
                 this.$store.dispatch('material/createMaterial', payload);
-            },
+            }
+            
         },
     }
 </script>

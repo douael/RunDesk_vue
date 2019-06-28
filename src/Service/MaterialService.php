@@ -3,12 +3,15 @@
 namespace App\Service;
 
 use App\Entity\Material;
+use App\Repository\MaterialRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class MaterialService
 {
     /** @var EntityManagerInterface */
     private $em;
+    /** @var MaterialRepository */
+    private $materialRepository;
 
     /**
      * MaterialService constructor.
@@ -33,10 +36,46 @@ final class MaterialService
         $materialEntity->setSerialNumber($serialNumber);
         $this->em->persist($materialEntity);
         $this->em->flush();
-
         return $materialEntity;
     }
 
+    /**
+     * @param integer $id
+     * @param integer $isActive
+     * @return Material
+     */
+    public function editMaterial(int $id,int $isActive): Material
+    {
+        
+        $material = $this->em->getRepository(Material::class)->find($id);
+        //var_dump($bla);
+
+        $material->setIsActive($isActive);
+        $this->em->flush();
+
+        return $material;
+    }
+    
+    /**
+     * @param integer $id
+     * @param string $name
+     * @param integer $isActive
+     * @param string $serialNumber
+     * @return Material
+     */
+    public function updateMaterial(int $id,string $name, int $isActive,string $serialNumber): Material
+    {
+        
+        $material = $this->em->getRepository(Material::class)->find($id);
+        //var_dump($bla);
+
+        $material->setIsActive($isActive);
+        $material->setName($name);
+        $material->setSerialNumber($serialNumber);
+        $this->em->flush();
+
+        return $material;
+    }
     /**
      * @return object[]
      */

@@ -39,6 +39,34 @@ export default {
             state.error = error;
             state.materials = [];
         },
+        ['EDITING_MATERIAL'](state) {
+            state.isLoading = true;
+            state.error = null;
+        },
+        ['EDITING_MATERIAL_SUCCESS'](state) {
+            state.isLoading = false;
+            state.error = null;
+            document.location.reload(true);
+        },
+        ['EDITING_MATERIAL_ERROR'](state, error) {
+            state.isLoading = false;
+            state.error = error;
+            state.materials = [];
+        },
+        ['DELETING_MATERIAL'](state) {
+            state.isLoading = true;
+            state.error = null;
+        },
+        ['DELETING_MATERIAL_SUCCESS'](state) {
+            state.isLoading = false;
+            state.error = null;
+            document.location.reload(true);
+        },
+        ['DELETING_MATERIAL_ERROR'](state, error) {
+            state.isLoading = false;
+            state.error = error;
+            state.materials = [];
+        },
         ['FETCHING_MATERIALS'](state) {
             state.isLoading = true;
             state.error = null;
@@ -61,6 +89,25 @@ export default {
             return MaterialAPI.create(payload.name, payload.isActive, payload.serialNumber)
                 .then(res => commit('CREATING_MATERIAL_SUCCESS', res.data))
                 .catch(err => commit('CREATING_MATERIAL_ERROR', err));
+        },
+        editMaterial({ commit }, payload, ) {
+            commit('EDITING_MATERIAL');
+            return MaterialAPI.edit(payload.id, payload.isActive)
+                .then(res => commit('EDITING_MATERIAL_SUCCESS'))
+                .catch(err => commit('EDITING_MATERIAL_ERROR', err));
+        },
+        
+        deleteMaterial({ commit }, id, ) {
+            commit('DELETING_MATERIAL');
+            return MaterialAPI.delete(id)
+                .then(res => commit('DELETING_MATERIAL_SUCCESS'))
+                .catch(err => commit('DELETING_MATERIAL_ERROR', err));
+        },
+        updateMaterial({ commit }, payload, ) {
+            commit('EDITING_MATERIAL');
+            return MaterialAPI.update(payload.id,payload.name, payload.isActive,payload.serialNumber)
+                .then(res => commit('EDITING_MATERIAL_SUCCESS'))
+                .catch(err => commit('EDITING_MATERIAL_ERROR', err));
         },
         fetchMaterials({ commit }) {
             commit('FETCHING_MATERIALS');

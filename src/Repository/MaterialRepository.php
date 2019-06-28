@@ -19,6 +19,23 @@ class MaterialRepository extends ServiceEntityRepository
         parent::__construct($registry, Material::class);
     }
 
+     /**
+     * @param integer $id
+     * @param string $delimiter
+     * @return Material[]
+     */
+    public function findById($id, $delimiter = ',')
+    {
+        // var_dump($id);
+        
+        $qb = $this->createQueryBuilder('a');
+
+        return $qb
+            ->where('a.id =:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Material[] Returns an array of Material objects
     //  */
@@ -36,15 +53,16 @@ class MaterialRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Material
+    
+    public function findOneMaterialById($id): ?Material
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('m.id = :val')
+            ->setParameter('val', $id)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+
+
 }
