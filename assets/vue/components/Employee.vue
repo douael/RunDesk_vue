@@ -2,7 +2,7 @@
     <div class="card w-100 mt-2" >
         <div class="card-body" >
             <form >
-            Nom : <strong>{{ lastname }}</strong> Prénom : <strong>{{ firtsname }} </strong>Site :  <strong>{{category.site }}</strong>
+            Nom : <strong>{{ lastname }}</strong> Prénom : <strong>{{ firstname }} </strong>Site :  <strong>{{site }}</strong>
             
             <button type="button" class="btn btn-danger" data-toggle="modal" style="right: 100px;position: absolute;width:120px;" @click="deleteModal(id,lastname)" 
               >
@@ -52,7 +52,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
-                            @click="editEmployee(id,lastname,firstname,site)">
+                            @click="editEmployee(id,firstname,lastname,site)">
                     Modify
                     </button>
                 </div>
@@ -73,7 +73,7 @@
             Are you sure that you want to delete this employee ?
             <ul>
               <li >
-                {{ name }}
+                {{ firstname }} {{ lastname }}
               </li>
             </ul>
           </div>
@@ -96,36 +96,15 @@
     export default {
         name: 'employee',
         props: ['id','lastname','firstname','site'],
-        // created () {
-        //     this.$store.dispatch('category/fetchCategorys');
-        // },
-        // computed:{
-        //   categorys () {
-        //         return this.$store.getters['category/categorys'];
-        //     },
-        // },
         methods : {
-            // activateEmployee (id) {
-            //     //let id=document.getElementById("id").value; 
-            //     let payload = {id: id, isActive: 1};
-
-            //     this.$store.dispatch('employee/editEmployee', payload);
-            // },
-            // unactivateEmployee (id) {
-            //     //let id=document.getElementById("id").value; 
-
-            //     let payload = {id: id, isActive: 0};
-
-            //     this.$store.dispatch('employee/editEmployee', payload);
-            // },
             openModal(id){
                 $('#bv-modal-example'+id).modal();
             },
             deleteModal(id,lastname){
                 $('#delete-employee'+id).modal();
             },
-            editEmployee(id,lastname,firstname,site){
-                let payload = {id: id, lastname:lastname, firstname:firstname, site:site};
+            editEmployee(id,firstname,lastname,site){
+                let payload = {id: id, firstname:firstname, lastname:lastname, site:site};
 
                 this.$store.dispatch('employee/updateEmployee', payload);
             },

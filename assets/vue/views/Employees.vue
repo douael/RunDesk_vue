@@ -51,8 +51,7 @@
 
         <div v-else v-for="employee in employees" class="row col">
                 <employee :id="employee.id" :firstname="employee.firstname" :lastname="employee.lastname" :site="employee.site"></employee>
-                
-               
+
         </div>
     </div>
 </template>

@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Service;
+use App\Entity\User;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use App\Entity\Employee;
 use App\Repository\EmployeeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class EmployeeService
+final class EmployeeService extends AbstractController
 {
     /** @var EntityManagerInterface */
     private $em;
@@ -26,16 +28,17 @@ final class EmployeeService
      * @param string $lastname
      * @param string $firstname
      * @param string $site
-     * @param array $user_id
      * @return Employee
      */
-    public function createEmployee(string $lastname, string $firstname, string $site, array $user_id): Employee
+    public function createEmployee(string $lastname, string $firstname, string $site): Employee
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $employeeEntity = new Employee();
         $employeeEntity->setLastname($lastname);
         $employeeEntity->setFirstname($firstname);
         $employeeEntity->setSite($site);
-        $employeeEntity->setUserId($user_id);
+        $employeeEntity->setUserId($user);
         $this->em->persist($employeeEntity);
         $this->em->flush();
         return $employeeEntity;
@@ -46,10 +49,9 @@ final class EmployeeService
      * @param string $lastname
      * @param string $firstname
      * @param string $site
-     * @param array $user_id
      * @return Employee
      */
-    public function updateEmployee(int $lastname,string $firstname, int $site,int $user_id): Employee
+    public function updateEmployee(int $id,string $firstname,string $lastname, string $site): Employee
     {
         
         $employee = $this->em->getRepository(Employee::class)->find($id);
@@ -57,7 +59,6 @@ final class EmployeeService
         $employee->setLastname($lastname);
         $employee->setFirstname($firstname);
         $employee->setSite($site);
-        $employee->setUserId($user_id);
         $this->em->flush();
 
         return $employee;

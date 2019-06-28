@@ -71,7 +71,7 @@ final class ApiEmployeeController extends AbstractController
         $site = $request->request->get('site');
         // $user_id = $request->request->get('user_id');
 
-        $employeeEntity = $this->employeeService->updateEmployee($lastname, $firstname, $site);
+        $employeeEntity = $this->employeeService->updateEmployee($id,$firstname, $lastname, $site);
         $data = $this->serializer->serialize($employeeEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);

@@ -19,12 +19,12 @@ export default {
         );
     },
 
-    update(id, lastname, firstname, site) {
+    update(id, firstname, lastname, site) {
         return axios.post(
             '/api/employee/update', {
                 id: id,
-                lastname: lastname,
                 firstname: firstname,
+                lastname: lastname,
                 site: site
             }
         );
