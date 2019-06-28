@@ -1,21 +1,25 @@
 <template>
-
-        
-<div>
+        <div>
           <h1>Dashboard</h1>
+<div>
+  <b-card title="Card Title" style="max-width: 20rem; background-color:#232732;" class="mb-2 text-light">
+    <b-card-text>
+      Some quick example text to build on the card title and make up the bulk of the card's content.
+    </b-card-text>
 
+    <b-button href="#" variant="primary">Go somewhere</b-button>
+  </b-card>
+</div>
           <section class="row text-center placeholders">
+
+
+
             <div class="col-6 col-sm-3 placeholder">
               <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
               <div class="text-muted">Something else</div>
             </div>
-            <div class="content">
-              <div class="col-6 col-sm-3 placeholder">
-                <line-chart :chart-data="datacollection"></line-chart>
-                <button @click="fillData()">Randomize</button>
-              </div>
-            </div>
+
             <div class="col-6 col-sm-3 placeholder">
               <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
               <h4>Label</h4>
@@ -32,7 +36,12 @@
               <span class="text-muted">Something else</span>
             </div>
           </section>
-
+            <div class="content">
+              <div class="col-6 col-sm-3 placeholder">
+                <line-chart :chart-data="datacollection"></line-chart>
+                <button @click="fillData()">Randomize</button>
+              </div>
+            </div>
           <h2>Section title</h2>
           <div class="table-responsive">
             <table class="table table-striped">

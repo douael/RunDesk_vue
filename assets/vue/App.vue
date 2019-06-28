@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" style="display: inline-block;position: fixed;">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" style="display: inline-block;position: fixed; bottom: 0;top: 0; background-color:#232732">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
               <a class="nav-link active" href="#">Overview <span class="sr-only">(current)</span></a>
