@@ -1,12 +1,8 @@
 <template>
-    <div class="container" >
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <router-link class="navbar-brand" to="/home">App</router-link>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul v-if="isAuthenticated" class="navbar-nav">
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" style="display: inline-block;position: fixed; bottom: 0;top: 0; background-color:#232732">
+          <ul v-if="isAuthenticated" class="navbar-nav">
 
                     <router-link class="nav-item" tag="li" to="/home" active-class="active">
                         <a class="nav-link">Home</a>
@@ -18,8 +14,12 @@
                     <router-link class="nav-item" tag="li" to="/categorys" active-class="active">
                         <a class="nav-link">Categories</a>
                     </router-link>
-                    <router-link class="nav-item"tag="li" to="/materials" active-class="active">
+                    <router-link class="nav-item" tag="li" to="/materials" active-class="active">
                         <a class="nav-link">Materials</a>
+                    </router-link>
+                    
+                    <router-link class="nav-item" tag="li" to="/employees" active-class="active">
+                        <a class="nav-link">Employees</a>
                     </router-link>
                     <li class="nav-item">
                         <a class="nav-link" href="/api/security/logout">Logout</a>
@@ -34,8 +34,6 @@
                         <a class="nav-link">Login</a>
                     </router-link>
                 </ul>
-            </div>
-
         </nav>
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
 
