@@ -4,6 +4,7 @@ import store from '../store';
 import Home from '../views/Home';
 import Login from '../views/Login';
 import Materials from '../views/Materials';
+import Dashboard from '../views/Dashboard';
 import Categorys from '../views/Categorys';
 import Employees from '../views/Employees';
 
@@ -14,6 +15,7 @@ let router = new VueRouter({
     routes: [
         { path: '/home', component: Home },
         { path: '/login', component: Login },
+        { path: '/dashboard', component: Dashboard },
         { path: '/categorys', component: Categorys, meta: { requiresAuth: true } },
         { path: '/employees', component: Employees, meta: { requiresAuth: true } },
         { path: '/materials', component: Materials, meta: { requiresAuth: true } },
