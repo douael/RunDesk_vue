@@ -2,10 +2,12 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '../store';
 import Login from '../views/Login';
+import Register from '../views/Register';
 import Materials from '../views/Materials';
 import Dashboard from '../views/Dashboard';
 import Categorys from '../views/Categorys';
 import Employees from '../views/Employees';
+
 
 Vue.use(VueRouter);
 
@@ -13,7 +15,8 @@ let router = new VueRouter({
     mode: 'history',
     routes: [
         { path: '/login', component: Login },
-        { path: '/dashboard', component: Dashboard, meta: { requiresAuth: true } },
+        { path: '/register', component: Register },
+        { path: '/dashboard', component: Dashboard },
         { path: '/categorys', component: Categorys, meta: { requiresAuth: true } },
         { path: '/employees', component: Employees, meta: { requiresAuth: true } },
         { path: '/materials', component: Materials, meta: { requiresAuth: true } },
