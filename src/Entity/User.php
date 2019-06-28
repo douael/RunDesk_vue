@@ -63,17 +63,11 @@ class User implements UserInterface
     private $updated;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Request", mappedBy="user")
-     */
-    private $requests;
-
-    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->roles = [];
-        $this->requests = new ArrayCollection();
     }
 
     /**
@@ -232,16 +226,4 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeRequest(Request $request): self
-    {
-        if ($this->requests->contains($request)) {
-            $this->requests->removeElement($request);
-            // set the owning side to null (unless already changed)
-            if ($request->getUser() === $this) {
-                $request->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 }
