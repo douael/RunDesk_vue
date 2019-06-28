@@ -1,12 +1,10 @@
 <template>
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" style="display: inline-block;position: fixed; bottom: 0;top: 0; background-color:#232732">
-          <ul v-if="isAuthenticated" class="navbar-nav">
+    <div >
+    <div class="container-fluid" v-if="isAuthenticated">
+      <div class="row" >
+        <nav v-if="isAuthenticated" class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" style="display: inline-block;position: fixed; bottom: 0;top: 0; background-color:#232732">
+          <ul  class="navbar-nav">
 
-                    <router-link class="nav-item" tag="li" to="/home" active-class="active">
-                        <a class="nav-link">Home</a>
-                    </router-link>
                     
                     <router-link class="nav-item" tag="li" to="/dashboard" active-class="active">
                         <a class="nav-link">Dashboard</a>
@@ -25,26 +23,22 @@
                         <a class="nav-link" href="/api/security/logout">Logout</a>
                     </li>
                 </ul> 
-                <ul v-if="!isAuthenticated" class="navbar-nav">
-                    <router-link class="nav-item" tag="li" to="/home" active-class="active">
-                        <a class="nav-link">Home</a>
-                    </router-link>
-                    
-                    <router-link class="nav-item" tag="li" to="/login" active-class="active">
-                        <a class="nav-link">Login</a>
-                    </router-link>
-                </ul>
         </nav>
-        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-
-        <router-view></router-view>
+        <main  class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+            <router-view></router-view>
          </main>
+        
 
-        <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+        <div  class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             Copyright 2019 - Rundesk
         </div>
     </div>
     </div>
+    <div v-if="!isAuthenticated">
+    <main >
+
+        <router-view></router-view>
+         </main></div></div>
 </template>
 
 <script>

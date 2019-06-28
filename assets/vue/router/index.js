@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '../store';
-import Home from '../views/Home';
 import Login from '../views/Login';
 import Materials from '../views/Materials';
 import Dashboard from '../views/Dashboard';
@@ -13,13 +12,13 @@ Vue.use(VueRouter);
 let router = new VueRouter({
     mode: 'history',
     routes: [
-        { path: '/home', component: Home },
         { path: '/login', component: Login },
         { path: '/dashboard', component: Dashboard, meta: { requiresAuth: true } },
         { path: '/categorys', component: Categorys, meta: { requiresAuth: true } },
         { path: '/employees', component: Employees, meta: { requiresAuth: true } },
         { path: '/materials', component: Materials, meta: { requiresAuth: true } },
-        { path: '*', redirect: '/home' }
+        { path: '*', redirect: '/dashboard' , meta: { requiresAuth: true }},
+        { path: '*', redirect: '/login' }
     ],
 });
 
