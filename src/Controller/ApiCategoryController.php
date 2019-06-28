@@ -125,6 +125,7 @@ final class ApiCategoryController extends AbstractController
     {
         $categoryEntities = $this->categoryService->getAll();
         $data = $this->serializer->serialize($categoryEntities, 'json');
+        var_dump($data);
         return new JsonResponse($data, 200, [], true);
     }
 }

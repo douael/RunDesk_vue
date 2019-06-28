@@ -30,6 +30,12 @@ class Material
      * @ORM\Column(type="string", length=255)
      */
     private $serialNumber;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="materials",cascade={"persist"}))
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
     
     
     public function getId(): ?int
@@ -69,6 +75,18 @@ class Material
     public function setSerialNumber(string $serialNumber): self
     {
         $this->serialNumber = $serialNumber;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
