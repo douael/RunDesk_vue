@@ -21,6 +21,9 @@
                     <router-link class="nav-item" tag="li" to="/employees" active-class="active">
                         <a class="nav-link">Employees</a>
                     </router-link>
+                    <router-link class="nav-item" tag="li" to="/borrowings" active-class="active">
+                        <a class="nav-link">Borrowings</a>
+                    </router-link>
                     <li class="nav-item">
                         <a class="nav-link" href="/api/security/logout">Logout</a>
                     </li>
