@@ -8,3 +8,7 @@
     background-image: url(../public/img/bg-pattern.png);
     background-color: #6658dd
 }
+
+.nav-link {
+    background-color: grey !important;
+}
