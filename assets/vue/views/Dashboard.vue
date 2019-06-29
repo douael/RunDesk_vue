@@ -1,39 +1,45 @@
 <template>
         <div>
           <h1>Dashboard</h1>
-<div>
-  <b-card title="Card Title" style="max-width: 20rem; background-color:#232732;" class="mb-2 text-light">
-    <b-card-text>
-      Some quick example text to build on the card title and make up the bulk of the card's content.
-    </b-card-text>
 
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-  </b-card>
-</div>
           <section class="row text-center placeholders">
 
-
-
             <div class="col-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <div class="text-muted">Something else</div>
+              <b-card title="Categories" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
+                <b-card-text>
+                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                </b-card-text>
+
+                <b-button href="/categorys" class="darkblue-bg">Show more</b-button>
+              </b-card>
             </div>
 
             <div class="col-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <b-card title="Materials" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
+                <b-card-text>
+                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                </b-card-text>
+
+                <b-button href="/materials" class="darkblue-bg">Show more</b-button>
+              </b-card>
             </div>
             <div class="col-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <b-card title="Requests" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
+                <b-card-text>
+                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                </b-card-text>
+
+                <b-button href="/requests" class="darkblue-bg">Show more</b-button>
+              </b-card>
             </div>
             <div class="col-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+              <b-card title="Employees" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
+                <b-card-text>
+                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                </b-card-text>
+
+                <b-button href="/employees" class="darkblue-bg">Show more</b-button>
+              </b-card>
             </div>
           </section>
             <div class="content">
