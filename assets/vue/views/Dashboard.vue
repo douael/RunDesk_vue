@@ -24,18 +24,19 @@
               </b-card>
             </div>
             <div class="col-6 col-sm-3 placeholder">
-              <b-card title="Requests" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
+              <b-card title="Borrows" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
                 <b-card-text>
-                  {{ employees.length }} Employees
+                  XX borrow
+                <!--  {{ borrow.length }} borrow -->
                 </b-card-text>
 
-                <b-button href="/requests" class="darkblue-bg">Show more</b-button>
+                <b-button href="/borrowing" class="darkblue-bg">Show more</b-button>
               </b-card>
             </div>
             <div class="col-6 col-sm-3 placeholder">
               <b-card title="Employees" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
                 <b-card-text>
-                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                  {{ employees.length }} Employees
                 </b-card-text>
 
                 <b-button href="/employees" class="darkblue-bg">Show more</b-button>

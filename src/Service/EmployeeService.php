@@ -40,6 +40,7 @@ final class EmployeeService extends AbstractController
         $employeeEntity->setSite($site);
         $employeeEntity->setUserId($user);
         $this->em->persist($employeeEntity);
+        $this->writeLog("Création de l'employe : ".$firstname." ".$lastname." - ".date('Y-m-d H:i:s'));
         $this->em->flush();
         return $employeeEntity;
     }
@@ -59,6 +60,7 @@ final class EmployeeService extends AbstractController
         $employee->setLastname($lastname);
         $employee->setFirstname($firstname);
         $employee->setSite($site);
+        $this->writeLog("Modification de l'employe : ".$firstname." ".$lastname." - ".date('Y-m-d H:i:s'));
         $this->em->flush();
 
         return $employee;
@@ -69,5 +71,15 @@ final class EmployeeService extends AbstractController
     public function getAll(): array
     {
         return $this->em->getRepository(Employee::class)->findBy([], ['id' => 'DESC']);
+    }
+
+    public function writeLog($phrase) {
+        $chemin = $this->getParameter('logs_directory');
+        if (!is_dir($chemin)) {
+            mkdir($chemin, 0775, true);
+        }
+        $chemin_url = $chemin . "/event-log.txt";
+        $handle = fopen($chemin_url, "a+");
+        fputs($handle, $phrase."\n");
     }
 }

@@ -6,8 +6,10 @@ use App\Entity\Material;
 use App\Entity\Category;
 use App\Repository\MaterialRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-final class MaterialService
+
+final class MaterialService extends AbstractController
 {
     /** @var EntityManagerInterface */
     private $em;
@@ -40,6 +42,7 @@ final class MaterialService
         $materialEntity->setCategory($category);
         $this->em->persist($materialEntity);
         $this->em->flush();
+        $this->writeLog("Création de Materiel : ".$name." - ".date('Y-m-d H:i:s'));
         return $materialEntity;
     }
 
@@ -55,6 +58,8 @@ final class MaterialService
         //var_dump($bla);
 
         $material->setIsActive($isActive);
+        $this->writeLog("Changement de statut : ".$material->getName()." - ".date('Y-m-d H:i:s'));
+
         $this->em->flush();
 
         return $material;
@@ -79,6 +84,7 @@ final class MaterialService
         $material->setName($name);
         $material->setSerialNumber($serialNumber);
         $material->setCategory($category);
+        $this->writeLog("Modification du materiel : ".$material->getName()." - ".date('Y-m-d H:i:s'));
         $this->em->flush();
 
         return $material;
@@ -91,5 +97,14 @@ final class MaterialService
         return $this->em->getRepository(Material::class)->findBy([], ['id' => 'DESC']);
     }
 
+    public function writeLog($phrase) {
+        $chemin = $this->getParameter('logs_directory');
+        if (!is_dir($chemin)) {
+            mkdir($chemin, 0775, true);
+        }
+        $chemin_url = $chemin . "/event-log.txt";
+        $handle = fopen($chemin_url, "a+");
+        fputs($handle, $phrase."\n");
+    }
     
 }
