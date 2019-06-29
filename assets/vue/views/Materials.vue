@@ -5,18 +5,19 @@
         </div>
 
         <div class="row col" v-if="canCreateMaterial">
-            <form style="width:100%">
+            
+                    <div class="col-8">
+                        <form style="width:100%">
                 <div class="form-row">
-                    <div class="col-12">
-                        <div class="col-6">
+                        <div class="col-12">
                             <label :for="name" class="mr-2">{{ labels.name }}</label>
                             <input v-model="name" type="text" class="form-control">
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
                             <label :for="serialNumber" class="mr-2">{{ labels.serialNumber }}</label>
                             <input v-model="serialNumber" type="text" class="form-control">
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
                             <label :for="category" class="mr-2">{{ labels.category }}</label>
                             <select class="form-control" name="category" v-model="category" >
                                 <option v-for="category in categorys" v-bind:value="category">
@@ -27,9 +28,16 @@
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
                             <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Create</button>
                         </div>
-                    </div>
-                </div>
+                         </div>
             </form>
+            
+                    </div>
+                    <div class="col-4">
+                        <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
+                            <button @click="importModal()" type="button" class="btn btn-primary">Import CSV of material</button>
+                        </div>
+                    </div>
+               
         </div>
 
         <div v-if="isLoading" class="row col">
@@ -149,6 +157,30 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    
+          <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+         style="display: none;"
+         id="import">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" >Import Material with csv </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+                    @click.prevent="importMaterial()">
+              Import
+            </button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     </div>
     </div>
 </template>
@@ -212,6 +244,11 @@
 
                 this.$store.dispatch('material/createMaterial', payload);
             },
+            importMaterial () {
+                let payload = {name: this.$data.name, isActive: this.$data.isActive,serialNumber: this.$data.serialNumber,category: this.$data.category};
+
+                this.$store.dispatch('material/importMaterial', payload);
+            },
             activateMaterial (id) {
                 //let id=document.getElementById("id").value; 
                 let payload = {id: id, isActive: 1};
@@ -227,6 +264,9 @@
             },
             openModal(id){
                 $('#bv-modal-example'+id).modal();
+            },
+            importModal(id){
+                $('#import').modal();
             },
             deleteModal(id,name){
                 $('#delete-material'+id).modal();
