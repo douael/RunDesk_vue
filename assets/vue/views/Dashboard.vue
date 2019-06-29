@@ -7,7 +7,7 @@
             <div class="col-6 col-sm-3 placeholder">
               <b-card title="Categories" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
                 <b-card-text>
-                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                  {{ categorys.length }} Categories
                 </b-card-text>
 
                 <b-button href="/categorys" class="darkblue-bg">Show more</b-button>
@@ -17,7 +17,7 @@
             <div class="col-6 col-sm-3 placeholder">
               <b-card title="Materials" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
                 <b-card-text>
-                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                    {{ materials.length }} materials
                 </b-card-text>
 
                 <b-button href="/materials" class="darkblue-bg">Show more</b-button>
@@ -26,7 +26,7 @@
             <div class="col-6 col-sm-3 placeholder">
               <b-card title="Requests" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
                 <b-card-text>
-                  Some quick example text to build on the card title and make up the bulk of the card's content.
+                  {{ employees.length }} Employees
                 </b-card-text>
 
                 <b-button href="/requests" class="darkblue-bg">Show more</b-button>
@@ -199,6 +199,23 @@
     },
     mounted () {
       this.fillData()
+    },
+    created () {
+      this.$store.dispatch('material/fetchMaterials');
+      this.$store.dispatch('category/fetchCategorys');
+      this.$store.dispatch('employee/fetchEmployees');
+
+    },
+    computed: {
+            materials () {
+                return this.$store.getters['material/materials'];
+            },
+            categorys () {
+                return this.$store.getters['category/categorys'];
+            },
+            employees () {
+                return this.$store.getters['employee/employees'];
+            },
     },
     methods: {
       fillData () {
