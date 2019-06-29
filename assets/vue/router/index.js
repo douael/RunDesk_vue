@@ -6,6 +6,7 @@ import Materials from '../views/Materials';
 import Dashboard from '../views/Dashboard';
 import Categorys from '../views/Categorys';
 import Employees from '../views/Employees';
+import Borrowings from '../views/Borrowings';
 
 
 Vue.use(VueRouter);
@@ -18,6 +19,7 @@ let router = new VueRouter({
         { path: '/categorys', component: Categorys, meta: { requiresAuth: true } },
         { path: '/employees', component: Employees, meta: { requiresAuth: true } },
         { path: '/materials', component: Materials, meta: { requiresAuth: true } },
+        { path: '/borrowings', component: Borrowings, meta: { requiresAuth: true } },
         { path: '*', redirect: '/dashboard' , meta: { requiresAuth: true }},
         { path: '*', redirect: '/login' }
     ],

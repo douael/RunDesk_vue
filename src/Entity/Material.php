@@ -36,6 +36,11 @@ class Material
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Borrowing", inversedBy="materiel_id")
+     */
+    private $borrowing;
     
     
     public function getId(): ?int
@@ -87,6 +92,18 @@ class Material
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getBorrowing(): ?Borrowing
+    {
+        return $this->borrowing;
+    }
+
+    public function setBorrowing(?Borrowing $borrowing): self
+    {
+        $this->borrowing = $borrowing;
 
         return $this;
     }

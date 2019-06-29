@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,26 @@ class Borrowing
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $date_end;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\user")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Employee")
+     */
+    private $employee;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Material", mappedBy="borrowing")
+     */
+    private $materiel;
+
+    public function __construct()
+    {
+        $this->materiel = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -52,6 +74,61 @@ class Borrowing
     public function setDateEnd(?\DateTimeInterface $date_end): self
     {
         $this->date_end = $date_end;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getEmployee(): ?Employee
+    {
+        return $this->employee;
+    }
+
+    public function setEmployee(?Employee $employee): self
+    {
+        $this->employee = $employee;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Material[]
+     */
+    public function getMateriel(): Collection
+    {
+        return $this->materiel;
+    }
+
+    public function addMateriel(Material $materiel): self
+    {
+        if (!$this->materiel->contains($materiel)) {
+            $this->materiel[] = $materiel;
+            $materiel->setBorrowing($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMateriel(Material $materiel): self
+    {
+        if ($this->materiel->contains($materiel)) {
+            $this->materiel->removeElement($materiel);
+            // set the owning side to null (unless already changed)
+            if ($materiel->getBorrowing() === $this) {
+                $materiel->setBorrowing(null);
+            }
+        }
 
         return $this;
     }
