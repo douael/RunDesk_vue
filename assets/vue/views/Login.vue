@@ -8,7 +8,7 @@
 
             <div class="card-body p-4">
                 <div class="text-center w-75 m-auto">
-                    <img src="assets/images/logo-dark.png" alt="" height="22">
+                    <img src="../public/img/logo.jpg" alt="" height="100">
                 <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin panel.</p>
               </div>
             <form method="POST">
