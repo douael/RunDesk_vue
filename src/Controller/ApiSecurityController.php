@@ -20,6 +20,7 @@ final class ApiSecurityController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
+        $this->writeLog("Connexion de l'utilisateur : ".$user->getLogin()." - ".date('Y-m-d H:i:s'));
         $response = new JsonResponse($user->getRoles());
         return $response;
     }
@@ -55,5 +56,15 @@ final class ApiSecurityController extends AbstractController
         $data = $this->serializer->serialize($userEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
+    }
+
+    public function writeLog($phrase) {
+        $chemin = $this->getParameter('logs_directory');
+        if (!is_dir($chemin)) {
+            mkdir($chemin, 0775, true);
+        }
+        $chemin_url = $chemin . "/event-log.txt";
+        $handle = fopen($chemin_url, "a+");
+        fputs($handle, $phrase."\n");
     }
 }
