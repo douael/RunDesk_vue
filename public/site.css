@@ -2,3 +2,43 @@
 	color: #232732;
 	text-align: center;
 }
+
+.darkBlue{
+	color: #232732;
+}
+
+.purple{
+	color: #4A2A39;
+}
+
+.green{
+	color: #A3CDBC;
+}
+
+.grey{
+	color: #7B8693;
+}
+
+.blue{
+	color: #33C3C0;
+}
+
+.darkBlue-bg{
+	background-color: #232732;
+}
+
+.purple-bg{
+	background-color: #4A2A39;
+}
+
+.green-bg{
+	background-color: #A3CDBC;
+}
+
+.grey-bg{
+	background-color: #7B8693;
+}
+
+.blue-bg{
+	background-color: #33C3C0;
+}
