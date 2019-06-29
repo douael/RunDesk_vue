@@ -138,12 +138,13 @@ final class ApiMaterialController extends AbstractController
        $em = $this->getDoctrine()->getManager();
        $materials = $materialRepository->findById($id);
        foreach ($materials as $material) {
+            $this->writeLog("Suppression du matériel : ".$material->getName()." - ".date('Y-m-d H:i:s'));
             $em->remove($material);
         }
 
-       $em->flush();
+        $em->flush();
 
-       $data = $this->serializer->serialize($materials, 'json');
+        $data = $this->serializer->serialize($materials, 'json');
 
         return new JsonResponse($data, 200, [], true);
     }  
@@ -157,5 +158,15 @@ final class ApiMaterialController extends AbstractController
         
         $data = $this->serializer->serialize($materialEntities, 'json');
         return new JsonResponse($data, 200, [], true);
+    }
+
+    public function writeLog($phrase) {
+        $chemin = $this->getParameter('logs_directory');
+        if (!is_dir($chemin)) {
+            mkdir($chemin, 0775, true);
+        }
+        $chemin_url = $chemin . "/event-log.txt";
+        $handle = fopen($chemin_url, "a+");
+        fputs($handle, $phrase."\n");
     }
 }
