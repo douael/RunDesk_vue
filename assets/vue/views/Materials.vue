@@ -254,7 +254,7 @@ import axios from 'axios';
                     }
                 }
                 ).then(function(data){
-                console.log(data.data);
+                document.location.reload(true);
                 })
                 .catch(function(){
                 console.log('FAILURE!!');

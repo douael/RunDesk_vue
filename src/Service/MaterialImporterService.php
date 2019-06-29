@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Service;
-
+use App\Service\MaterialService;
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use App\Entity\Material;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -17,13 +19,21 @@ class MaterialImporterService
      */
     private $entityManager;
 
+    /** @var MaterialService */
+    private $materialService;
+
+    /** @var CategoryRepository */
+    private $cat;
     /**
      * MaterialImporterService constructor.
      * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, MaterialService $materialService, CategoryRepository $cat)
     {
         $this->entityManager = $entityManager;
+        $this->materialService = $materialService;
+        $this->cat = $cat;
+
     }
 
     /**
@@ -53,13 +63,19 @@ class MaterialImporterService
                 }
 
                 $partCount++;
-                $filename = $originalFileName . '-' . $partCount . '.' . $file->getClientOriginalExtension();
+                $filename = $originalFileName.'-'.uniqid('', true). '.' . $file->getClientOriginalExtension();
                 $fullPath = $outputFolder . '/' . $filename;
                 $output = fopen($fullPath, 'w');
                 $files[] = $filename;
             }
             if ($line = fgetcsv($fh)) {
                 fputcsv($output, $line);
+                $name = $line[0];
+                $serialNumber = $line[1];
+                $category['id'] = $line[2];
+
+                $materialEntity = $this->materialService->createMaterial($name,1,$serialNumber, $category);
+  
             }
 
             $i++;
