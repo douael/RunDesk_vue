@@ -89,6 +89,7 @@ final class ApiEmployeeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $employees = $employeeRepository->findById($id);
         foreach ($employees as $employee) {
+            $this->writeLog("Suppression de l'employe : ".$employee->getFirstname()." ".$employee->getLastname()." - ".date('Y-m-d H:i:s'));
             $em->remove($employee);
         }
 
@@ -108,5 +109,15 @@ final class ApiEmployeeController extends AbstractController
         
         $data = $this->serializer->serialize($employeeEntities, 'json');
         return new JsonResponse($data, 200, [], true);
+    }
+
+    public function writeLog($phrase) {
+        $chemin = $this->getParameter('logs_directory');
+        if (!is_dir($chemin)) {
+            mkdir($chemin, 0775, true);
+        }
+        $chemin_url = $chemin . "/event-log.txt";
+        $handle = fopen($chemin_url, "a+");
+        fputs($handle, $phrase."\n");
     }
 }
