@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Repository\MaterialRepository;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use App\Service\MaterialImporterService;
+
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -55,6 +58,31 @@ final class ApiMaterialController extends AbstractController
         $data = $this->serializer->serialize($materialEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
+    }
+
+    /**
+     * @Rest\Post("/api/material/import", name="importMaterial")
+     * @param Request $request
+     * @param MaterialImporterService $service
+     * @return JsonResponse
+     * @IsGranted("ROLE_FOO")
+     */
+    public function importAction(Request $request, MaterialImporterService $service ): JsonResponse
+    {
+
+        $file = $request->files->get('file');
+        if (!$file instanceof UploadedFile) {
+            return new JsonResponse('Invalid File', 422);
+        }
+
+        $outputFolder = $this->getParameter('materials_directory');
+        $files = $service->splitFile($file, $outputFolder);
+
+        var_dump($file);die;
+
+        unlink($file->getRealPath());
+        return new JsonResponse([]);
+
     }
 
     /**

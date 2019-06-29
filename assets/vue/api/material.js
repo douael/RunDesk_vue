@@ -28,6 +28,13 @@ export default {
         );
     },
 
+    import(file) {
+        return axios.post(
+            '/api/material/import', {
+                file: file
+            }
+        );
+    },
     update(id, name, isActive, serialNumber, category) {
         return axios.post(
             '/api/material/update', {

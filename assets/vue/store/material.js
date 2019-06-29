@@ -90,20 +90,20 @@ export default {
                 .then(res => commit('CREATING_MATERIAL_SUCCESS', res.data))
                 .catch(err => commit('CREATING_MATERIAL_ERROR', err));
         },
-        editMaterial({ commit }, payload, ) {
+        editMaterial({ commit }, payload) {
             commit('EDITING_MATERIAL');
             return MaterialAPI.edit(payload.id, payload.isActive)
                 .then(res => commit('EDITING_MATERIAL_SUCCESS'))
                 .catch(err => commit('EDITING_MATERIAL_ERROR', err));
         },
 
-        deleteMaterial({ commit }, id, ) {
+        deleteMaterial({ commit }, id ) {
             commit('DELETING_MATERIAL');
             return MaterialAPI.delete(id)
                 .then(res => commit('DELETING_MATERIAL_SUCCESS'))
                 .catch(err => commit('DELETING_MATERIAL_ERROR', err));
         },
-        updateMaterial({ commit }, payload, ) {
+        updateMaterial({ commit }, payload ) {
             commit('EDITING_MATERIAL');
             return MaterialAPI.update(payload.id, payload.name, payload.isActive, payload.serialNumber, payload.category)
                 .then(res => commit('EDITING_MATERIAL_SUCCESS'))
@@ -114,6 +114,13 @@ export default {
             return MaterialAPI.getAll()
                 .then(res => commit('FETCHING_MATERIALS_SUCCESS', res.data))
                 .catch(err => commit('FETCHING_MATERIALS_ERROR', err));
+        },
+        
+        importMaterial({ commit }, file) {
+            commit('CREATING_MATERIAL');
+            return MaterialAPI.import(file)
+                .then(res => commit('CREATING_MATERIAL_SUCCESS', res.data))
+                .catch(err => commit('CREATING_MATERIAL_ERROR', err));
         },
     },
 }
