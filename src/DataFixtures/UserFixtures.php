@@ -8,6 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 final class UserFixtures extends Fixture
 {
+    public const USER_REFERENCE =  'user';
     /**
      * @param ObjectManager $manager
      * @return void
@@ -19,6 +20,8 @@ final class UserFixtures extends Fixture
         $userEntity->setPlainPassword('bar');
         $userEntity->setRoles(['ROLE_FOO']);
         $manager->persist($userEntity);
+        $this->addReference(self::USER_REFERENCE, $userEntity);
+
         $manager->flush();
     }
 }

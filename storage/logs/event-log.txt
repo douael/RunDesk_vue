@@ -8,3 +8,4 @@ Suppression de l'employe : AA AAZE - 2019-06-29 22:09:05
 Création Categorie : GG - 2019-06-29 22:11:02
 Modification de la Categorie : GG-HF - 2019-06-29 22:11:16
 Suppression de la catégorie : GG-HF - 2019-06-29 22:11:23
+Connexion de l'utilisateur : foo - 2019-06-29 22:40:20

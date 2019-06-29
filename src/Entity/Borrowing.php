@@ -39,9 +39,9 @@ class Borrowing
     private $employee;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Material", mappedBy="borrowing")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Material")
      */
-    private $materiel;
+    private $material;
 
     public function __construct()
     {
@@ -102,34 +102,16 @@ class Borrowing
         return $this;
     }
 
-    /**
-     * @return Collection|Material[]
-     */
-    public function getMateriel(): Collection
+    public function getMaterial(): ?Material
     {
-        return $this->materiel;
+        return $this->material;
     }
 
-    public function addMateriel(Material $materiel): self
+    public function setMaterial(?Material $material): self
     {
-        if (!$this->materiel->contains($materiel)) {
-            $this->materiel[] = $materiel;
-            $materiel->setBorrowing($this);
-        }
+        $this->material = $material;
 
         return $this;
     }
 
-    public function removeMateriel(Material $materiel): self
-    {
-        if ($this->materiel->contains($materiel)) {
-            $this->materiel->removeElement($materiel);
-            // set the owning side to null (unless already changed)
-            if ($materiel->getBorrowing() === $this) {
-                $materiel->setBorrowing(null);
-            }
-        }
-
-        return $this;
-    }
 }
