@@ -169,12 +169,13 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
+          <input type="file" id="file" ref="file" accept=".csv" @change="onChangeFileUpload" class="input-file">
             
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
-                    @click.prevent="importMaterial()">
+                   v-on:click="submitForm()">
               Import
             </button>
           </div>
@@ -187,6 +188,7 @@
 
 <script>
     import ErrorMessage from '../components/ErrorMessage';
+import axios from 'axios';
 
     export default {
         name: 'materials',
@@ -200,6 +202,7 @@
                 serialNumber: '',
                 id: '',
                 category:'',
+                file: '',
                 labels: {
                     name: 'Nom du matériel',
                     serialNumber: 'Numero de serie',
@@ -239,15 +242,36 @@
             }
         },
         methods: {
+            submitForm(){
+                let formData = new FormData();
+                formData.append('file', this.file);
+                console.log(formData);
+                axios.post('/api/material/import',
+                    formData,
+                    {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+                ).then(function(data){
+                document.location.reload(true);
+                })
+                .catch(function(){
+                console.log('FAILURE!!');
+                });
+            },
+             onChangeFileUpload(){
+                this.file = event.target.files[0];
+            },
             createMaterial () {
                 let payload = {name: this.$data.name, isActive: this.$data.isActive,serialNumber: this.$data.serialNumber,category: this.$data.category};
 
                 this.$store.dispatch('material/createMaterial', payload);
             },
-            importMaterial () {
-                let payload = {name: this.$data.name, isActive: this.$data.isActive,serialNumber: this.$data.serialNumber,category: this.$data.category};
+            importMaterial (fileMaterial) {
+                //let payload = {name: uploadFieldName, isActive: this.$data.isActive,serialNumber: this.$data.serialNumber,category: this.$data.category};
 
-                this.$store.dispatch('material/importMaterial', payload);
+                //this.$store.dispatch('material/importMaterial', fileMaterial);
             },
             activateMaterial (id) {
                 //let id=document.getElementById("id").value; 
