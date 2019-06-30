@@ -12,6 +12,8 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use App\Service\EmployeeImporterService;
 /**
  * Class ApiEmployeeController
  * @package App\Controller
@@ -76,6 +78,32 @@ final class ApiEmployeeController extends AbstractController
 
         return new JsonResponse($data, 200, [], true);
     }
+
+    /**
+     * @Rest\Post("/api/employee/import", name="importEmployee")
+     * @param Request $request
+     * @param EmployeeImporterService $service
+     * @return JsonResponse
+     * @IsGranted("ROLE_FOO")
+     */
+    public function importAction(Request $request, EmployeeImporterService $service ): JsonResponse
+    {
+
+        $file = $request->files->get('file');
+        if (!$file instanceof UploadedFile) {
+            return new JsonResponse('Invalid File', 422);
+        }
+
+        $outputFolder = $this->getParameter('employees_directory');
+        $files = $service->splitFile($file, $outputFolder);
+
+        var_dump($file);die;
+
+        unlink($file->getRealPath());
+        return new JsonResponse([]);
+
+    }
+
     /**
      * @Rest\Post("/api/employee/delete", name="deleteEmployee")
      * @param EmployeeRepository $employeeRepository

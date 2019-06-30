@@ -36,6 +36,8 @@ class Material
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+
     
     
     public function getId(): ?int
@@ -90,5 +92,7 @@ class Material
 
         return $this;
     }
+
+
 
 }

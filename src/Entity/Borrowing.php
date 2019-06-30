@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,29 @@ class Borrowing
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $date_end;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\user")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Employee")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $employee;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Material")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $material;
+
+    public function __construct()
+    {
+        $this->materiel = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -55,4 +80,41 @@ class Borrowing
 
         return $this;
     }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getEmployee(): ?Employee
+    {
+        return $this->employee;
+    }
+
+    public function setEmployee(?Employee $employee): self
+    {
+        $this->employee = $employee;
+
+        return $this;
+    }
+
+    public function getMaterial(): ?Material
+    {
+        return $this->material;
+    }
+
+    public function setMaterial(?Material $material): self
+    {
+        $this->material = $material;
+
+        return $this;
+    }
+
 }
