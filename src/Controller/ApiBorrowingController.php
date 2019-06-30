@@ -43,9 +43,10 @@ final class ApiBorrowingController extends AbstractController
      * @IsGranted("ROLE_FOO")
      */
     public function createAction(Request $request): JsonResponse
-    {
-        
-        $user = $request->request->get('user');
+    {   
+
+        // var_dump($request->request);
+        $user = array('id' => 1, );
         $employee = $request->request->get('employee');
         $materiel = $request->request->get('materiel');
         $borrowingEntity = $this->borrowingService->createBorrowing($user,$employee,$materiel);
