@@ -51,7 +51,7 @@ final class BorrowingService extends AbstractController
         $borrowingEntity->setCreatedAt($created_at);
 
         $this->em->persist($borrowingEntity);
-        $this->writeLog("Création de la demande du material : ".$material->getName()." pour l'employee : ".$employee->getFirstName().' '.$employee->getFirstName()." - ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création de la demande du material : ".$material->getName()." pour l'employee : ".$employee->getFirstName().' '.$employee->getFirstName()." # ".date('Y-m-d H:i:s'));
 
         $this->em->flush();
         return $borrowingEntity;

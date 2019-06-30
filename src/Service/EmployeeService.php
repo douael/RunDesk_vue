@@ -40,7 +40,7 @@ final class EmployeeService extends AbstractController
         $employeeEntity->setSite($site);
         $employeeEntity->setUserId($user);
         $this->em->persist($employeeEntity);
-        $this->writeLog("Création de l'employe : ".$firstname." ".$lastname." - ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création de l'employe : ".$firstname." ".$lastname." # ".date('Y-m-d H:i:s'));
         $this->em->flush();
         return $employeeEntity;
     }
@@ -60,7 +60,7 @@ final class EmployeeService extends AbstractController
         $employee->setLastname($lastname);
         $employee->setFirstname($firstname);
         $employee->setSite($site);
-        $this->writeLog("Modification de l'employe : ".$firstname." ".$lastname." - ".date('Y-m-d H:i:s'));
+        $this->writeLog("Modification de l'employe : ".$firstname." ".$lastname." # ".date('Y-m-d H:i:s'));
         $this->em->flush();
 
         return $employee;
