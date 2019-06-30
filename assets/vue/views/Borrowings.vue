@@ -66,7 +66,6 @@
                   <th>Material</th>
                   <th>Date de debut</th>
                   <th>Date de fin</th>
-                  <th>Update</th>
                   <th>Delete</th>
               </tr>
           </thead>
@@ -74,33 +73,15 @@
             <tr  v-for="borrowing in borrowings" >
                 <td>{{ borrowing.employee.firstname }}&nbsp; {{ borrowing.employee.lastname }}</td>
                 <td>{{ borrowing.material.name }}</td>
-                <td>{{ borrowing.date_start}}</td>
-                <td>{{ borrowing.date_end}}</td>
-                    <!-- <td>
-                        <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(material.id,material.name)" >
-                            <i class="fa fa-trash"></i> Supprimer
-                        </button>
-                    </td> -->
+                <td>{{ borrowing.dateStart}}</td>
+                <td>{{ borrowing.dateEnd}}</td>
 
-                    <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(borrowing.id)">
-                            <i class="fa fa-edit"></i> Modifier
-                        </button>
-                    </td>
 
                     <td>
                         <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(borrowing.id)" >
                             <i class="fa fa-trash"></i> Supprimer
                         </button>
-                    </td>
-                    <!-- <td>
-                        <form >
-                        <button type="button" class="btn btn-warning" v-if="!material.isActive" @click="activateMaterial(material.id)">Inactif</button>
-                        <button type="button" class="btn btn-success" v-else  @click="unactivateMaterial(material.id)">Actif</button>
-                        <input type="hidden" id="id" name="id" class="form-control" :value="material.id">
-            
-                        </form>
-                    </td>   -->              
+                    </td>            
                 </tr>
             </tbody>
         </table>

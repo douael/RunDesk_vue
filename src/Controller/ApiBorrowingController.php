@@ -52,8 +52,7 @@ final class ApiBorrowingController extends AbstractController
         $date_start = new \DateTime($request->request->get('date_start'));
         $date_end = new \DateTime($request->request->get('date_end'));
 
-        $created_at = new \DateTime();
-        $borrowingEntity = $this->borrowingService->createBorrowing($employee,$material,$date_start,$date_end,$created_at);
+        $borrowingEntity = $this->borrowingService->createBorrowing($employee,$material,$date_start,$date_end);
         $data = $this->serializer->serialize($borrowingEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
@@ -79,9 +78,7 @@ final class ApiBorrowingController extends AbstractController
 
         $date_start = NULL;
         $date_end = NULL;
-
-        $updated_at = new \DateTime();
-        $borrowingEntity = $this->borrowingService->updateBorrowing($id,$user,$employee,$materiel,$date_start,$date_end,$updated_at);
+        $borrowingEntity = $this->borrowingService->updateBorrowing($id,$user,$employee,$materiel,$date_start,$date_end);
         $data = $this->serializer->serialize($borrowingEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
