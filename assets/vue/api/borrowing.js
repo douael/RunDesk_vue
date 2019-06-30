@@ -28,4 +28,5 @@ export default {
     getAll() {
         return axios.get('/api/borrowings');
     },
+    
 }

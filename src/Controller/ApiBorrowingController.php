@@ -46,10 +46,9 @@ final class ApiBorrowingController extends AbstractController
     {   
 
         // var_dump($request->request);
-        $user = array('id' => 1, );
         $employee = $request->request->get('employee');
-        $materiel = $request->request->get('materiel');
-        $borrowingEntity = $this->borrowingService->createBorrowing($user,$employee,$materiel);
+        $material = $request->request->get('material');
+        $borrowingEntity = $this->borrowingService->createBorrowing($employee,$material);
         $data = $this->serializer->serialize($borrowingEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
@@ -103,8 +102,9 @@ final class ApiBorrowingController extends AbstractController
     public function getAllActions(): JsonResponse
     {
         $borrowingEntities = $this->borrowingService->getAll();
-        
         $data = $this->serializer->serialize($borrowingEntities, 'json');
+        
         return new JsonResponse($data, 200, [], true);
     }
+    
 }

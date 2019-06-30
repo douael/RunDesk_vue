@@ -30,16 +30,19 @@ class Borrowing
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\user")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Employee")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $employee;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Material")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $material;
 

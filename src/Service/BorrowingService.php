@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Service;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use App\Entity\Borrowing;
 use App\Entity\User;
@@ -9,7 +10,7 @@ use App\Entity\Material;
 use App\Repository\BorrowingRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class BorrowingService
+final class BorrowingService extends AbstractController
 {
     /** @var EntityManagerInterface */
     private $em;
@@ -31,9 +32,10 @@ final class BorrowingService
      * @param array $material
      * @return Borrowing
      */
-    public function createBorrowing(array $user, array $employee, array $material): Borrowing
+    public function createBorrowing(array $employee, array $material): Borrowing
     {
-        $user = $this->em->getRepository(User::class)->find($user['id']);
+        /** @var User $user */
+        $user = $this->getUser();
         $employee = $this->em->getRepository(Employee::class)->find($employee['id']);
         $material = $this->em->getRepository(Material::class)->find($material['id']);
         
@@ -44,6 +46,8 @@ final class BorrowingService
         $borrowingEntity->setMaterial($material);
 
         $this->em->persist($borrowingEntity);
+        $this->writeLog("Création de la demande du material : ".$material->getName()." pour l'employee : ".$employee->getFirstName().' '.$employee->getFirstName()." - ".date('Y-m-d H:i:s'));
+
         $this->em->flush();
         return $borrowingEntity;
     }
@@ -96,5 +100,14 @@ final class BorrowingService
         return $this->em->getRepository(Borrowing::class)->findBy([], ['id' => 'DESC']);
     }
 
+    public function writeLog($phrase) {
+        $chemin = $this->getParameter('logs_directory');
+        if (!is_dir($chemin)) {
+            mkdir($chemin, 0775, true);
+        }
+        $chemin_url = $chemin . "/event-log.txt";
+        $handle = fopen($chemin_url, "a+");
+        fputs($handle, $phrase."\n");
+    }
     
 }

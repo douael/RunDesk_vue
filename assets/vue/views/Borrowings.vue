@@ -44,11 +44,46 @@
             <error-material :error="error"></error-material>
 
         </div>
-        <div v-else-if="!hasBorrowing" class="row col">
+        <div v-else-if="!hasBorrowings" class="row col">
             No borrowing!
         </div>
-
-       
+        <div v-else class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Material</th>
+                  <th>Date de debut</th>
+                  <th>Date de fin</th>
+                </tr>
+              </thead>
+              <tbody >
+                  <tr  v-for="borrowing in borrowings" >
+                    <td>{{ borrowing.employee.firstname }}&nbsp; {{ borrowing.employee.lastname }}</td>
+                    <td>{{ borrowing.material.name }}</td>
+                    <td>{{borrowing.date_start}}</td>
+                    <td>{{borrowing.date_end}}</td>
+                    <!-- <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(material.id,material.name)" >
+                            <i class="fa fa-trash"></i> Supprimer
+                        </button>
+                    </td>
+                  
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(material.id)">
+                            <i class="fa fa-edit"></i> Modifier
+                        </button>
+                    </td>
+                    <td>
+                        <form >
+                        <button type="button" class="btn btn-warning" v-if="!material.isActive" @click="activateMaterial(material.id)">Inactif</button>
+                        <button type="button" class="btn btn-success" v-else  @click="unactivateMaterial(material.id)">Actif</button>
+                        <input type="hidden" id="id" name="id" class="form-control" :value="material.id">
+            
+                        </form>
+                    </td>        -->         </tr></tbody>
+            </table>
+            </div>
 
 
 
@@ -76,6 +111,7 @@
         created () {
             this.$store.dispatch('material/fetchMaterials');
             this.$store.dispatch('employee/fetchEmployees');
+            this.$store.dispatch('borrowing/fetchBorrowings');
         },
         computed: {
             isLoading () {
@@ -87,8 +123,8 @@
             error () {
                 return this.$store.getters['borrowing/error'];
             },
-            hasBorrowing () {
-                return this.$store.getters['borrowing/hasBorrowing'];
+            hasBorrowings () {
+                return this.$store.getters['borrowing/hasBorrowings'];
             },
             materials () {
                 return this.$store.getters['material/materials'];
