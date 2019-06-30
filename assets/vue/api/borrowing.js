@@ -1,11 +1,13 @@
 import axios from 'axios';
 
 export default {
-    create(employee, material) {
+    create(employee, material,date_start,date_end) {
         return axios.post(
             '/api/borrowing/create', {
                 employee: employee,
-                material: material
+                material: material,
+                date_start: date_start,
+                date_end: date_end
             }
         );
     },
@@ -16,12 +18,14 @@ export default {
             }
         );
     },
-    update(id, employee, material) {
+    update(id, employee, material,date_start,date_end) {
         return axios.post(
             '/api/borrowing/update', {
                 id: id,
                 employee: employee,
-                material: material
+                material: material,
+                date_start: date_start,
+                date_end: date_end
             }
         );
     },
