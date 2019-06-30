@@ -35,13 +35,13 @@ final class BorrowingService
     {
         $user = $this->em->getRepository(User::class)->find($user['id']);
         $employee = $this->em->getRepository(Employee::class)->find($employee['id']);
-        // $material = $this->em->getRepository(Material::class)->find($material['id']);
+        $material = $this->em->getRepository(Material::class)->find($material['id']);
         
         $borrowingEntity = new Borrowing();
 
         $borrowingEntity->setUser($user);
         $borrowingEntity->setEmployee($employee);
-        // $borrowingEntity->setMaterial($material);
+        $borrowingEntity->setMaterial($material);
 
         $this->em->persist($borrowingEntity);
         $this->em->flush();
