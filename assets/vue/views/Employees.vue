@@ -60,9 +60,20 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <div v-for="employee in employees" >
-                        <employee :id="employee.id" :firstname="employee.firstname" :lastname="employee.lastname" :site="employee.site"></employee>
-                    </div>
+                    <tr v-for="employee in employees" >
+            <td>{{employee.lastname }}</td>
+            <td>{{employee.firstname }}</td>
+            <td>{{employee.site }}</td>
+            <td>
+                <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(employee.id)" >
+                    <i class="fa fa-trash"></i> Supprimer
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(employee.id)">
+                    <i class="fa fa-edit"></i> Modifier
+                </button>
+            </td>                      </tr>
                 </tbody>
             </table>
         </div>
@@ -90,8 +101,67 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<div v-for="employee in employees">
+<div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+employee.id">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" >Modifier</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-12">
+                            <div class="col-6">
+                                <input v-model="employee.lastname" type="text" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <input v-model="employee.firstname" type="text" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <input v-model="employee.site" type="text" class="form-control">
+                            </div>
 
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
+                        @click="editEmployee(employee.id,employee.firstname,employee.lastname,employee.site)">
+                        Modify
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+    style="display: none;"
+    :id="'delete-employee'+employee.id">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" >Delete Employee</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                Are you sure that you want to delete this employee ?
+                <ul>
+                    <li >
+                        {{ employee.firstname }} {{ employee.lastname }}
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+                @click.prevent="deleteEmployee(employee.id)">
+                Delete
+            </button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
 </div>
 </template>
 
@@ -177,8 +247,23 @@
                     let payload = {firstname: this.$data.firstname, lastname: this.$data.lastname, site: this.$data.site};
 
                     this.$store.dispatch('employee/createEmployee', payload);
-                }
+                },
+                openModal(id){
+                $('#bv-modal-example'+id).modal();
+            },
+            deleteModal(id,lastname){
+                $('#delete-employee'+id).modal();
+            },
+            editEmployee(id,firstname,lastname,site){
+                let payload = {id: id, firstname:firstname, lastname:lastname, site:site};
+
+                this.$store.dispatch('employee/updateEmployee', payload);
+            },
+            deleteEmployee (id) {
+                this.$store.dispatch('employee/deleteEmployee', id);
+            }
 
             },
+            
         }
     </script>

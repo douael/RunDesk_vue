@@ -7,3 +7,12 @@ Création de Materiel : <strong>Ordinateur</strong> # 2019-06-30 20:26:48
 Création de Materiel : <strong>material1</strong> # 2019-06-30 20:35:57
 Création de Materiel : <strong>thing</strong> # 2019-06-30 20:35:57
 Suppression de l'emprunt de material : <strong>material2</strong> pour l'employee : <strong>Echo Echo</strong> # 2019-06-30 20:39:29
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-06-30 22:40:35
+Modification de l'employe : <strong>Echo bla1</strong> # 2019-06-30 22:52:20
+Création de l'employe : <strong>elomari douae</strong> # 2019-06-30 22:52:34
+Création de l'employe : <strong>vanka douae</strong> # 2019-06-30 22:52:34
+Suppression de l'employe : <strong>employee1 bla</strong> # 2019-06-30 22:52:41
+Suppression de l'employe : <strong>Echo bla1</strong> # 2019-06-30 22:53:27
+Création Categorie : <strong>test</strong> # 2019-06-30 22:57:52
+Modification de la Categorie : <strong>test</strong> # 2019-06-30 22:57:57
+Suppression de la catégorie : <strong>test</strong> # 2019-06-30 22:58:04
