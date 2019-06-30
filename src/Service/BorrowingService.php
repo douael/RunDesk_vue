@@ -35,7 +35,7 @@ final class BorrowingService extends AbstractController
      * @param DateTime $date_end
      * @return Borrowing
      */
-    public function createBorrowing(array $employee, array $material, \DateTime $date_start, \DateTime $date_end, \DateTime $created_at): Borrowing
+    public function createBorrowing(array $employee, array $material, \DateTime $date_start, \DateTime $date_end): Borrowing
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -48,7 +48,6 @@ final class BorrowingService extends AbstractController
         $borrowingEntity->setMaterial($material);
         $borrowingEntity->setDateStart($date_start);
         $borrowingEntity->setDateEnd($date_end);
-        $borrowingEntity->setCreatedAt($created_at);
 
         $this->em->persist($borrowingEntity);
         $this->writeLog("Création de la demande du material : <strong>".$material->getName()."</strong> pour l'employee : <strong>".$employee->getFirstName().' '.$employee->getFirstName()."</strong> # ".date('Y-m-d H:i:s'));
@@ -65,7 +64,7 @@ final class BorrowingService extends AbstractController
      * @param string $serialNumber
      * @return Borrowing
      */
-    public function updateBorrowing(int $id,array $employee, array $material, \DateTime $date_start, \DateTime $date_end, \DateTime $updated_at): Borrowing
+    public function updateBorrowing(int $id,array $employee, array $material, \DateTime $date_start, \DateTime $date_end): Borrowing
     {
         $user = $this->getUser();
         $employee = $this->em->getRepository(Employee::class)->find($employee['id']);
@@ -79,7 +78,6 @@ final class BorrowingService extends AbstractController
         $borrowing->setMaterial($material);
         $borrowing->setDateStart($date_start);
         $borrowing->setDateEnd($date_end);
-        $borrowing->setCreatedAt($created_at);
         
         $this->writeLog("Modification du material : ".$material->getName()." pour l'employee : ".$employee->getFirstName().' '.$employee->getFirstName()." - ".date('Y-m-d H:i:s'));
         $this->em->flush();

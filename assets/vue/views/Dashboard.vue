@@ -59,7 +59,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="dashboard in dashboards">
+                <tr v-for="dashboard in dashboards.slice().reverse()">
                   <td v-html="dashboard[0]">{{ dashboard[0] }}</td>
                   <td>{{ dashboard[1] }}</td>
                 </tr>
