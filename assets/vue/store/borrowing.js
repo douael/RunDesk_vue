@@ -87,7 +87,7 @@ export default {
         createBorrowing({ commit }, payload) {
             commit('CREATING_BORROWING');
             // console.log(payload.employee);
-            return BorrowingAPI.create(payload.employee, payload.material)
+            return BorrowingAPI.create(payload.employee, payload.material, payload.date_start, payload.date_end)
                 .then(res => commit('CREATING_BORROWING_SUCCESS', res.data))
                 .catch(err => commit('CREATING_BORROWING_ERROR', err));
         },
@@ -106,7 +106,7 @@ export default {
         },
         updateBorrowing({ commit }, payload, ) {
             commit('EDITING_BORROWING');
-            return BorrowingAPI.update(payload.id, payload.employee, payload.material)
+            return BorrowingAPI.update(payload.id, payload.employee, payload.material, payload.date_start, payload.date_end)
                 .then(res => commit('EDITING_BORROWING_SUCCESS'))
                 .catch(err => commit('EDITING_BORROWING_ERROR', err));
         },
