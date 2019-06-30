@@ -1,21 +1,20 @@
 <template>
     <div class="card w-100 mt-2" >
-        <tr>
-            <td>{{ name }}</td>
-            <td>{{ quantity }}</td>
-            <td>{{ type }}</td>
-            <td>
-                <button type="button" class="btn btn-danger" data-toggle="modal" @click="deleteModal(id,name)" >
-                    <i class="fa fa-trash"></i> Supprimer
-                </button>
-            </td>
-
-            <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" @click="openModal(id)">
-                    <i class="fa fa-edit"></i> Modifier
-                </button>
-            </td>        
-        </tr>
+        <div class="card-body" >
+            <form >
+            Nom : <strong>{{ name }}</strong> Quantité : <strong>{{ quantity }}</strong> Type : <strong>{{ type }}</strong>
+            
+            <button type="button" class="btn btn-danger" data-toggle="modal" style="right: 20px;position: absolute;width:120px;" @click="deleteModal(id,name)" 
+              >
+                <i class="fa fa-trash"></i> Supprimer
+            </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" style="right: 150px;position: absolute;width:110px;" @click="openModal(id)" 
+              >
+                <i class="fa fa-edit"></i> Modifier
+            </button>
+            
+            </form>
+        </div>
         <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+id">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
