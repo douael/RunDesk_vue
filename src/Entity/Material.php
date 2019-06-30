@@ -38,6 +38,11 @@ class Material
     private $category;
 
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\user")
+     */
+    private $user_id;
+
     
     
     public function getId(): ?int
@@ -92,7 +97,17 @@ class Material
 
         return $this;
     }
+    public function getUserId(): ?user
+    {
+        return $this->user_id;
+    }
 
+    public function setUserId(?user $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
 
 
 }

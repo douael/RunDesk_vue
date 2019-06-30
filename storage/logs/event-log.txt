@@ -2,3 +2,8 @@ Connexion de l'utilisateur : <strong>foo</strong> # 2019-06-29 21:55:58
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-06-30 15:40:45
 Changement de statut : <strong>material1</strong> # 2019-06-30 17:50:08
 Suppression de l'emprunt de material : <strong>material2</strong> pour l'employee : <strong>Echo Echo</strong> # 2019-06-30 20:11:19
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-06-30 20:25:08
+Création de Materiel : <strong>Ordinateur</strong> # 2019-06-30 20:26:48
+Création de Materiel : <strong>material1</strong> # 2019-06-30 20:35:57
+Création de Materiel : <strong>thing</strong> # 2019-06-30 20:35:57
+Suppression de l'emprunt de material : <strong>material2</strong> pour l'employee : <strong>Echo Echo</strong> # 2019-06-30 20:39:29

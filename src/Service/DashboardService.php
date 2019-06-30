@@ -38,7 +38,7 @@ final class DashboardService extends AbstractController
         $myfile = fopen($chemin_url, "r") or die("Unable to open file!");
         $text = fread($myfile,filesize($chemin_url));
         fclose($myfile);
-        $text = explode("\r\n", $text);
+        $text = explode("\n", $text);
         foreach ($text as &$line) {
             $line = explode("#", $line);
         }
