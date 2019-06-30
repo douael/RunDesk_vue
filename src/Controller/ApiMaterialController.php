@@ -138,7 +138,7 @@ final class ApiMaterialController extends AbstractController
        $em = $this->getDoctrine()->getManager();
        $materials = $materialRepository->findById($id);
        foreach ($materials as $material) {
-            $this->writeLog("Suppression du matériel : ".$material->getName()." - ".date('Y-m-d H:i:s'));
+            $this->writeLog("Suppression du matériel : <strong>".$material->getName()."</strong> # ".date('Y-m-d H:i:s'));
             $em->remove($material);
         }
 
