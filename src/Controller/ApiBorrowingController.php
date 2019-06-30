@@ -44,11 +44,16 @@ final class ApiBorrowingController extends AbstractController
      */
     public function createAction(Request $request): JsonResponse
     {   
-
-        // var_dump($request->request);
         $employee = $request->request->get('employee');
         $material = $request->request->get('material');
-        $borrowingEntity = $this->borrowingService->createBorrowing($employee,$material);
+        // $date_start = $request->request->get('date_start');
+        // $date_end = $request->request->get('date_end');
+
+        $date_start = new \DateTime($request->request->get('date_start'));
+        $date_end = new \DateTime($request->request->get('date_end'));
+
+        $created_at = new \DateTime();
+        $borrowingEntity = $this->borrowingService->createBorrowing($employee,$material,$date_start,$date_end,$created_at);
         $data = $this->serializer->serialize($borrowingEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
@@ -68,7 +73,15 @@ final class ApiBorrowingController extends AbstractController
         $user = $request->request->get('user');
         $employee = $request->request->get('employee');
         $materiel = $request->request->get('materiel');
-        $borrowingEntity = $this->borrowingService->updateBorrowing($id,$user,$employee,$materiel);
+
+        // $date_start = new \DateTime($request->request->get('date_start'));
+        // $date_end = new \DateTime($request->request->get('date_end'));
+
+        $date_start = NULL;
+        $date_end = NULL;
+
+        $updated_at = new \DateTime();
+        $borrowingEntity = $this->borrowingService->updateBorrowing($id,$user,$employee,$materiel,$date_start,$date_end,$updated_at);
         $data = $this->serializer->serialize($borrowingEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);

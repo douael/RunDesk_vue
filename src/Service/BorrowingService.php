@@ -9,6 +9,7 @@ use App\Entity\Employee;
 use App\Entity\Material;
 use App\Repository\BorrowingRepository;
 use Doctrine\ORM\EntityManagerInterface;
+// use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 final class BorrowingService extends AbstractController
 {
@@ -30,20 +31,24 @@ final class BorrowingService extends AbstractController
      * @param array $user
      * @param array $employee
      * @param array $material
+     * @param DateTime $date_start
+     * @param DateTime $date_end
      * @return Borrowing
      */
-    public function createBorrowing(array $employee, array $material): Borrowing
+    public function createBorrowing(array $employee, array $material, \DateTime $date_start, \DateTime $date_end, \DateTime $created_at): Borrowing
     {
         /** @var User $user */
         $user = $this->getUser();
         $employee = $this->em->getRepository(Employee::class)->find($employee['id']);
         $material = $this->em->getRepository(Material::class)->find($material['id']);
-        
         $borrowingEntity = new Borrowing();
 
         $borrowingEntity->setUser($user);
         $borrowingEntity->setEmployee($employee);
         $borrowingEntity->setMaterial($material);
+        $borrowingEntity->setDateStart($date_start);
+        $borrowingEntity->setDateEnd($date_end);
+        $borrowingEntity->setCreatedAt($created_at);
 
         $this->em->persist($borrowingEntity);
         $this->writeLog("Création de la demande du material : ".$material->getName()." pour l'employee : ".$employee->getFirstName().' '.$employee->getFirstName()." - ".date('Y-m-d H:i:s'));
@@ -51,23 +56,6 @@ final class BorrowingService extends AbstractController
         $this->em->flush();
         return $borrowingEntity;
     }
-
-    /**
-     * @param integer $id
-     * @param integer $isActive
-     * @return Borrowing
-     */
-    // public function editBorrowing(int $id,int $isActive): Borrowing
-    // {
-        
-    //     $borrowing = $this->em->getRepository(Borrowing::class)->find($id);
-    //     //var_dump($bla);
-
-    //     $borrowing->setIsActive($isActive);
-    //     $this->em->flush();
-
-    //     return $borrowing;
-    // }
     
     /**
      * @param integer $id
@@ -77,19 +65,24 @@ final class BorrowingService extends AbstractController
      * @param string $serialNumber
      * @return Borrowing
      */
-    public function updateBorrowing(int $id,string $name, int $isActive,string $serialNumber, int $category): Borrowing
+    public function updateBorrowing(int $id,array $employee, array $material, \DateTime $date_start, \DateTime $date_end, \DateTime $updated_at): Borrowing
     {
-        $category = $this->em->getRepository(Category::class)->find($category);
+        $user = $this->getUser();
+        $employee = $this->em->getRepository(Employee::class)->find($employee['id']);
+        $material = $this->em->getRepository(Material::class)->find($material['id']);
+        $borrowingEntity = new Borrowing();
 
         $borrowing = $this->em->getRepository(Borrowing::class)->find($id);
-        //var_dump($bla);
 
-        $borrowing->setIsActive($isActive);
-        $borrowing->setName($name);
-        $borrowing->setSerialNumber($serialNumber);
-        $borrowing->setCategory($category);
+        $borrowing->setUser($user);
+        $borrowing->setEmployee($employee);
+        $borrowing->setMaterial($material);
+        $borrowing->setDateStart($date_start);
+        $borrowing->setDateEnd($date_end);
+        $borrowing->setCreatedAt($created_at);
+        
+        $this->writeLog("Modification du material : ".$material->getName()." pour l'employee : ".$employee->getFirstName().' '.$employee->getFirstName()." - ".date('Y-m-d H:i:s'));
         $this->em->flush();
-
         return $borrowing;
     }
     /**
