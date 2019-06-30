@@ -96,7 +96,8 @@ final class ApiBorrowingController extends AbstractController
        $em = $this->getDoctrine()->getManager();
        $borrowings = $borrowingRepository->findById($id);
        foreach ($borrowings as $borrowing) {
-            $em->remove($borrowing);
+        $this->writeLog("Suppression de l'emprunt de material : <strong>".$borrowing->getMaterial()->getName()."</strong> pour l'employee : <strong>".$borrowing->getEmployee()->getFirstName().' '.$borrowing->getEmployee()->getFirstName()."</strong> # ".date('Y-m-d H:i:s'));
+        $em->remove($borrowing);
         }
 
        $em->flush();
@@ -117,4 +118,13 @@ final class ApiBorrowingController extends AbstractController
         return new JsonResponse($data, 200, [], true);
     }
     
+    public function writeLog($phrase) {
+        $chemin = $this->getParameter('logs_directory');
+        if (!is_dir($chemin)) {
+            mkdir($chemin, 0775, true);
+        }
+        $chemin_url = $chemin . "/event-log.txt";
+        $handle = fopen($chemin_url, "a+");
+        fputs($handle, $phrase."\n");
+    }
 }
