@@ -1,15 +1,3 @@
-Connexion de l'utilisateur : foo # 2019-06-29 21:55:58
-Connexion de l'utilisateur : foo # 2019-06-29 21:58:27
-Connexion de l'utilisateur : foo # 2019-06-29 22:06:26
-Suppression du matériel : R # 2019-06-29 22:06:36
-Création de l'employe : AA AA # 2019-06-29 22:08:37
-Modification de l'employe : AA AAZE # 2019-06-29 22:08:52
-Suppression de l'employe : AA AAZE # 2019-06-29 22:09:05
-Création Categorie : GG # 2019-06-29 22:11:02
-Modification de la Categorie : GG-HF # 2019-06-29 22:11:16
-Suppression de la catégorie : GG-HF # 2019-06-29 22:11:23
-Connexion de l'utilisateur : foo # 2019-06-29 22:40:20
-Création de la demande du material : material2 pour l'employee : employee1 employee1 # 2019-06-30 12:26:02
-Création de l'employe : elomari douae # 2019-06-30 15:21:33
-Création de l'employe : vanka douae # 2019-06-30 15:21:33
-Connexion de l'utilisateur : foo # 2019-06-30 15:40:45
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-06-29 21:55:58
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-06-30 15:40:45
+Changement de statut : <strong>material1</strong> # 2019-06-30 17:50:08
