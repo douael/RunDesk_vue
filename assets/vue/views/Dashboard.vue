@@ -26,8 +26,7 @@
             <div class="col-6 col-sm-3 placeholder">
               <b-card title="Borrows" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
                 <b-card-text>
-                  XX borrow
-                <!--  {{ borrow.length }} borrow -->
+                  {{ borrowings.length }} borrows
                 </b-card-text>
 
                 <b-button href="/borrowing" class="darkblue-bg">Show more</b-button>
@@ -43,6 +42,26 @@
               </b-card>
             </div>
           </section>
+
+
+         <!-- {{dashboards}}-->
+
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Logs</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="dashboard in dashboards">
+                  <td>{{ dashboard[0] }}</td>
+                  <td>{{ dashboard[1] }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+
             <div class="content">
               <div class="col-6 col-sm-3 placeholder">
                 <line-chart :chart-data="datacollection"></line-chart>
@@ -205,6 +224,8 @@
       this.$store.dispatch('material/fetchMaterials');
       this.$store.dispatch('category/fetchCategorys');
       this.$store.dispatch('employee/fetchEmployees');
+      this.$store.dispatch('borrowing/fetchBorrowings');
+      this.$store.dispatch('dashboard/fetchDashboards');
 
     },
     computed: {
@@ -216,6 +237,12 @@
             },
             employees () {
                 return this.$store.getters['employee/employees'];
+            },
+            borrowings () {
+                return this.$store.getters['borrowing/borrowings'];
+            },
+            dashboards () {
+                return this.$store.getters['dashboard/dashboards'];
             },
     },
     methods: {

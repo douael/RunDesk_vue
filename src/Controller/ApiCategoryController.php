@@ -108,7 +108,7 @@ final class ApiCategoryController extends AbstractController
        $em = $this->getDoctrine()->getManager();
        $categorys = $categoryRepository->findById($id);
        foreach ($categorys as $category) {
-            $this->writeLog("Suppression de la catégorie : ".$category->getName()." - ".date('Y-m-d H:i:s'));
+            $this->writeLog("Suppression de la catégorie : ".$category->getName()." # ".date('Y-m-d H:i:s'));
             $em->remove($category);
         }
 

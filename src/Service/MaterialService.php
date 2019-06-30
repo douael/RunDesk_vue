@@ -42,7 +42,7 @@ final class MaterialService extends AbstractController
         $materialEntity->setCategory($category);
         $this->em->persist($materialEntity);
         $this->em->flush();
-        $this->writeLog("Création de Materiel : ".$name." - ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création de Materiel : ".$name." # ".date('Y-m-d H:i:s'));
         return $materialEntity;
     }
 
@@ -58,7 +58,7 @@ final class MaterialService extends AbstractController
         //var_dump($bla);
 
         $material->setIsActive($isActive);
-        $this->writeLog("Changement de statut : ".$material->getName()." - ".date('Y-m-d H:i:s'));
+        $this->writeLog("Changement de statut : ".$material->getName()." # ".date('Y-m-d H:i:s'));
 
         $this->em->flush();
 
@@ -84,7 +84,7 @@ final class MaterialService extends AbstractController
         $material->setName($name);
         $material->setSerialNumber($serialNumber);
         $material->setCategory($category);
-        $this->writeLog("Modification du materiel : ".$material->getName()." - ".date('Y-m-d H:i:s'));
+        $this->writeLog("Modification du materiel : ".$material->getName()." # ".date('Y-m-d H:i:s'));
         $this->em->flush();
 
         return $material;

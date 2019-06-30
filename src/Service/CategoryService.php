@@ -37,7 +37,7 @@ final class CategoryService extends AbstractController
         $categoryEntity->setType($type);
         $categoryEntity->setQuantity($quantity);
         $this->em->persist($categoryEntity);
-        $this->writeLog("Création Categorie : ".$name." - ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création Categorie : ".$name." # ".date('Y-m-d H:i:s'));
         $this->em->flush();
         return $categoryEntity;
     }
@@ -75,7 +75,7 @@ final class CategoryService extends AbstractController
         $category->setName($name);
         $category->setType($type);
         $category->setQuantity($quantity);
-        $this->writeLog("Modification de la Categorie : ".$name." - ".date('Y-m-d H:i:s'));
+        $this->writeLog("Modification de la Categorie : ".$name." # ".date('Y-m-d H:i:s'));
         $this->em->flush();
 
         return $category;
