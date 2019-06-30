@@ -21,7 +21,7 @@
                             <input v-model="type" type="text" class="form-control">
                         </div>
                         <div class="col-12" style="margin-top:10px;">
-                            <button @click="createCategory()" :disabled="name.length === 0 || isLoading || quantity.length == 0 || type.length == 0" type="button" class="btn btn-primary">Create</button>
+                            <button @click="createCategory()" :disabled="name.length === 0 || isLoading || quantity.length == 0 || type.length == 0"type="button" class="btn btn-primary">Create</button>
                         </div>
                     </div>
                 </div>
@@ -40,12 +40,24 @@
         <div v-else-if="!hasCategorys" class="row col">
             No categorys!
         </div>
-
-        <div v-else v-for="category in categorys" class="row col">
-                <category :id="category.id" :name="category.name" :type="category.type" :quantity="category.quantity"></category>
-                
-               
-        </div>
+        <div v-else class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Quantité</th>
+                        <th>Type</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody >
+                <div v-for="category in categorys" class="row col">
+                        <category :id="category.id" :name="category.name" :type="category.type" :quantity="category.quantity"></category>
+                </div>
+                </tbody>
+                </table>
+            </div>
     </div>
 </template>
 
