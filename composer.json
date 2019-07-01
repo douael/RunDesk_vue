@@ -30,6 +30,7 @@
         "symfony/web-link": "4.2.*",
         "symfony/webpack-encore-bundle": "^1.0",
         "symfony/yaml": "4.2.*",
+        "symfony/web-server-bundle": "4.2.*",
         "thecodingmachine/safe": "^0.1.8"
     },
     "require-dev": {
