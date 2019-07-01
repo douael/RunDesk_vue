@@ -45,7 +45,7 @@
 
         </div>
         <div v-else-if="!hasEmployees" class="row col">
-            No employees!
+            Aucun employé !
         </div>
 
         <div v-else class="table-responsive">

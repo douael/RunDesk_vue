@@ -90,17 +90,21 @@ final class ApiSecurityController extends AbstractController
 
         return new JsonResponse($data, 200, [], true);
     }
+
     /**
-     * @Rest\Get("/api/security/profil", name="getProfil")
+     * @Rest\Get("/api/profils", name="getAllProfils")
      * @return JsonResponse
      */
-    public function getProfil(): JsonResponse
+    public function getAllActions(): JsonResponse
     {
-        $user = $this->getUser();
-        $user = $this->serializer->serialize($user, 'json');
-        //var_dump($user);
+        // $user = $this->getUser();
+        $userEntity = $this->userService->getAll();
+        
+        $data = $this->serializer->serialize($userEntity, 'json');
 
-        return new JsonResponse($user, 200, [], true);
+        // $this->writeLog("Debug" .date('Y-m-d H:i:s'). " ". $data);
+
+        return new JsonResponse($data, 200, [], true);
     }
 
     public function writeLog($phrase) {
