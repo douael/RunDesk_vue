@@ -38,6 +38,22 @@ final class ApiSecurityController extends AbstractController
     }
 
     /**
+     * @Route("/api/security/editPassword", name="editPassword")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return JsonResponse
+     */
+    public function editPasswordAction(Request $request, UserPasswordEncoderInterface $passwordEncoder): JsonResponse
+    {
+        $id = $request->request->get('id');
+        $password = $request->request->get('password');
+        $userEntity = $this->userService->editPassword($id,$password);
+        $data = $this->serializer->serialize($userEntity, 'json');
+
+        return new JsonResponse($data, 200, [], true);
+    }
+
+    /**
      * @Route("/api/register/create", name="register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
