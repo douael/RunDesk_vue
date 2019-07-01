@@ -31,3 +31,4 @@ Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 21:03:42
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 21:09:57
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 21:30:35
 Création de Materiel : <strong>thing</strong> # 2019-07-01 21:45:19
+Création de Materiel : <strong>materialTest</strong> # 2019-07-01 22:08:04
