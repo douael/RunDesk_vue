@@ -10,11 +10,14 @@ export default {
             }
         );
     },
-    editPassword (password) {
+    editPassword (id,oldPassword,newPassword,confirmPassword) {
         return axios.post(
             '/api/security/editPassword',
             {
-                password: password
+                id: id,
+                oldPassword: oldPassword,
+                newPassword: newPassword,
+                confirmPassword: confirmPassword
             }
         );
     },

@@ -7,7 +7,7 @@ export default {
         error: null,
         isAuthenticated: false,
         roles: [],
-        profil: []
+        profils: []
     },
     getters: {
         isLoading (state) {
@@ -26,6 +26,10 @@ export default {
             return role => {
                 return state.roles.indexOf(role) !== -1;
             }
+        },
+        
+        profils(state) {
+            return state.profils;
         },
     },
     mutations: {
@@ -69,17 +73,17 @@ export default {
         ['FETCHING_PROFIL'](state) {
             state.isLoading = true;
             state.error = null;
-            state.profil = [];
+            state.profils = [];
         },
-        ['FETCHING_PROFIL_SUCCESS'](state, profil) {
+        ['FETCHING_PROFIL_SUCCESS'](state, profils) {
             state.isLoading = false;
             state.error = null;
-            state.profil = profil;
+            state.profils = profils;
         },
         ['FETCHING_PROFIL_ERROR'](state, error) {
             state.isLoading = false;
             state.error = error;
-            state.profil = [];
+            state.profils = [];
         },
     },
     actions: {
@@ -91,12 +95,9 @@ export default {
         },
         editPassword ({commit}, payload) {
             commit('EDITING_PASSWORD');
-            return SecurityAPI.editPassword(payload.password)
+            return SecurityAPI.editPassword(payload.id,payload.oldPassword,payload.newPassword,payload.confirmPassword)
                 .then(res => commit('EDITING_PASSWORD_SUCCESS', res.data))
                 .catch(err => commit('EDITING_PASSWORD_ERROR', err));
-        },
-        onRefresh({commit}, payload) {
-            commit('PROVIDING_DATA_ON_REFRESH_SUCCESS', payload);
         },
         onRefresh({commit}, payload) {
             commit('PROVIDING_DATA_ON_REFRESH_SUCCESS', payload);

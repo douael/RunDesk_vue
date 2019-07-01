@@ -63,11 +63,20 @@ final class ApiSecurityController extends AbstractController
     public function editPasswordAction(Request $request, UserPasswordEncoderInterface $passwordEncoder): JsonResponse
     {
 
-        $password = $request->request->get('password');
-        $userEntity = $this->userService->editPassword($password);
-        $data = $this->serializer->serialize($userEntity, 'json');
+        $id = $request->request->get('id');
+        /** @var User $user */
+        $user = $this->getUser();
 
-        return new JsonResponse($data, 200, [], true);
+        $newPassword = $request->request->get('newPassword');
+        $confirmPassword = $request->request->get('confirmPassword');
+            if($newPassword === $confirmPassword){
+                
+                $userEntity = $this->userService->editPassword($newPassword);
+                $data = $this->serializer->serialize($userEntity, 'json');
+
+                return new JsonResponse($data, 200, [], true);
+            }
+     
     }
 
     /**
@@ -101,7 +110,7 @@ final class ApiSecurityController extends AbstractController
         $userEntity = $this->userService->getAll();
         
         $data = $this->serializer->serialize($userEntity, 'json');
-
+        
         // $this->writeLog("Debug" .date('Y-m-d H:i:s'). " ". $data);
 
         return new JsonResponse($data, 200, [], true);

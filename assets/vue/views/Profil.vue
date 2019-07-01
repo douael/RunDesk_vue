@@ -36,15 +36,20 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
-                        <input placeholder="Password" type="password" id="password" ref="password" >
-                    </div>
-                    <div class="modal-body">
-                        <input placeholder="Confirm Password" type="password" id="confirmPassword" ref="confirmPassword" >
+                                            <div class="col-12">
+
+                                <div class="col-12">
+                        <input placeholder="old Password" type="hidden" class="form-control" v-model="oldPassword">
+                        </div><div class="col-12">
+                        <input placeholder="new Password" type="password" class="form-control" id="password" ref="password" v-model="newPassword">
+                 </div><div class="col-12">
+                        <input placeholder="Confirm Password" class="form-control" type="password" id="confirmPassword"  v-model="confirmPassword" ref="confirmPassword" >
+                        </div></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
-                            @click="editPassword(id,password)">
+                        <button type="button" class="btn btn-primary waves-effect waves-light" data-dismiss="modal"
+                            @click="editPassword(myprofil.id,oldPassword,newPassword,confirmPassword)" :disabled="newPassword != confirmPassword">
                             Modifier le mot de passe
                     </button>
                     </div>
@@ -68,6 +73,9 @@
         data () {
             return {
                 password: '',
+                oldPassword: '',
+                newPassword: '',
+                confirmPassword: '',
                 labels: {
                     name: 'Mot de passe',
                 },
@@ -86,8 +94,8 @@
             editMdpModal(id){
                 $('#editMdp'+id).modal();
             },
-            editPassword(id,password){
-                let payload = {password:password};
+            editPassword(id,oldPassword,newPassword,confirmPassword){
+                let payload = {id:id,oldPassword:oldPassword,newPassword:newPassword,confirmPassword:confirmPassword};
 
                 this.$store.dispatch('security/editPassword', payload);
             },
