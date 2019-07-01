@@ -8,31 +8,31 @@
                 <thead>
                     <tr>
                         
-                        <th>User Name</th>
-                        <th>Edit Password</th>
+                        <th>Identifiant</th>
+                        <th>Modifier le mot de passe</th>
                     </tr>
                 </thead>
                 <tbody >
-                    <tr v-for="myprofil in profil">
+                    <tr v-for="myprofil in profils">
                         <th>{{ myprofil.login }}</th>
 
 
                         <td >
                             <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                                <button @click="editMdpModal(myprofil.id)" type="button" class="btn btn-primary">Edit Password</button>
+                                <button @click="editMdpModal(myprofil.id)" type="button" class="btn btn-primary">Modifier le mot de passe</button>
                             </div>
                         </td>       
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div v-for="myprofil in profil">
+        <div v-for="myprofil in profils">
 
         <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;" :id="'editMdp'+myprofil.id">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" >Edit Password </h4>
+                        <h4 class="modal-title" >Modifier le mot de passe </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
@@ -45,7 +45,7 @@
                         <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
                             @click="editPassword(id,password)">
-                            Edit Password
+                            Modifier le mot de passe
                     </button>
                     </div>
                 </div><!-- /.modal-content -->
@@ -56,10 +56,12 @@
 </template>
 
 <script>
+    // console.log(profil);
     import ErrorMessage from '../components/ErrorMessage';
-import axios from 'axios';
+    import axios from 'axios';
 
     export default {
+        name: 'profils',
         components: {
             ErrorMessage,
         },
@@ -67,21 +69,18 @@ import axios from 'axios';
             return {
                 password: '',
                 labels: {
-                    name: 'Password',
-        },
+                    name: 'Mot de passe',
+                },
             };
         },
         created () {
-            this.$store.dispatch('material/fetchMaterials');
-            this.$store.dispatch('category/fetchCategorys');
-            this.$store.dispatch('security/fetchProfil');
+            this.$store.dispatch('security/fetchProfils');
         },
         computed: {
-
-            profil () {
-                return this.$store.getters['security/profil'];
+            profils () {
+                return this.$store.getters['security/profils'];
+                // return this.$store.getters['material/materials'];
             },
-            
         },
         methods: {
             editMdpModal(id){
@@ -92,7 +91,6 @@ import axios from 'axios';
 
                 this.$store.dispatch('security/editPassword', payload);
             },
-            
         },
     }
 </script>
