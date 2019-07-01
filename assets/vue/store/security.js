@@ -7,6 +7,7 @@ export default {
         error: null,
         isAuthenticated: false,
         roles: [],
+        profil: []
     },
     getters: {
         isLoading (state) {
@@ -49,14 +50,6 @@ export default {
             state.isLoading = true;
             state.error = null;
         },
-        ['GET_PROFIL'](state) {
-            state.isLoading = true;
-            state.error = null;
-        },
-        ['GET_PROFIL_SUCCESS'](state) {
-            state.isLoading = true;
-            state.error = null;
-        },
         ['AUTHENTICATING_ERROR'](state, error) {
             state.isLoading = false;
             state.error = error;
@@ -67,15 +60,26 @@ export default {
             state.isLoading = false;
             state.error = error;
         },
-        ['GET_PROFIL_ERROR'](state, error) {
-            state.isLoading = false;
-            state.error = error;
-        },
         ['PROVIDING_DATA_ON_REFRESH_SUCCESS'](state, payload) {
             state.isLoading = false;
             state.error = null;
             state.isAuthenticated = payload.isAuthenticated;
             state.roles = payload.roles;
+        },
+        ['GET_PROFIL'](state) {
+            state.isLoading = true;
+            state.error = null;
+            state.profil = [];
+        },
+        ['GET_PROFIL_SUCCESS'](state, profil) {
+            state.isLoading = false;
+            state.error = null;
+            state.profil = profil;
+        },
+        ['GET_PROFIL_ERROR'](state, error) {
+            state.isLoading = false;
+            state.error = error;
+            state.profil = [];
         },
     },
     actions: {
@@ -97,11 +101,11 @@ export default {
         onRefresh({commit}, payload) {
             commit('PROVIDING_DATA_ON_REFRESH_SUCCESS', payload);
         },
-        // getProfil({ commit, payload }) {
-        //     commit('GET_PROFIL');
-        //     return CategoryAPI.getById(payload.id)
-        //         .then(res => commit('GET_PROFIL_SUCCESS', res.data))
-        //         .catch(err => commit('GET_PROFIL_ERROR', err));
-        // },
+        fetchProfil({ commit }) {
+            commit('GET_PROFIL');
+            return SecurityAPI.getProfil()
+                .then(res => commit('GET_PROFIL_SUCCESS', res.data))
+                .catch(err => commit('GET_PROFIL_ERROR', err));
+        },
     },
 }

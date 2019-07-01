@@ -18,4 +18,9 @@ export default {
             }
         );
     },
+    getProfil (){
+        return axios.get(
+            '/api/security/profil'
+        )
+    }
 }

@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 
 final class ApiSecurityController extends AbstractController
@@ -88,6 +89,18 @@ final class ApiSecurityController extends AbstractController
         $data = $this->serializer->serialize($userEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
+    }
+    /**
+     * @Rest\Get("/api/security/profil", name="getProfil")
+     * @return JsonResponse
+     */
+    public function getProfil(): JsonResponse
+    {
+        $user = $this->getUser();
+        $user = $this->serializer->serialize($user, 'json');
+        //var_dump($user);
+
+        return new JsonResponse($user, 200, [], true);
     }
 
     public function writeLog($phrase) {

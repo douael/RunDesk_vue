@@ -8,24 +8,27 @@
                 <thead>
                     <tr>
                         
+                        <th>User Name</th>
                         <th>Edit Password</th>
                     </tr>
                 </thead>
                 <tbody >
-                    <tr>
-                       
+                    <tr v-for="myprofil in profil">
+                        <th>{{ myprofil.login }}</th>
 
-                        <div class="col-4">
+
+                        <td >
                             <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                                <button @click="editMdpModal()" type="button" class="btn btn-primary">Edit Password</button>
+                                <button @click="editMdpModal(myprofil.id)" type="button" class="btn btn-primary">Edit Password</button>
                             </div>
-                        </div>       
+                        </td>       
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div v-for="myprofil in profil">
 
-        <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;" id="editMdp">
+        <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;" :id="'editMdp'+myprofil.id">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -48,6 +51,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        </div>
     </div>
 </template>
 
@@ -70,17 +74,18 @@ import axios from 'axios';
         created () {
             this.$store.dispatch('material/fetchMaterials');
             this.$store.dispatch('category/fetchCategorys');
+            this.$store.dispatch('security/fetchProfil');
         },
         computed: {
 
-            profil (id) {
-                return this.$store.getters['security/getProfil'];
+            profil () {
+                return this.$store.getters['security/profil'];
             },
             
         },
         methods: {
             editMdpModal(id){
-                $('#editMdp').modal();
+                $('#editMdp'+id).modal();
             },
             editPassword(id,password){
                 let payload = {password:password};
