@@ -57,7 +57,7 @@
                         <td>{{ category.quantity }}</td>
                         <td>{{ category.type }}</td>
                         <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" @click="deleteModal(category.id,category.name)" >
+                            <button type="button" class="btn btn-danger" data-toggle="modal" :disabled="category.id==3" @click="deleteModal(category.id,category.name)" >
                                 <i class="fa fa-trash"></i> Supprimer
                             </button>
                         </td>
