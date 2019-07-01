@@ -73,8 +73,8 @@
             <tr  v-for="borrowing in borrowings" >
                 <td>{{ borrowing.employee.firstname }}&nbsp; {{ borrowing.employee.lastname }}</td>
                 <td>{{ borrowing.material.name }}</td>
-                <td>{{ borrowing.dateStart}}</td>
-                <td>{{ borrowing.dateEnd}}</td>
+                <td>{{ borrowing.dateStart | formatDate}}</td>
+                <td>{{ borrowing.dateEnd | formatDate}}</td>
 
 
                     <td>
@@ -213,7 +213,14 @@ id="import">
 
 <script>
     import ErrorMessage from '../components/ErrorMessage';
+import moment from 'moment'
+import Vue from 'vue';
 
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY')
+  }
+});
     export default {
         name: 'borrowings',
         components: {
