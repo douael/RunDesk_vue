@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row col">
+        <div class="row col darkBlue-bg green no-margin">
             <h1>Borrowings</h1>
         </div>
 
