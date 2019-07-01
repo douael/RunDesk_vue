@@ -1,8 +1,10 @@
 <template>
         <div>
-          <h1>Dashboard</h1>
+        <div class="row col darkBlue-bg green no-margin">
+            <h1>Dashboard</h1>
+        </div>
 
-          <section class="row text-center placeholders">
+          <section class="row col text-center placeholders pt-3">
 
             <div class="col-6 col-sm-3 placeholder">
               <b-card title="Categories" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
@@ -16,7 +18,7 @@
                   </b-progress-bar>
                 </b-progress>
 <br/>
-                <b-button href="/categorys" class="darkblue-bg">Show more</b-button>
+                <b-button href="/categorys" class="purple-bg">Show more</b-button>
               </b-card>
             </div>
 
@@ -33,7 +35,7 @@
                 </b-progress>
 <br/>
 
-                <b-button href="/materials" class="darkblue-bg">Show more</b-button>
+                <b-button href="/materials" class="purple-bg">Show more</b-button>
               </b-card>
             </div>
             <div class="col-6 col-sm-3 placeholder">
@@ -49,7 +51,7 @@
                 </b-progress>
 <br/>
 
-                <b-button href="/borrowing" class="darkblue-bg">Show more</b-button>
+                <b-button href="/borrowing" class="purple-bg">Show more</b-button>
               </b-card>
             </div>
             <div class="col-6 col-sm-3 placeholder">
@@ -65,7 +67,7 @@
                 </b-progress>
 <br/>
 
-                <b-button href="/employees" class="darkblue-bg">Show more</b-button>
+                <b-button href="/employees" class="purple-bg">Show more</b-button>
               </b-card>
             </div>
           </section>

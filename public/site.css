@@ -44,3 +44,7 @@
 	background-color: #33C3C0 !important;
 }
 
+.no-margin{
+	margin-left: 0;
+    margin-right: 0;
+}

@@ -16,3 +16,4 @@ Suppression de l'employe : <strong>Echo bla1</strong> # 2019-06-30 22:53:27
 Création Categorie : <strong>test</strong> # 2019-06-30 22:57:52
 Modification de la Categorie : <strong>test</strong> # 2019-06-30 22:57:57
 Suppression de la catégorie : <strong>test</strong> # 2019-06-30 22:58:04
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 00:45:52
