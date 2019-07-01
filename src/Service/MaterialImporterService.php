@@ -70,6 +70,7 @@ class MaterialImporterService
             }
             if ($line = fgetcsv($fh)) {
                 fputcsv($output, $line);
+                
                 $name = $line[0];
                 $serialNumber = $line[1];
                 $category['id'] = $line[2];

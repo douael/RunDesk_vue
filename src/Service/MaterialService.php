@@ -34,12 +34,15 @@ final class MaterialService extends AbstractController
      */
     public function createMaterial(string $name,int $isActive, string $serialNumber, array $category): Material
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $category = $this->em->getRepository(Category::class)->find($category['id']);
         $materialEntity = new Material();
         $materialEntity->setName($name);
         $materialEntity->setIsActive($isActive);
         $materialEntity->setSerialNumber($serialNumber);
         $materialEntity->setCategory($category);
+        $materialEntity->setUserId($user);
         $this->em->persist($materialEntity);
         $this->em->flush();
         $this->writeLog("Création de Materiel : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
