@@ -58,6 +58,22 @@ final class UserService extends AbstractController
 
         return $user;
     }
+
+    /**
+     * @param integer $id
+     * @param string $password
+     * @return User
+     */
+    public function editPassword(string $password): User
+    {
+        $user = $this->getUser();
+        // $user = $this->em->getRepository(User::class)->find($id);
+
+        $user->setPlainPassword($password);
+        $this->em->flush();
+
+        return $user;
+    }
     /**
      * @return object[]
      */

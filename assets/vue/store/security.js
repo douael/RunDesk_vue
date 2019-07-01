@@ -40,11 +40,36 @@ export default {
             state.isAuthenticated = true;
             state.roles = roles;
         },
+
+        ['EDITING_PASSWORD'](state) {
+            state.isLoading = true;
+            state.error = null;
+        },
+        ['EDITING_PASSWORD_SUCCESS'](state) {
+            state.isLoading = true;
+            state.error = null;
+        },
+        ['GET_PROFIL'](state) {
+            state.isLoading = true;
+            state.error = null;
+        },
+        ['GET_PROFIL_SUCCESS'](state) {
+            state.isLoading = true;
+            state.error = null;
+        },
         ['AUTHENTICATING_ERROR'](state, error) {
             state.isLoading = false;
             state.error = error;
             state.isAuthenticated = false;
             state.roles = [];
+        },
+        ['EDITING_PASSWORD_ERROR'](state, error) {
+            state.isLoading = false;
+            state.error = error;
+        },
+        ['GET_PROFIL_ERROR'](state, error) {
+            state.isLoading = false;
+            state.error = error;
         },
         ['PROVIDING_DATA_ON_REFRESH_SUCCESS'](state, payload) {
             state.isLoading = false;
@@ -60,8 +85,23 @@ export default {
                 .then(res => commit('AUTHENTICATING_SUCCESS', res.data))
                 .catch(err => commit('AUTHENTICATING_ERROR', err));
         },
+        editPassword ({commit}, payload) {
+            commit('EDITING_PASSWORD');
+            return SecurityAPI.editPassword(payload.password)
+                .then(res => commit('EDITING_PASSWORD_SUCCESS', res.data))
+                .catch(err => commit('EDITING_PASSWORD_ERROR', err));
+        },
         onRefresh({commit}, payload) {
             commit('PROVIDING_DATA_ON_REFRESH_SUCCESS', payload);
         },
+        onRefresh({commit}, payload) {
+            commit('PROVIDING_DATA_ON_REFRESH_SUCCESS', payload);
+        },
+        // getProfil({ commit, payload }) {
+        //     commit('GET_PROFIL');
+        //     return CategoryAPI.getById(payload.id)
+        //         .then(res => commit('GET_PROFIL_SUCCESS', res.data))
+        //         .catch(err => commit('GET_PROFIL_ERROR', err));
+        // },
     },
 }

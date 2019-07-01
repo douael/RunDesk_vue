@@ -7,14 +7,13 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Login</th>
                         
-                        <th></th>
+                        <th>Edit Password</th>
                     </tr>
                 </thead>
                 <tbody >
                     <tr>
-                        <td>test</td>
+                       
 
                         <div class="col-4">
                             <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
@@ -37,13 +36,14 @@
                         <input placeholder="Password" type="password" id="password" ref="password" >
                     </div>
                     <div class="modal-body">
-                        <input placeholder="Confirm Password" type="password" id="password" ref="password" >
+                        <input placeholder="Confirm Password" type="password" id="confirmPassword" ref="confirmPassword" >
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" v-on:click="submitForm()">
+                        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+                            @click="editPassword(id,password)">
                             Edit Password
-                        </button>
+                    </button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -56,22 +56,14 @@
 import axios from 'axios';
 
     export default {
-        name: 'materials',
         components: {
             ErrorMessage,
         },
         data () {
             return {
-                name: '',
-                isActive: false,
-                serialNumber: '',
-                id: '',
-                category:'',
-                file: '',
+                password: '',
                 labels: {
-                    name: 'Nom du matériel',
-                    serialNumber: 'Numero de serie',
-                    category: 'Categorie'
+                    name: 'Password',
         },
             };
         },
@@ -80,6 +72,10 @@ import axios from 'axios';
             this.$store.dispatch('category/fetchCategorys');
         },
         computed: {
+
+            profil (id) {
+                return this.$store.getters['security/getProfil'];
+            },
             
         },
         methods: {
@@ -87,10 +83,11 @@ import axios from 'axios';
                 $('#editMdp').modal();
             },
             editPassword(id,password){
-                let payload = {id: id,password:password};
+                let payload = {password:password};
 
                 this.$store.dispatch('security/editPassword', payload);
             },
+            
         },
     }
 </script>
