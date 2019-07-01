@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row col darkBlue-bg green no-margin">
-            <h1>Employees</h1>
+            <h1>Employés</h1>
         </div>
 
         <div class="row col" v-if="canCreateEmployee">
@@ -37,7 +37,7 @@
         </div>
 
         <div v-if="isLoading" class="row col">
-            <p>Loading...</p>
+            <p>Chargement...</p>
         </div>
 
         <div v-else-if="hasError" class="row col">
@@ -55,8 +55,8 @@
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Site</th>
-                        <th>Delete</th>
-                        <th>Update</th>
+                        <th>Supprimer</th>
+                        <th>Modifier</th>
                     </tr>
                 </thead>
                 <tbody >
