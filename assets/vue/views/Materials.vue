@@ -26,7 +26,7 @@
                             </select>
                             </div>
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Create</button>
+                            <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Créer</button>
                         </div>
                          </div>
             </form>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-4">
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="importModal()" type="button" class="btn btn-primary">Importer du matériels en CSV</button>
+                            <button @click="importModal()" type="button" class="btn btn-primary">Importation CSV du matériel</button>
                         </div>
                     </div>
                
@@ -120,10 +120,10 @@
                             </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
                     <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
                             @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)">
-                    Modify
+                    Modifier
                     </button>
                 </div>
                 </div><!-- /.modal-content -->
@@ -136,7 +136,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" >Delete Material</h4>
+            <h4 class="modal-title" >Suppression de Materiel</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
@@ -148,10 +148,10 @@
             </ul>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
             <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
                     @click.prevent="deleteMaterial(material.id)">
-              Delete
+              Supprimer
             </button>
           </div>
         </div><!-- /.modal-content -->

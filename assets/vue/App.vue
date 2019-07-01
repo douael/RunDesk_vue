@@ -9,7 +9,7 @@
                     </router-link>     
 
                     <router-link class="nav-item" tag="li" to="/dashboard" active-class="active">
-                        <a class="nav-link">Dashboard</a>
+                        <a class="nav-link">Tableau de bord</a>
                     </router-link>
                     <router-link class="nav-item" tag="li" to="/categorys" active-class="active">
                         <a class="nav-link">Catégories</a>
@@ -17,7 +17,6 @@
                     <router-link class="nav-item" tag="li" to="/materials" active-class="active">
                         <a class="nav-link">Matériels</a>
                     </router-link>
-                    
                     <router-link class="nav-item" tag="li" to="/employees" active-class="active">
                         <a class="nav-link">Employés</a>
                     </router-link>
@@ -28,7 +27,7 @@
                         <a class="nav-link">Profil</a>
                     </router-link>
                     <li class="nav-item">
-                        <a class="nav-link" href="/api/security/logout">Logout</a>
+                        <a class="nav-link" href="/api/security/logout">Déconnexion</a>
                     </li>
                 </ul> 
 

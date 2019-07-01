@@ -9,7 +9,7 @@
             <div class="card-body p-4">
                 <div class="text-center w-75 m-auto">
                     <img src="../public/img/logo.jpg" alt="" height="100">
-                <p class="text-muted mb-4 mt-3">Identifiez-vous pour accéder à votre Dashboard.</p>
+                <p class="text-muted mb-4 mt-3">Identifiez-vous pour accéder à votre tableau de bord.</p>
               </div>
             <form method="POST">
 
@@ -22,14 +22,14 @@
                   <input v-model="password" class="form-control" type="password" >
                 </div>
                     <div class="form-group mb-0 text-center">
-                        <button @click="performLogin()" :disabled="login.length === 0 || password.length === 0 || isLoading" type="button" class="btn btn-primary btn-block">Login</button>
+                        <button @click="performLogin()" :disabled="login.length === 0 || password.length === 0 || isLoading" type="button" class="btn btn-primary btn-block">Se connecter</button>
                 </div>
                 </form>
                 </div> <!-- end card-body -->
           </div>
 
         <div v-if="isLoading" class="row col">
-            <p>Loading...</p>
+            <p>Chargement...</p>
         </div>
 
         <div v-else-if="hasError" class="row col">
