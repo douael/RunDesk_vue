@@ -9,16 +9,16 @@
             <div class="card-body p-4">
                 <div class="text-center w-75 m-auto">
                     <img src="../public/img/logo.jpg" alt="" height="100">
-                <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin panel.</p>
+                <p class="text-muted mb-4 mt-3">Identifiez-vous pour accéder à votre Dashboard.</p>
               </div>
             <form method="POST">
 
                 <div class="form-group mb-3">
-                  <label for="email">Email address</label>
+                  <label for="email">Nom d'utilisateur</label>
                   <input v-model="login"  type="text" class="form-control">
                 </div>
                 <div class="form-group mb-3">
-                  <label for="password">Password</label>
+                  <label for="password">Mot de passe</label>
                   <input v-model="password" class="form-control" type="password" >
                 </div>
                     <div class="form-group mb-0 text-center">

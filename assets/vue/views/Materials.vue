@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row col darkBlue-bg green no-margin">
-            <h1>Materials</h1>
+            <h1>Matériels</h1>
         </div>
 
         <div class="row col" v-if="canCreateMaterial">
@@ -34,14 +34,14 @@
                     </div>
                     <div class="col-4">
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="importModal()" type="button" class="btn btn-primary">Import CSV of material</button>
+                            <button @click="importModal()" type="button" class="btn btn-primary">Importer du matériels en CSV</button>
                         </div>
                     </div>
                
         </div>
 
         <div v-if="isLoading" class="row col">
-            <p>Loading...</p>
+            <p>Chargement...</p>
         </div>
 
         <div v-else-if="hasError" class="row col">
@@ -50,26 +50,26 @@
 
         </div>
         <div v-else-if="!hasMaterials" class="row col">
-            No materials!
+            Pas de matériel !
         </div>
 
             <div v-else class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Serial Number</th>
-                  <th>Category</th>
-                  <th>Delete</th>
-                  <th>Update</th>
-                  <th>Change Status</th>
+                  <th>Nom</th>
+                  <th>Numéro de série</th>
+                  <th>Catégorie</th>
+                  <th>Supprimer</th>
+                  <th>Modifier</th>
+                  <th>Changer de statut</th>
                 </tr>
               </thead>
               <tbody >
                   <tr  v-for="material in materials" >
                     <td>{{ material.name }}</td>
                     <td>{{ material.serialNumber }}</td>
-                    <td>{{material.category.name }}</td>
+                    <td>{{ material.category.name }}</td>
                     <td>
                         <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(material.id,material.name)" >
                             <i class="fa fa-trash"></i> Supprimer
@@ -140,7 +140,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
-            Are you sure that you want to delete this material?
+            Êtes-vous sûr de vouloir supprimer ce matériel ? 
             <ul>
               <li >
                 {{ material.name }}
@@ -165,7 +165,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" >Import Material with csv </h4>
+            <h4 class="modal-title" >Importer du matériels en CSV</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
@@ -176,7 +176,7 @@
             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
                    v-on:click="submitForm()">
-              Import
+              Importer
             </button>
           </div>
         </div><!-- /.modal-content -->
@@ -198,15 +198,15 @@ import axios from 'axios';
         data () {
             return {
                 name: '',
-                isActive: false,
+                isActive: true,
                 serialNumber: '',
                 id: '',
                 category:'',
                 file: '',
                 labels: {
                     name: 'Nom du matériel',
-                    serialNumber: 'Numero de serie',
-                    category: 'Categorie'
+                    serialNumber: 'Numéro de série',
+                    category: 'Catégorie'
         },
             };
         },
