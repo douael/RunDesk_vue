@@ -1,8 +1,10 @@
 <template>
         <div>
-          <h1>Dashboard</h1>
+        <div class="row col darkBlue-bg green no-margin">
+            <h1>Dashboard</h1>
+        </div>
 
-          <section class="row text-center placeholders">
+          <section class="row col text-center placeholders pt-3">
 
             <div class="col-6 col-sm-3 placeholder">
               <b-card title="Categories" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
@@ -10,7 +12,13 @@
                   {{ categorys.length }} Categories
                 </b-card-text>
 
-                <b-button href="/categorys" class="darkblue-bg">Show more</b-button>
+                <b-progress :max="10" height="2rem">
+                  <b-progress-bar :value="10" variant="info">
+                    Total : <strong>{{ categorys.length }}</strong>
+                  </b-progress-bar>
+                </b-progress>
+<br/>
+                <b-button href="/categorys" class="purple-bg">Show more</b-button>
               </b-card>
             </div>
 
@@ -20,7 +28,14 @@
                     {{ materials.length }} materials
                 </b-card-text>
 
-                <b-button href="/materials" class="darkblue-bg">Show more</b-button>
+                <b-progress :max="10" height="2rem">
+                  <b-progress-bar :value="10" variant="info">
+                    Available : <strong>{{ materials.length }} / {{ materials.length }}</strong>
+                  </b-progress-bar>
+                </b-progress>
+<br/>
+
+                <b-button href="/materials" class="purple-bg">Show more</b-button>
               </b-card>
             </div>
             <div class="col-6 col-sm-3 placeholder">
@@ -29,7 +44,14 @@
                   {{ borrowings.length }} borrows
                 </b-card-text>
 
-                <b-button href="/borrowing" class="darkblue-bg">Show more</b-button>
+                <b-progress :max="10" height="2rem">
+                  <b-progress-bar :value="10" variant="info">
+                    Borrowed : <strong>{{ borrowings.length }} / {{ borrowings.length }}</strong>
+                  </b-progress-bar>
+                </b-progress>
+<br/>
+
+                <b-button href="/borrowing" class="purple-bg">Show more</b-button>
               </b-card>
             </div>
             <div class="col-6 col-sm-3 placeholder">
@@ -38,17 +60,17 @@
                   {{ employees.length }} Employees
                 </b-card-text>
 
-                <b-button href="/employees" class="darkblue-bg">Show more</b-button>
+                <b-progress :max="10" height="2rem">
+                  <b-progress-bar :value="10" variant="info">
+                    Total : <strong>{{ employees.length }}</strong>
+                  </b-progress-bar>
+                </b-progress>
+<br/>
+
+                <b-button href="/employees" class="purple-bg">Show more</b-button>
               </b-card>
             </div>
           </section>
-
-            <div class="content">
-              <div class="col-6 col-sm-3 placeholder">
-                <line-chart :chart-data="datacollection"></line-chart>
-                <button @click="fillData()">Randomize</button>
-              </div>
-            </div>
 
             <h2>Logs</h2>
           <table class="table table-striped">
