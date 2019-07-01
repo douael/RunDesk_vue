@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row col darkBlue-bg green no-margin">
-      <h1>Dashboard</h1>
+      <h1>Tableau de bord</h1>
     </div>
 
     <section class="row col text-center placeholders pt-3">
@@ -72,7 +72,7 @@
       </div>
     </section>
 
-    <h2>Logs</h2>
+    <h2>Dernières actions</h2>
     <table class="table table-striped">
       <thead>
         <tr>
