@@ -17,3 +17,11 @@ Création Categorie : <strong>test</strong> # 2019-06-30 22:57:52
 Modification de la Categorie : <strong>test</strong> # 2019-06-30 22:57:57
 Suppression de la catégorie : <strong>test</strong> # 2019-06-30 22:58:04
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 07:52:52
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 13:32:40
+Changement de statut : <strong>HP 20018</strong> # 2019-07-01 13:38:13
+Changement de statut : <strong>HP 20014</strong> # 2019-07-01 13:38:30
+Création de Materiel : <strong>Samsung 454</strong> # 2019-07-01 13:40:15
+Changement de statut : <strong>P0444</strong> # 2019-07-01 13:40:24
+Changement de statut : <strong>P05214</strong> # 2019-07-01 13:40:36
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 18:02:13
+Debug2019-07-01 18:33:29 [{"id":21,"login":"foo","username":"foo","plainPassword":null,"password":"$2y$13$53Uq4PSxaShr5Y3tVaJgxeAJI0B3WHbXB8LJT3d6qAcXfAl6DWxdO","salt":null,"roles":["ROLE_FOO"],"created":"2019-07-01T07:02:15+00:00","updated":null}]

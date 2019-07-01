@@ -66,17 +66,17 @@ export default {
             state.isAuthenticated = payload.isAuthenticated;
             state.roles = payload.roles;
         },
-        ['GET_PROFIL'](state) {
+        ['FETCHING_PROFIL'](state) {
             state.isLoading = true;
             state.error = null;
             state.profil = [];
         },
-        ['GET_PROFIL_SUCCESS'](state, profil) {
+        ['FETCHING_PROFIL_SUCCESS'](state, profil) {
             state.isLoading = false;
             state.error = null;
             state.profil = profil;
         },
-        ['GET_PROFIL_ERROR'](state, error) {
+        ['FETCHING_PROFIL_ERROR'](state, error) {
             state.isLoading = false;
             state.error = error;
             state.profil = [];
@@ -101,11 +101,11 @@ export default {
         onRefresh({commit}, payload) {
             commit('PROVIDING_DATA_ON_REFRESH_SUCCESS', payload);
         },
-        fetchProfil({ commit }) {
-            commit('GET_PROFIL');
-            return SecurityAPI.getProfil()
-                .then(res => commit('GET_PROFIL_SUCCESS', res.data))
-                .catch(err => commit('GET_PROFIL_ERROR', err));
+        fetchProfils({ commit }) {
+            commit('FETCHING_PROFIL');
+            return SecurityAPI.getAll()
+                .then(res => commit('FETCHING_PROFIL_SUCCESS', res.data))
+                .catch(err => commit('FETCHING_PROFIL_ERROR', err));
         },
     },
 }

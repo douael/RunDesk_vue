@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row col darkBlue-bg green no-margin">
-            <h1>Borrowings</h1>
+            <h1>Emprunts</h1>
         </div>
 
         <div class="row col" v-if="canCreateBorrowing">
@@ -47,7 +47,7 @@
         </div>
 
         <div v-if="isLoading" class="row col">
-            <p>Loading...</p>
+            <p>Chargement...</p>
         </div>
 
         <div v-else-if="hasError" class="row col">
@@ -56,17 +56,17 @@
 
         </div>
         <div v-else-if="!hasBorrowings" class="row col">
-            No borrowing!
+            Pas d'emprunt enregistré !
         </div>
         <div v-else class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Employee</th>
-                  <th>Material</th>
-                  <th>Date de debut</th>
+                  <th>Employés</th>
+                  <th>Matériels</th>
+                  <th>Date de début</th>
                   <th>Date de fin</th>
-                  <th>Delete</th>
+                  <th>Supprimer</th>
               </tr>
           </thead>
           <tbody >
@@ -233,7 +233,7 @@ Vue.filter('formatDate', function(value) {
                 date_end : '',
                 material: '',
                 labels: {
-                    employee: 'Employee',
+                    employee: 'Employé',
                     material: 'Materiels',
                     date_start: 'Date de début',
                     date_end: 'Date de fin',
