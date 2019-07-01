@@ -20,7 +20,7 @@
                             <label :for="type" class="mr-2">{{ labels.type }}</label>
                             <input v-model="type" type="text" class="form-control">
                         </div>
-                        <div class="col-12" style="margin-top:10px;">
+                        <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
                             <button @click="createCategory()" :disabled="name.length === 0 || isLoading || quantity.length == 0 || type.length == 0"type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>

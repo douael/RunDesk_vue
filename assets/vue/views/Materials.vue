@@ -169,6 +169,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
+              Format du csv :<br><br>
+                Nom material 1<strong>,</strong> Numero de serie<br>
+                Nom material 2<strong>,</strong> Numero de serie<br><br>
           <input type="file" id="file" ref="file" accept=".csv" @change="onChangeFileUpload" class="input-file">
             
           </div>

@@ -73,7 +73,7 @@ class MaterialImporterService
                 
                 $name = $line[0];
                 $serialNumber = $line[1];
-                $category['id'] = $line[2];
+                $category['id'] = 3;
 
                 $materialEntity = $this->materialService->createMaterial($name,1,$serialNumber, $category);
   
