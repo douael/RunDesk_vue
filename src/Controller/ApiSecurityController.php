@@ -3,15 +3,31 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 
 final class ApiSecurityController extends AbstractController
 {
+    /** @var MaterialService */
+    private $userService;
+
+      /**
+     * ApiMaterialController constructor.
+     * @param SerializerInterface $serializer
+     * @param MaterialService $materialService
+     */
+    public function __construct(SerializerInterface $serializer, UserService $userService)
+    {
+        $this->serializer = $serializer;
+        $this->userService = $userService;
+    }
+
     /**
      * @Route("/api/security/login", name="login")
      * @return JsonResponse
@@ -35,6 +51,22 @@ final class ApiSecurityController extends AbstractController
     public function logoutAction(): void
     {
         throw new \RuntimeException('This should not be reached!');
+    }
+
+    /**
+     * @Route("/api/security/editPassword", name="editPassword")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return JsonResponse
+     */
+    public function editPasswordAction(Request $request, UserPasswordEncoderInterface $passwordEncoder): JsonResponse
+    {
+
+        $password = $request->request->get('password');
+        $userEntity = $this->userService->editPassword($password);
+        $data = $this->serializer->serialize($userEntity, 'json');
+
+        return new JsonResponse($data, 200, [], true);
     }
 
     /**
