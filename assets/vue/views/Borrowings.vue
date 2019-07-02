@@ -77,48 +77,48 @@
                 <td>{{ borrowing.dateEnd | formatDate}}</td>
 
 
-                    <td>
-                        <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(borrowing.id)" >
-                            <i class="fa fa-trash"></i> Supprimer
-                        </button>
-                    </td>            
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div v-for="borrowing in borrowings">
-     <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+borrowing.id">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" >Modifier</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12">
-                        <div class="col-6">
-                            <input v-model="borrowing.date_start" type="date" class="form-control">
-                        </div>
-                        <div class="col-6">
-                            <input v-model="borrowing.date_end" type="date" class="form-control">
-                        </div>
-                       
-                        <div class="col-6">
-                          <select class="form-control" name="employee" v-model="borrowing.employee" >
-                              <option v-for="Otheremployee in employees" v-bind:value="Otheremployee.id" >
-                                  {{ Otheremployee.firstname + " " + Otheremployee.lastname }}
-                              </option>
-                          </select>
-                        </div>
-                        <div class="col-6">
-                          <select class="form-control" name="material" v-model="borrowing.material" >
-                              <option v-for="Othermaterial in materials" v-bind:value="Othermaterial.id" >
-                                  {{ Othermaterial.name }}
-                              </option>
-                          </select>
-                        </div>
+                <td>
+                    <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(borrowing.id)" >
+                        <i class="fa fa-trash"></i> Supprimer
+                    </button>
+                </td>            
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div v-for="borrowing in borrowings">
+   <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+borrowing.id">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" >Modifier</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12">
+                    <div class="col-6">
+                        <input v-model="borrowing.date_start" type="date" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <input v-model="borrowing.date_end" type="date" class="form-control">
+                    </div>
+
+                    <div class="col-6">
+                      <select class="form-control" name="employee" v-model="borrowing.employee" >
+                          <option v-for="Otheremployee in employees" v-bind:value="Otheremployee.id" >
+                              {{ Otheremployee.firstname + " " + Otheremployee.lastname }}
+                          </option>
+                      </select>
+                  </div>
+                  <div class="col-6">
+                      <select class="form-control" name="material" v-model="borrowing.material" >
+                          <option v-for="Othermaterial in materials" v-bind:value="Othermaterial.id" >
+                              {{ Othermaterial.name }}
+                          </option>
+                      </select>
                   </div>
               </div>
+
               <div class="modal-footer">
                 <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
                 <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
@@ -169,6 +169,7 @@ id="import">
         <h4 class="modal-title" >Import Material with csv </h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     </div>
+
   <div class="modal-footer">
     <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
@@ -187,14 +188,14 @@ id="import">
 
 <script>
     import ErrorMessage from '../components/ErrorMessage';
-import moment from 'moment'
-import Vue from 'vue';
+    import moment from 'moment'
+    import Vue from 'vue';
 
-Vue.filter('formatDate', function(value) {
-  if (value) {
-    return moment(String(value)).format('DD/MM/YYYY')
-  }
-});
+    Vue.filter('formatDate', function(value) {
+        if (value) {
+            return moment(String(value)).format('DD/MM/YYYY')
+        }
+    });
     export default {
         name: 'borrowings',
         components: {
@@ -203,7 +204,7 @@ Vue.filter('formatDate', function(value) {
         data () {
             return {
                 employee: '',
-                date_start : '',
+                date_start : new Date().toISOString().slice(0,10),
                 date_end : '',
                 material: '',
                 labels: {
