@@ -172,6 +172,12 @@
               Format du csv :<br><br>
                 Nom material 1<strong>,</strong> Numero de serie<br>
                 Nom material 2<strong>,</strong> Numero de serie<br><br>
+
+             <a type="button" class="btn btn-light waves-effect waves-light"
+                  href="/modal_forMaterials.csv">
+              Telecharger modele
+            </a><br><br>
+
           <input type="file" id="file" ref="file" accept=".csv" @change="onChangeFileUpload" class="input-file">
             
           </div>
@@ -245,6 +251,7 @@ import axios from 'axios';
             }
         },
         methods: {
+
             submitForm(){
                 let formData = new FormData();
                 formData.append('file', this.file);

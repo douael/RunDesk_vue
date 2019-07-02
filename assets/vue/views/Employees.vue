@@ -88,7 +88,15 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <input type="file" id="file" ref="file" accept=".csv" @change="onChangeFileUpload" class="input-file">
+                     Format du csv :<br><br>
+                    Prénom<strong>,</strong> Nom<strong>,</strong> Site d'appartenance<br>
+                    Prénom<strong>,</strong> Nom<strong>,</strong> Site d'appartenance<br><br>
+
+                    <a type="button" class="btn btn-light waves-effect waves-light"
+                        href="/modal_forEmployees.csv">
+                    Telecharger modele
+                    </a><br><br>
+                   <input type="file" id="file" ref="file" accept=".csv" @change="onChangeFileUpload" class="input-file">
 
                 </div>
                 <div class="modal-footer">
