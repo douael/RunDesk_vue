@@ -30,7 +30,7 @@
 
           <b-progress :max="10" height="2rem">
             <b-progress-bar :value="10" variant="info">
-              Disponibles : <strong>{{ materials.length }} / {{ materials.length }}</strong>
+              Disponibles : <strong>{{ materials.length-borrowings.length }} / {{ materials.length }}</strong>
             </b-progress-bar>
           </b-progress>
           <br/>
@@ -46,7 +46,7 @@
 
           <b-progress :max="10" height="2rem">
             <b-progress-bar :value="10" variant="info">
-              Empruntés : <strong>{{ borrowings.length }} / {{ borrowings.length }}</strong>
+              Empruntés : <strong>{{ borrowings.length }} / {{ materials.length }}</strong>
             </b-progress-bar>
           </b-progress>
           <br/>
