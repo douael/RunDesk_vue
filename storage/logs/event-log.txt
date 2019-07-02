@@ -28,5 +28,4 @@ Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 20:19:55
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 20:54:37
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 21:02:33
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 21:03:42
-Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 21:30:58
-Création de la demande du material : <strong>Samsung 454</strong> pour l'employee : <strong>BENYOUCEF BENYOUCEF</strong> # 2019-07-01 22:08:11
+

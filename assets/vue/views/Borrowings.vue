@@ -38,7 +38,7 @@
                         
                         
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="createBorrowing()" :disabled="isLoading" type="button" class="btn btn-primary">Create</button>
+                            <button @click="createBorrowing()" :disabled="isLoading" type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </form>
@@ -118,44 +118,18 @@
                       </select>
                   </div>
               </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
-            @click="editBorrowing(borrowing.id,borrowing.date_start,borrowing.date_end,borrowing.employee,borrowing.material)">
-            Modify
-        </button>
-    </div>
-</div><!-- /.modal-content -->
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
+                @click="editBorrowing(borrowing.id,borrowing.date_start,borrowing.date_end,borrowing.employee,borrowing.material)">
+                Modifier
+            </button>
+        </div>
+    </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-style="display: none;"
-:id="'delete-material'+borrowing.id">
-<div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" >Delete Borrowing</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    </div>
-    <div class="modal-body">
-        Are you sure that you want to delete this borrowing?
-        <ul>
-          <li >
-            {{ borrowing.material.name }}
-        </li>
-    </ul>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
-    @click.prevent="deleteBorrowing(borrowing.id)">
-    Delete
-</button>
-</div>
-</div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+
 
 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
 style="display: none;"
@@ -163,11 +137,11 @@ style="display: none;"
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" >Delete Borrowing</h4>
+        <h4 class="modal-title" >Suppression d'emprunt</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     </div>
     <div class="modal-body">
-        Are you sure that you want to delete this borrowing?
+        Etes-vous sûr de vouloir supprimer cet emprunt ?
         <ul>
           <li >
             Emprunt de : {{ borrowing.material.name }}
@@ -175,10 +149,10 @@ style="display: none;"
     </ul>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
     @click.prevent="deleteBorrowing(borrowing.id)">
-    Delete
+    Supprimer
 </button>
 </div>
 </div><!-- /.modal-content -->
@@ -195,12 +169,13 @@ id="import">
         <h4 class="modal-title" >Import Material with csv </h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
-        v-on:click="submitForm()">
-        Import
-    </button>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+    v-on:click="submitForm()">
+    Import
+</button>
 </div>
 </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->

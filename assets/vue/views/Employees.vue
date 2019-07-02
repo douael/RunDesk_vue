@@ -24,14 +24,14 @@
 
 
                         <div class="col-12" style="margin-top:10px;">
-                            <button @click="createEmployee()" :disabled="lastname.length === 0 || isLoading" type="button" class="btn btn-primary">Create</button>
+                            <button @click="createEmployee()" :disabled="lastname.length === 0 || isLoading" type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="col-4">
                 <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                    <button @click="importModal()" type="button" class="btn btn-primary">Import CSV of employee</button>
+                    <button @click="importModal()" type="button" class="btn btn-primary">Importation CSV des employés</button>
                 </div>
             </div>
         </div>
@@ -84,18 +84,26 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" >Import employee with csv </h4>
+                    <h4 class="modal-title" >Importation CSV des employés</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <input type="file" id="file" ref="file" accept=".csv" @change="onChangeFileUpload" class="input-file">
+                     Format du csv :<br><br>
+                    Prénom<strong>,</strong> Nom<strong>,</strong> Site d'appartenance<br>
+                    Prénom<strong>,</strong> Nom<strong>,</strong> Site d'appartenance<br><br>
+
+                    <a type="button" class="btn btn-light waves-effect waves-light"
+                        href="/modal_forEmployees.csv">
+                    Telecharger modele
+                    </a><br><br>
+                   <input type="file" id="file" ref="file" accept=".csv" @change="onChangeFileUpload" class="input-file">
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
                     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
                     v-on:click="submitForm()">
-                    Import
+                    Importer
                 </button>
             </div>
         </div><!-- /.modal-content -->
@@ -124,10 +132,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
                         <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
                         @click="editEmployee(employee.id,employee.firstname,employee.lastname,employee.site)">
-                        Modify
+                        Modifier
                     </button>
                 </div>
             </div><!-- /.modal-content -->
@@ -140,11 +148,11 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" >Delete Employee</h4>
+                <h4 class="modal-title" >Suppression d'employé</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-                Are you sure that you want to delete this employee ?
+               Etes -vous sûr de vouloir supprimer cet employé ?
                 <ul>
                     <li >
                         {{ employee.firstname }} {{ employee.lastname }}
@@ -152,10 +160,10 @@
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
                 <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
                 @click.prevent="deleteEmployee(employee.id)">
-                Delete
+                Supprimer
             </button>
         </div>
     </div><!-- /.modal-content -->

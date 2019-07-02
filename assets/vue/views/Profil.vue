@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="row col">
-            <h1>Profil</h1>
-        </div>
+    <div class="row col darkBlue-bg green no-margin">
+      <h1>Profil</h1>
+    </div>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -47,7 +47,7 @@
                         </div></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
                         <button type="button" class="btn btn-primary waves-effect waves-light" data-dismiss="modal"
                             @click="editPassword(myprofil.id,oldPassword,newPassword,confirmPassword)" :disabled="newPassword != confirmPassword">
                             Modifier le mot de passe

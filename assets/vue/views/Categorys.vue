@@ -20,8 +20,8 @@
                             <label :for="type" class="mr-2">{{ labels.type }}</label>
                             <input v-model="type" type="text" class="form-control">
                         </div>
-                        <div class="col-12" style="margin-top:10px;">
-                            <button @click="createCategory()" :disabled="name.length === 0 || isLoading || quantity.length == 0 || type.length == 0"type="button" class="btn btn-primary">Create</button>
+                        <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
+                            <button @click="createCategory()" :disabled="name.length === 0 || isLoading || quantity.length == 0 || type.length == 0"type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <tr v-for="category in categorys">
+                    <tr v-for="category in categorys" v-if="category.id!=3">
                         <td>{{ category.name }}</td>
                         <td>{{ category.quantity }}</td>
                         <td>{{ category.type }}</td>
@@ -99,10 +99,10 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
                                 <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
                                 @click="editCategory(category.id,category.name,category.type,category.quantity)">
-                                Modify
+                                Modifier
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -127,10 +127,10 @@
                         </ul>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
                         <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
                         @click.prevent="deleteCategory(category.id)">
-                        Delete
+                        Supprimer
                     </button>
                 </div>
             </div><!-- /.modal-content -->
