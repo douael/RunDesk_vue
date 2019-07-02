@@ -28,4 +28,4 @@ Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 20:19:55
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 20:54:37
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 21:02:33
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-01 21:03:42
-
+Création de la demande du material : <strong>materialTest</strong> pour l'employee : <strong>employee1 employee1</strong> # 2019-07-02 08:28:41
