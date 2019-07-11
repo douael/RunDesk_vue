@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="user")
  * @ORM\HasLifecycleCallbacks
  */
-class User implements UserInterface, TwoFactorInterface
+class User implements UserInterface
 {
     /**
      * @var int
@@ -62,16 +61,6 @@ class User implements UserInterface, TwoFactorInterface
      * @ORM\Column(name="updated", type="datetime", nullable=true)
      */
     private $updated;
-
-    /**
-     * @ORM\Column(name="googleAuthenticatorSecret", type="string", nullable=true)
-     */
-    private $googleAuthenticatorSecret;
-    /**
-     * @ORM\Column(type="boolean")
-     * @var boolean
-     */
-    private $googleAuthenticatorActivated = false;
 
     /**
      * User constructor.
@@ -217,59 +206,6 @@ class User implements UserInterface, TwoFactorInterface
     public function getUpdated(): ?\DateTime
     {
         return $this->updated;
-    }
-    /**
-     * @return bool
-     */
-    public function isGoogleAuthenticatorActivated(): bool
-    {
-        return $this->googleAuthenticatorActivated;
-    }
-
-    /**
-     * @param bool $googleAuthenticatorActivated
-     * @return User
-     */
-    public function setGoogleAuthenticatorActivated(bool $googleAuthenticatorActivated): self
-    {
-        $this->googleAuthenticatorActivated = $googleAuthenticatorActivated;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isGoogleAuthenticatorEnabled(): bool
-    {
-        return $this->isGoogleAuthenticatorActivated();
-    }
-
-    /**
-     * @return string
-     */
-    public function getGoogleAuthenticatorUsername(): string
-    {
-        return $this->getUsername();
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getGoogleAuthenticatorSecret(): ?string
-    {
-        return $this->googleAuthenticatorSecret;
-    }
-
-    /**
-     * @param string|null $googleAuthenticatorSecret
-     * @return User
-     */
-    public function setGoogleAuthenticatorSecret(?string $googleAuthenticatorSecret): self
-    {
-        $this->googleAuthenticatorSecret = $googleAuthenticatorSecret;
-
-        return $this;
     }
 
 }
