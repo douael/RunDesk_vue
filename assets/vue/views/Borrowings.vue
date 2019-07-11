@@ -11,12 +11,11 @@
                     <div class="form-row">
                         <div class="col-12">
                             <label :for="employee" class="mr-2">{{ labels.employee }}</label>
-                            <select v-validate="employee" data-rules="required|employee" class="form-control" name="employee" v-model="employee" >
+                            <select class="form-control" name="employee" v-model="employee" >
                                 <option v-for="employee in employees" v-bind:value="employee">
                                     {{ employee.firstname + ' ' + employee.lastname }}
                                 </option>
                             </select>
-                            <p class="text-danger" v-if="errors.has('employee')">{{ errors.first('employee') }}</p>
                         </div>
                         <div class="col-12">
                             <label :for="material" class="mr-2">{{ labels.material }}</label>
@@ -29,11 +28,11 @@
                         <div class="row col-12">
                             <div class=" col-6">
                                 <label :for="date_start" class="mr-2">{{ labels.date_start }}</label>
-                                <input v-validate="'date_format:dd/MM/yyyy|before:beforeTarget'" name="before_field" v-model="date_start" type="date" class="form-control">
+                                <input v-model="date_start" type="date" class="form-control">
                             </div>
                             <div class="col-6">
                                 <label :for="date_end" class="mr-2">{{ labels.date_end }}</label>
-                                <input v-model="date_end" name="before_field_target" ref="beforeTarget" type="date" class="form-control">
+                                <input v-model="date_end" type="date" class="form-control">
                             </div>
                         </div>
                         
@@ -192,19 +191,12 @@ id="import">
     import ErrorMessage from '../components/ErrorMessage';
     import moment from 'moment'
     import Vue from 'vue';
-    import VeeValidate from 'vee-validate';
-    Vue.use(VeeValidate);
 
     Vue.filter('formatDate', function(value) {
         if (value) {
             return moment(String(value)).format('DD/MM/YYYY')
         }
     });
-    VeeValidate.Validator.extend('passphrase', {
-        getMessage: field => 'Sorry dude, wrong pass phrase.',
-        validate: value => value.toUpperCase() == 'Demogorgon'.toUpperCase()
-    });
-
     export default {
         name: 'borrowings',
         components: {
