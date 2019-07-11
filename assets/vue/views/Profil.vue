@@ -40,15 +40,18 @@
 
                                 <div class="col-12">
                         <input placeholder="old Password" type="hidden" class="form-control" v-model="oldPassword">
+
                         </div><div class="col-12">
-                        <input placeholder="new Password" type="password" class="form-control" id="password" ref="password" v-model="newPassword">
+                        <input placeholder="new Password" v-validate="{ required: true, min: 6 }" type="password" class="form-control" id="newPassword" name="newPassword" ref="newPassword" v-model="newPassword" :class="{ 'is-invalid': submitted && errors.has('newPassword') }">
+                                                <div v-if="submitted && errors.has('newPassword')" class="invalid-feedback">{{ errors.first('newPassword') }}</div>
+
                  </div><div class="col-12">
-                        <input placeholder="Confirm Password" class="form-control" type="password" id="confirmPassword"  v-model="confirmPassword" ref="confirmPassword" >
+                        <input placeholder="Confirm Password" v-validate="{ required: true, min: 6 }"  class="form-control" type="password" name="confirmPassword"  id="confirmPassword"  v-model="confirmPassword" ref="confirmPassword" >
                         </div></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary waves-effect waves-light" data-dismiss="modal"
+                        <button type="button" class="btn btn-primary waves-effect waves-light" 
                             @click="editPassword(myprofil.id,oldPassword,newPassword,confirmPassword)" :disabled="newPassword != confirmPassword">
                             Modifier le mot de passe
                     </button>
@@ -64,21 +67,26 @@
     // console.log(profil);
     import ErrorMessage from '../components/ErrorMessage';
     import axios from 'axios';
+    import VeeValidate from 'vee-validate';
+    import { ValidationProvider } from 'vee-validate';
+    import Vue from 'vue';
 
+    Vue.use(VeeValidate);
     export default {
         name: 'profils',
         components: {
             ErrorMessage,
+            ValidationProvider
         },
         data () {
             return {
-                password: '',
-                oldPassword: '',
                 newPassword: '',
+                oldPassword: '',
                 confirmPassword: '',
                 labels: {
                     name: 'Mot de passe',
                 },
+            submitted: false
             };
         },
         created () {
@@ -95,9 +103,16 @@
                 $('#editMdp'+id).modal();
             },
             editPassword(id,oldPassword,newPassword,confirmPassword){
-                let payload = {id:id,oldPassword:oldPassword,newPassword:newPassword,confirmPassword:confirmPassword};
-
-                this.$store.dispatch('security/editPassword', payload);
+                 this.submitted = true;
+                 console.log("test");
+            this.$validator.validate().then(valid => {
+                if (valid) {
+                    let payload = {id:id,oldPassword:oldPassword,newPassword:newPassword,confirmPassword:confirmPassword};
+                    console.log("bla");
+                    this.$store.dispatch('security/editPassword', payload);
+                }
+            });
+                
             },
         },
     }

@@ -25,7 +25,6 @@
       return {
         perPage: 10,
         currentPage: 1,
-        fields: ['Actions', 'Date'],
       }
     },
     created () {
