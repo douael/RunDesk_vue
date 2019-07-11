@@ -73,20 +73,7 @@
     </section>
 
     <h2>Dernières actions</h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Actions</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="dashboard in dashboards.slice().reverse()">
-          <td v-html="dashboard[0]">{{ dashboard[0] }}</td>
-          <td>{{ dashboard[1] }}</td>
-        </tr>
-      </tbody>
-    </table>
+     <dashboard ></dashboard>
 
 
   </div>
@@ -96,6 +83,7 @@
 //import ChartCard from '../components/Cards/ChartCard.vue'
 import StatsCard from '../components/Cards/StatsCard.vue'
 import LTable from '../components/Table.vue'
+import Dashboard from '../components/Dashboard'
 
 import { Line } from 'vue-chartjs'
 import LineChart from '../public/LineChart.js'
@@ -103,7 +91,7 @@ import LineChart from '../public/LineChart.js'
 
 export default {
   components: {
-    LineChart
+    LineChart,Dashboard
   },
   data () {
     return {
