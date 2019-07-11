@@ -42,11 +42,11 @@
                         <input placeholder="old Password" type="hidden" class="form-control" v-model="oldPassword">
 
                         </div><div class="col-12">
-                        <input placeholder="new Password" v-validate="{ required: true, min: 6 }" type="password" class="form-control" id="newPassword" name="newPassword" ref="newPassword" v-model="newPassword" :class="{ 'is-invalid': submitted && errors.has('newPassword') }">
+                        <input placeholder="new Password" v-validate="{ required: true, min: 8 }" type="password" class="form-control" id="newPassword" name="newPassword" ref="newPassword" v-model="newPassword" :class="{ 'is-invalid': submitted && errors.has('newPassword') }">
                                                 <div v-if="submitted && errors.has('newPassword')" class="invalid-feedback">{{ errors.first('newPassword') }}</div>
 
                  </div><div class="col-12">
-                        <input placeholder="Confirm Password" v-validate="{ required: true, min: 6 }"  class="form-control" type="password" name="confirmPassword"  id="confirmPassword"  v-model="confirmPassword" ref="confirmPassword" >
+                        <input placeholder="Confirm Password" v-validate="{ required: true, min: 8 }"  class="form-control" type="password" name="confirmPassword"  id="confirmPassword"  v-model="confirmPassword" ref="confirmPassword" >
                         </div></div>
                     </div>
                     <div class="modal-footer">
@@ -70,8 +70,24 @@
     import VeeValidate from 'vee-validate';
     import { ValidationProvider } from 'vee-validate';
     import Vue from 'vue';
+import fr from "vee-validate/dist/locale/fr";
+import VueI18n from "vue-i18n";
 
-    Vue.use(VeeValidate);
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+    locale: "fr"
+});
+
+Vue.use(VeeValidate, {
+    i18n,
+    dictionary: {
+        fr
+    }
+});
+
+
+    
     export default {
         name: 'profils',
         components: {
