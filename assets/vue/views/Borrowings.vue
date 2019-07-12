@@ -11,11 +11,11 @@
                     <div class="form-row">
                         <div class="col-12">
                             <label :for="employee" class="mr-2">{{ labels.employee }}</label>
-                            <select class="form-control" name="employee" v-model="employee" >
-                                <option v-for="employee in employees" v-bind:value="employee">
-                                    {{ employee.firstname + ' ' + employee.lastname }}
-                                </option>
-                            </select>
+                            <v-select name="employee" :options="employees" v-model="employee" >
+                                <template slot="selection" scope="employee">
+                                    {{ employee.firstname }}{{employee.lastname}}
+                                </template>
+                            </v-select>
                         </div>
                         <div class="col-12">
                             <label :for="material" class="mr-2">{{ labels.material }}</label>
@@ -48,7 +48,7 @@
                         
                         
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="createBorrowing()" :disabled="isLoading" type="button" class="btn btn-primary">Créer</button>
+                            <button @click="createBorrowing()" :disabled="date_start.length === 0 ||date_end.length === 0 ||material.length === 0 ||employee.length === 0 ||isLoading" type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </form>
@@ -201,7 +201,8 @@ id="import">
     import ErrorMessage from '../components/ErrorMessage';
     import moment from 'moment'
     import Vue from 'vue';
-
+    import VueSelect from 'vue-select';
+    Vue.component('v-select', VueSelect)
     Vue.filter('formatDate', function(value) {
         if (value) {
             return moment(String(value)).format('DD/MM/YYYY')
@@ -210,7 +211,7 @@ id="import">
     export default {
         name: 'borrowings',
         components: {
-            ErrorMessage,
+            ErrorMessage
         },
         data () {
             return {

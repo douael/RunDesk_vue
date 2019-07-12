@@ -7,6 +7,7 @@ import EmployeeModule from './employee';
 import DashboardModule from './dashboard';
 import BorrowingModule from './borrowing';
 import BootstrapVue from 'bootstrap-vue'
+import VueSelect from 'vue-select2';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
