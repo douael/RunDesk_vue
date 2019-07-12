@@ -26,7 +26,7 @@
                             </select>
                         </div>
                         <div class="row col-12">
-                            <div class=" col-6">
+                            <div class="col-6">
                                 <!--label :for="date_start" class="mr-2">{{ labels.date_start }}</label>
                                 <input v-model="date_start" type="date" class="form-control"-->
                                 
@@ -34,15 +34,22 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="label-control mr-2" :for="date_start" >{{ labels.date_start }}</label>
-                    <input type="text" class="form-control datetimepicker" v-model="date_start">
+                    <input type="date" class="form-control datetimepicker" v-model="date_start" disabled>
                   </div>
                 </div>
               </div>
 
                             </div>
                             <div class="col-6">
+                                
                                 <label :for="date_end" class="mr-2">{{ labels.date_end }}</label>
-                                <input v-model="date_end" type="date" class="form-control">
+                                <datepicker
+                                    v-model="date_end"
+                                    :format="DatePickerFormat"
+                                    :disabledDates="disabledDates"
+                                    >
+                                </datepicker>
+                                <!-- <input v-model="date_end" type="date" id="datepicker" class="form-control"> -->
                             </div>
                         </div>
                         
@@ -202,6 +209,8 @@ id="import">
     import moment from 'moment'
     import Vue from 'vue';
     import VueSelect from 'vue-select';
+    import Datepicker from "vuejs-datepicker";
+
     Vue.component('v-select', VueSelect)
     Vue.filter('formatDate', function(value) {
         if (value) {
@@ -211,7 +220,8 @@ id="import">
     export default {
         name: 'borrowings',
         components: {
-            ErrorMessage
+            ErrorMessage,
+            Datepicker
         },
         data () {
             return {
@@ -225,6 +235,10 @@ id="import">
                     date_start: 'Date de début',
                     date_end: 'Date de fin',
                 },
+                DatePickerFormat: "dd/MM/yyyy",
+                disabledDates: {
+                    to: new Date(Date.now() - 8640000)
+                }
             };
         },
         created () {
@@ -289,4 +303,13 @@ id="import">
             }
         },
     }
+
+    var dateToday = new Date(); 
+$(function() {
+    $( "#datepicker" ).datepicker({
+        numberOfMonths: 3,
+        showButtonPanel: true,
+        minDate: dateToday
+    });
+});
 </script>
