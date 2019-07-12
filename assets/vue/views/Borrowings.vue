@@ -27,8 +27,18 @@
                         </div>
                         <div class="row col-12">
                             <div class=" col-6">
-                                <label :for="date_start" class="mr-2">{{ labels.date_start }}</label>
-                                <input v-model="date_start" type="date" class="form-control">
+                                <!--label :for="date_start" class="mr-2">{{ labels.date_start }}</label>
+                                <input v-model="date_start" type="date" class="form-control"-->
+                                
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="label-control mr-2" :for="date_start" >{{ labels.date_start }}</label>
+                    <input type="text" class="form-control datetimepicker" v-model="date_start">
+                  </div>
+                </div>
+              </div>
+
                             </div>
                             <div class="col-6">
                                 <label :for="date_end" class="mr-2">{{ labels.date_end }}</label>
