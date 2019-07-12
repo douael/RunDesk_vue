@@ -11,10 +11,7 @@
                     <div class="form-row">
                         <div class="col-12">
                             <label :for="employee" class="mr-2">{{ labels.employee }}</label>
-                            <v-select name="employee" :options="employees" v-model="employee" >
-                                <template slot="selection" scope="employee">
-                                    {{ employee.firstname }}{{employee.lastname}}
-                                </template>
+                            <v-select name="employee" :options="employees" label="fistname'"+"' '"+"'lastname" v-model="employee" >
                             </v-select>
                         </div>
                         <div class="col-12">
