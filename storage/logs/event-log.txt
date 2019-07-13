@@ -42,3 +42,14 @@ Modification du type : <strong>Hardware 2</strong> # 2019-07-13 20:52:42
 Modification du type : <strong>Hardware</strong> # 2019-07-13 20:52:53
 Création du type : <strong>Software</strong> # 2019-07-13 20:53:03
 Création Categorie : <strong>Clavier</strong> # 2019-07-13 21:26:28
+Modification de la Categorie : <strong>Clavier</strong> # 2019-07-13 21:47:27
+Modification de la Categorie : <strong>Clavier</strong> # 2019-07-13 21:49:47
+Création Categorie : <strong>Clavier</strong> # 2019-07-13 21:52:56
+Modification de la catégorie : <strong>Clavier</strong> # 2019-07-13 21:53:48
+Modification de la catégorie : <strong>Clavier</strong> # 2019-07-13 21:56:28
+Modification de la catégorie : <strong>Clavier</strong> # 2019-07-13 21:57:55
+Modification de la catégorie : <strong>Clavier</strong> # 2019-07-13 21:59:13
+Modification de la catégorie : <strong>Clavier</strong> # 2019-07-13 22:03:59
+Modification de la catégorie : <strong>Clavier</strong> # 2019-07-13 22:05:07
+Modification de la catégorie : <strong>Clavier</strong> # 2019-07-13 22:07:38
+Modification de la catégorie : <strong>Clavier</strong> # 2019-07-13 22:10:46

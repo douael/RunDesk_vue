@@ -83,12 +83,10 @@ final class ApiCategoryController extends AbstractController
      */
     public function updateAction(CategoryRepository $categoryRepository, Request $request): JsonResponse
     {
-        //var_dump($request->request);
         $id = $request->request->get('id');
         $name = $request->request->get('name');
         $type = $request->request->get('type');
-        // $quantity = $request->request->get('quantity');
-        //var_dump($type['type']);
+        // var_dump($type);
         $categoryEntity = $this->categoryService->updateCategory($id,$name,$type);
         $data = $this->serializer->serialize($categoryEntity, 'json');
 

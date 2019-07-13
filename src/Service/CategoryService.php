@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Category;
 use App\Entity\Type;
 use App\Repository\CategoryRepository;
+use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -60,27 +61,29 @@ final class CategoryService extends AbstractController
 
         return $category;
     }
-    
+
+
     /**
      * @param integer $id
      * @param string $name
-     * @param array $type
+     * @param int $type
      * @return Category
      */
-    public function updateCategory(int $id,string $name, array $type): Category
+    public function updateCategory(int $id,string $name, int $type): Category
     {
-        
-        $category = $this->em->getRepository(Category::class)->find($id);
-        //var_dump($bla);
 
+        $type = $this->em->getRepository(Type::class)->find($type);
+        $category = $this->em->getRepository(Category::class)->find($id);
+      
         $category->setName($name);
         $category->setType($type);
-        // $category->setQuantity($quantity);
-        $this->writeLog("Modification de la Categorie : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Modification de la catégorie : <strong>".$category->getName()."</strong> # ".date('Y-m-d H:i:s'));
         $this->em->flush();
 
         return $category;
     }
+
+
     /**
      * @return object[]
      */
