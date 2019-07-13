@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row col darkBlue-bg green no-margin">
-            <h1>Catégories</h1>
+            <h1>Type</h1>
         </div>
 
         <div class="row col" v-if="canCreateType">
@@ -31,7 +31,7 @@
 
         </div>
         <div v-else-if="!hasTypes" class="row col">
-            Pas de catégorie !
+            Pas de Type !
         </div>
         <div v-else class="table-responsive">
             <table class="table table-striped">
@@ -97,11 +97,11 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" >Supprimer la catégorie</h4>
+                        <h4 class="modal-title" >Supprimer le type</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
-                        Êtes-vous sûr de vouloir supprimer cette catégorie ?
+                        Êtes-vous sûr de vouloir supprimer ce type ?
                         <ul>
                             <li >
                                 {{ type.name }}
