@@ -11,11 +11,15 @@
                     <router-link class="nav-item" tag="li" to="/dashboard" active-class="active">
                         <a class="nav-link">Tableau de bord</a>
                     </router-link>
+                    
+                    <router-link class="nav-item" tag="li" to="/materials" active-class="active">
+                        <a class="nav-link">Matériels</a>
+                    </router-link>
                     <router-link class="nav-item" tag="li" to="/categorys" active-class="active">
                         <a class="nav-link">Catégories</a>
                     </router-link>
-                    <router-link class="nav-item" tag="li" to="/materials" active-class="active">
-                        <a class="nav-link">Matériels</a>
+                    <router-link class="nav-item" tag="li" to="/types" active-class="active">
+                        <a class="nav-link">Type</a>
                     </router-link>
                     <router-link class="nav-item" tag="li" to="/employees" active-class="active">
                         <a class="nav-link">Employés</a>

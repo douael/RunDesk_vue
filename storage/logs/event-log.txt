@@ -37,3 +37,7 @@ Création Categorie : <strong>test</strong> # 2019-07-13 19:22:08
 Création Categorie : <strong>test</strong> # 2019-07-13 19:22:12
 Création Categorie : <strong>tes2</strong> # 2019-07-13 19:22:22
 Suppression de la catégorie : <strong>tes2</strong> # 2019-07-13 19:22:28
+Création du type : <strong>Hardware</strong> # 2019-07-13 20:51:34
+Modification du type : <strong>Hardware 2</strong> # 2019-07-13 20:52:42
+Modification du type : <strong>Hardware</strong> # 2019-07-13 20:52:53
+Création du type : <strong>Software</strong> # 2019-07-13 20:53:03

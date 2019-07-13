@@ -6,6 +6,7 @@ import CategoryModule from './category';
 import EmployeeModule from './employee';
 import DashboardModule from './dashboard';
 import BorrowingModule from './borrowing';
+import TypeModule from './type';
 import BootstrapVue from 'bootstrap-vue'
 import VueSelect from 'vue-select2';
 import 'bootstrap/dist/css/bootstrap.css'
@@ -22,5 +23,6 @@ export default new Vuex.Store({
         borrowing: BorrowingModule,
         employee: EmployeeModule,
         dashboard: DashboardModule,
+        type: TypeModule,
     },
 });
