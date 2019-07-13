@@ -21,10 +21,10 @@
                             <label :for="category" class="mr-2">{{ labels.category }}</label>
                             <select class="form-control" name="category" v-model="category" >
                                 <option v-for="category in categorys" v-bind:value="category">
-                                {{ category.name }}
+                                    {{ category.name }}
                                 </option>
                             </select>
-                            </div>
+                        </div>
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
                             <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Créer</button>
                         </div>

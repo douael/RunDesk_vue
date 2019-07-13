@@ -24,9 +24,10 @@ class Category
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Type")
      */
     private $type;
+
 
 
 
@@ -52,12 +53,12 @@ class Category
         return $this;
     }
 
-    public function getType(): ?int
+    public function getType(): ?Type
     {
         return $this->type;
     }
 
-    public function setType(int $type): self
+    public function setType(?Type $type): self
     {
         $this->type = $type;
 
