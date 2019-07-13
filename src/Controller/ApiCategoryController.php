@@ -49,8 +49,8 @@ final class ApiCategoryController extends AbstractController
             throw new BadRequestHttpException('name cannot be empty');
         }
         $type = $request->request->get('type');
-        $quantity = $request->request->get('quantity');
-        $categoryEntity = $this->categoryService->createCategory($name,$type,$quantity);
+        // $quantity = $request->request->get('quantity');
+        $categoryEntity = $this->categoryService->createCategory($name,$type);
         $data = $this->serializer->serialize($categoryEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);
@@ -87,9 +87,9 @@ final class ApiCategoryController extends AbstractController
         $id = $request->request->get('id');
         $name = $request->request->get('name');
         $type = $request->request->get('type');
-        $quantity = $request->request->get('quantity');
+        // $quantity = $request->request->get('quantity');
         //var_dump($type['type']);
-        $categoryEntity = $this->categoryService->updateCategory($id,$name,$type,$quantity);
+        $categoryEntity = $this->categoryService->updateCategory($id,$name,$type);
         $data = $this->serializer->serialize($categoryEntity, 'json');
 
         return new JsonResponse($data, 200, [], true);

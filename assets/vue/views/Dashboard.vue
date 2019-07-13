@@ -51,7 +51,7 @@
           </b-progress>
           <br/>
 
-          <b-button href="/borrowing" class="purple-bg">Voir plus</b-button>
+          <b-button href="/borrowings" class="purple-bg">Voir plus</b-button>
         </b-card>
       </div>
       <div class="col-6 col-sm-3 placeholder">

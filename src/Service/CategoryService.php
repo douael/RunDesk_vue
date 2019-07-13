@@ -27,15 +27,14 @@ final class CategoryService extends AbstractController
     /**
      * @param string $name
      * @param integer $type
-     * @param integer $quantity
      * @return Category
      */
-    public function createCategory(string $name,int $type, int $quantity): Category
+    public function createCategory(string $name,int $type): Category
     {
         $categoryEntity = new Category();
         $categoryEntity->setName($name);
         $categoryEntity->setType($type);
-        $categoryEntity->setQuantity($quantity);
+        // $categoryEntity->setQuantity($quantity);
         $this->em->persist($categoryEntity);
         $this->writeLog("Création Categorie : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
         $this->em->flush();
@@ -63,10 +62,9 @@ final class CategoryService extends AbstractController
      * @param integer $id
      * @param string $name
      * @param integer $type
-     * @param integer $quantity
      * @return Category
      */
-    public function updateCategory(int $id,string $name, int $type,int $quantity): Category
+    public function updateCategory(int $id,string $name, int $type): Category
     {
         
         $category = $this->em->getRepository(Category::class)->find($id);
@@ -74,7 +72,7 @@ final class CategoryService extends AbstractController
 
         $category->setName($name);
         $category->setType($type);
-        $category->setQuantity($quantity);
+        // $category->setQuantity($quantity);
         $this->writeLog("Modification de la Categorie : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
         $this->em->flush();
 

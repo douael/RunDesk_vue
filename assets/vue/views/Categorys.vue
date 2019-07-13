@@ -12,16 +12,16 @@
                             <label :for="name" class="mr-2">{{ labels.name }}</label>
                             <input v-model="name" type="text" class="form-control">
                         </div>
-                        <div class="col-6">
+                        <!-- <div class="col-6">
                             <label :for="quantity" class="mr-2">{{ labels.quantity }}</label>
                             <input v-model="quantity" type="number" class="form-control">
-                        </div>
+                        </div> -->
                         <div class="col-6">
                             <label :for="type" class="mr-2">{{ labels.type }}</label>
                             <input v-model="type" type="text" class="form-control">
                         </div>
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="createCategory()" :disabled="name.length === 0 || isLoading || quantity.length == 0 || type.length == 0"type="button" class="btn btn-primary">Créer</button>
+                            <button @click="createCategory()" :disabled="name.length === 0 || isLoading || type.length == 0"type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
 
         <div v-else-if="hasError" class="row col">
             <error-name :error="error"></error-name>
-            <error-quantity :error="error"></error-quantity>
+            <!-- <error-quantity :error="error"></error-quantity> -->
 
         </div>
         <div v-else-if="!hasCategorys" class="row col">
@@ -45,7 +45,7 @@
                 <thead>
                     <tr>
                         <th>Nom</th>
-                        <th>Quantité</th>
+                        <!-- <th>Quantité</th> -->
                         <th>Type</th>
                         <th>Supprimer</th>
                         <th>Modifier</th>
@@ -54,7 +54,7 @@
                 <tbody >
                     <tr v-for="category in categorys" v-if="category.id!=3">
                         <td>{{ category.name }}</td>
-                        <td>{{ category.quantity }}</td>
+                        <!-- <td>{{ category.quantity }}</td> -->
                         <td>{{ category.type }}</td>
                         <td>
                             <button type="button" class="btn btn-danger" data-toggle="modal" @click="deleteModal(category.id,category.name)" >
@@ -85,10 +85,10 @@
                                         <label>Nom</label>
                                         <input v-model="category.name" type="text" class="form-control">
                                     </div>
-                                    <div class="col-6">
+                                    <!-- <div class="col-6">
                                         <label>Quantité</label>
                                         <input v-model="category.quantity" type="number" class="form-control">
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-6">
                                         <label>Type</label>
@@ -101,7 +101,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
                                 <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
-                                @click="editCategory(category.id,category.name,category.type,category.quantity)">
+                                @click="editCategory(category.id,category.name,category.type)">
                                 Modifier
                             </button>
                         </div>
@@ -154,11 +154,11 @@
             return {
                 name: '',
                 type: '',
-                quantity: '',
+                // quantity: '',
                 id: '',
                 labels: {
                     name: 'Nom de la categorie',
-                    quantity: 'Quantité',
+                    // quantity: 'Quantité',
                     type: 'Type'
                 },
             };
@@ -191,7 +191,7 @@
         },
         methods: {
             createCategory () {
-                let payload = {name: this.$data.name, type: this.$data.type,quantity: this.$data.quantity};
+                let payload = {name: this.$data.name, type: this.$data.type};
 
                 this.$store.dispatch('category/createCategory', payload);
             },
@@ -214,8 +214,8 @@ openModal(id){
 deleteModal(id,name){
     $('#delete-category'+id).modal();
 },
-editCategory(id,name,type,quantity){
-    let payload = {id: id,name:name, type: type,quantity: quantity};
+editCategory(id,name,type){
+    let payload = {id: id,name:name, type: type};
 
     this.$store.dispatch('category/updateCategory', payload);
 },

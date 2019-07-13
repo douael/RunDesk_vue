@@ -28,10 +28,6 @@ class Category
      */
     private $type;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantity;
 
 
     public function __construct()
@@ -68,17 +64,17 @@ class Category
         return $this;
     }
 
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
+    // public function getQuantity(): ?int
+    // {
+    //     return $this->quantity;
+    // }
 
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
+    // public function setQuantity(int $quantity): self
+    // {
+    //     $this->quantity = $quantity;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
 
 }
