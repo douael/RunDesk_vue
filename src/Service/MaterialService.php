@@ -43,6 +43,8 @@ final class MaterialService extends AbstractController
         $materialEntity->setSerialNumber($serialNumber);
         $materialEntity->setCategory($category);
         $materialEntity->setUserId($user);
+        $materialEntity->setAvailable(1);
+
         $this->em->persist($materialEntity);
         $this->em->flush();
         $this->writeLog("Création de Materiel : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));

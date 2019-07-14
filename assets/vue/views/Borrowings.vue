@@ -11,7 +11,7 @@
                     <div class="form-row">
                         <div class="col-12">
                             <label :for="employee" class="mr-2">{{ labels.employee }}</label>
-                            <select v-validate="employee" data-rules="required|employee" class="form-control" name="employee" v-model="employee" >
+                            <select class="form-control" name="employee" v-model="employee" >
                                 <option v-for="employee in employees" v-bind:value="employee">
                                     {{ employee.firstname + ' ' + employee.lastname }}
                                 </option>
@@ -20,7 +20,7 @@
                         <div class="col-12">
                             <label :for="material" class="mr-2">{{ labels.material }}</label>
                             <select class="form-control" name="material" v-model="material" >
-                                <option v-for="material in materials" v-bind:value="material">
+                                <option v-for="material in materials" v-if="material.available == 1 && material.isActive == 1" v-bind:value="material">
                                     {{ material.name }}
                                 </option>
                             </select>
