@@ -103,6 +103,25 @@ final class ApiMaterialController extends AbstractController
 
         return new JsonResponse($data, 200, [], true);
     }
+
+    /**
+     * @Rest\Post("/api/material/available", name="availableMaterial")
+     * @param Request $request
+     * @param MaterialRepository $materialRepository
+     * @return JsonResponse
+     * @IsGranted("ROLE_FOO")
+     */
+    public function availableAction(MaterialRepository $materialRepository, Request $request): JsonResponse
+    {
+        //var_dump($request->request);
+        $id = $request->request->get('id');
+        $available = $request->request->get('available');
+        //var_dump($isActive['isActive']);
+        $materialEntity = $this->materialService->availableMaterial($id,$available);
+        $data = $this->serializer->serialize($materialEntity, 'json');
+
+        return new JsonResponse($data, 200, [], true);
+    }
     /**
      * @Rest\Post("/api/material/update", name="updateMaterial")
      * @param Request $request

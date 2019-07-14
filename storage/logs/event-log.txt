@@ -69,3 +69,5 @@ Création de la demande du material : <strong>A54459</strong> pour l'employee : 
 Création de la demande du material : <strong>A54458</strong> pour l'employee : <strong>BENYOUCEF BENYOUCEF</strong> # 2019-07-14 12:10:15
 Création de la demande du material : <strong>A54458</strong> pour l'employee : <strong>BENYOUCEF BENYOUCEF</strong> # 2019-07-14 12:10:21
 Création de la demande du material : <strong>A54485</strong> pour l'employee : <strong>BENYOUCEF BENYOUCEF</strong> # 2019-07-14 12:14:41
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-14 13:44:01
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-14 13:52:58

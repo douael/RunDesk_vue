@@ -69,6 +69,25 @@ final class MaterialService extends AbstractController
 
         return $material;
     }
+
+    /**
+     * @param integer $id
+     * @param integer $available
+     * @return Material
+     */
+    public function availableMaterial(int $id,int $available): Material
+    {
+        
+        $material = $this->em->getRepository(Material::class)->find($id);
+        //var_dump($bla);
+
+        $material->setAvailable($available);
+        $this->writeLog("Materiel de nouveau disponible : <strong>".$material->getName()."</strong> # ".date('Y-m-d H:i:s'));
+
+        $this->em->flush();
+
+        return $material;
+    }
     
     /**
      * @param integer $id

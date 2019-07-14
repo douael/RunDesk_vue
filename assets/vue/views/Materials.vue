@@ -5,10 +5,10 @@
         </div>
 
         <div class="row col" v-if="canCreateMaterial">
-            
-                    <div class="col-8">
-                        <form style="width:100%">
-                <div class="form-row">
+
+            <div class="col-8">
+                <form style="width:100%">
+                    <div class="form-row">
                         <div class="col-12">
                             <label :for="name" class="mr-2">{{ labels.name }}</label>
                             <input v-model="name" type="text" class="form-control">
@@ -28,16 +28,16 @@
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
                             <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Créer</button>
                         </div>
-                         </div>
-            </form>
-            
                     </div>
-                    <div class="col-4">
-                        <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="importModal()" type="button" class="btn btn-primary">Importation CSV du matériel</button>
-                        </div>
-                    </div>
-               
+                </form>
+
+            </div>
+            <div class="col-4">
+                <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
+                    <button @click="importModal()" type="button" class="btn btn-primary">Importation CSV du matériel</button>
+                </div>
+            </div>
+
         </div>
 
         <div v-if="isLoading" class="row col">
@@ -53,7 +53,7 @@
             Pas de matériel !
         </div>
 
-            <div v-else class="table-responsive">
+        <div v-else class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -63,214 +63,216 @@
                   <th>Supprimer</th>
                   <th>Modifier</th>
                   <th>Changer de statut</th>
-                </tr>
-              </thead>
-              <tbody >
-                  <tr  v-for="material in materials" >
-                    <td>{{ material.name }}</td>
-                    <td>{{ material.serialNumber }}</td>
-                    <td>{{ material.category.name }}</td>
-                    <td>
-                        <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(material.id,material.name)" >
-                            <i class="fa fa-trash"></i> Supprimer
-                        </button>
-                    </td>
-                  
-                    <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(material.id)">
-                            <i class="fa fa-edit"></i> Modifier
-                        </button>
-                    </td>
-                    <td>
-                        <form >
+              </tr>
+          </thead>
+          <tbody >
+              <tr  v-for="material in materials" >
+                <td>{{ material.name }}</td>
+                <td>{{ material.serialNumber }}</td>
+                <td>{{ material.category.name }}</td>
+                <td>
+                    <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(material.id,material.name)" >
+                        <i class="fa fa-trash"></i> Supprimer
+                    </button>
+                </td>
+
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(material.id)">
+                        <i class="fa fa-edit"></i> Modifier
+                    </button>
+                </td>
+                <td>
+                    <form >
                         <button type="button" class="btn btn-warning" v-if="!material.isActive" @click="activateMaterial(material.id)">Inactif</button>
                         <button type="button" class="btn btn-success" v-else  @click="unactivateMaterial(material.id)">Actif</button>
                         <input type="hidden" id="id" name="id" class="form-control" :value="material.id">
-            
-                        </form>
-                    </td>                </tr></tbody>
-            </table>
-            </div>
-            <div v-for="material in materials">
-               <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+material.id">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" >Modifier</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-12">
-                                <div class="col-6">
-                                    <input v-model="material.name" type="text" class="form-control">
-                                </div>
-                                <div class="col-6">
-                                    <input v-model="material.serialNumber" type="text" class="form-control">
-                                </div>
-                                <div class="col-6">
-                                  <select class="form-control" name="category" v-model="material.category" >
-                                      <option v-for="Othercategory in categorys" v-bind:value="Othercategory.id" >
-                                      {{ Othercategory.name }}
-                                      </option>
-                                      
-                                  </select>
-                                </div>
-                                <input type="hidden" id="isActive" name="isActive" class="form-control" :value="material.isActive">
 
-                            </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
-                            @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)">
-                    Modifier
-                    </button>
-                </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-          <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-         style="display: none;"
-         :id="'delete-material'+material.id">
-      <div class="modal-dialog modal-dialog-centered">
+                    </form>
+                </td>                
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div v-for="material in materials">
+ <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+material.id">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" >Suppression de Materiel</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          </div>
-          <div class="modal-body">
-            Êtes-vous sûr de vouloir supprimer ce matériel ? 
-            <ul>
-              <li >
-                {{ material.name }}
-              </li>
-            </ul>
+            <div class="modal-header">
+                <h4 class="modal-title" >Modifier</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12">
+                    <div class="col-6">
+                        <input v-model="material.name" type="text" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <input v-model="material.serialNumber" type="text" class="form-control">
+                    </div>
+                    <div class="col-6">
+                      <select class="form-control" name="category" v-model="material.category" >
+                          <option v-for="Othercategory in categorys" v-bind:value="Othercategory.id" >
+                              {{ Othercategory.name }}
+                          </option>
+
+                      </select>
+                  </div>
+                  <input type="hidden" id="isActive" name="isActive" class="form-control" :value="material.isActive">
+
+              </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
-                    @click.prevent="deleteMaterial(material.id)">
-              Supprimer
-            </button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-    
-          <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-         style="display: none;"
-         id="import">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" >Importer du matériels en CSV</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          </div>
-          <div class="modal-body">
-              Format du csv :<br><br>
-                Nom material 1<strong>,</strong> Numero de serie<br>
-                Nom material 2<strong>,</strong> Numero de serie<br><br>
-
-             <a type="button" class="btn btn-light waves-effect waves-light"
-                  href="/modal_forMaterials.csv">
-              Telecharger modele
-            </a><br><br>
-
-          <input type="file" id="file" ref="file" accept=".csv" @change="onChangeFileUpload" class="input-file">
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
-                   v-on:click="submitForm()">
-              Importer
-            </button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
+            @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)">
+            Modifier
+        </button>
     </div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+style="display: none;"
+:id="'delete-material'+material.id">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" >Suppression de Materiel</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     </div>
+    <div class="modal-body">
+        Êtes-vous sûr de vouloir supprimer ce matériel ? 
+        <ul>
+          <li >
+            {{ material.name }}
+        </li>
+    </ul>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+    @click.prevent="deleteMaterial(material.id)">
+    Supprimer
+</button>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+style="display: none;"
+id="import">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" >Importer du matériels en CSV</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    </div>
+    <div class="modal-body">
+      Format du csv :<br><br>
+      Nom material 1<strong>,</strong> Numero de serie<br>
+      Nom material 2<strong>,</strong> Numero de serie<br><br>
+
+      <a type="button" class="btn btn-light waves-effect waves-light"
+      href="/modal_forMaterials.csv">
+      Telecharger modele
+  </a><br><br>
+
+  <input type="file" id="file" ref="file" accept=".csv" @change="onChangeFileUpload" class="input-file">
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
+    v-on:click="submitForm()">
+    Importer
+</button>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+</div>
 </template>
 
 <script>
-    import ErrorMessage from '../components/ErrorMessage';
+import ErrorMessage from '../components/ErrorMessage';
 import axios from 'axios';
 
-    export default {
-        name: 'materials',
-        components: {
-            ErrorMessage,
+export default {
+    name: 'materials',
+    components: {
+        ErrorMessage,
+    },
+    data () {
+        return {
+            name: '',
+            isActive: true,
+            serialNumber: '',
+            id: '',
+            category:'',
+            file: '',
+            labels: {
+                name: 'Nom du matériel',
+                serialNumber: 'Numéro de série',
+                category: 'Catégorie'
+            },
+        };
+    },
+    created () {
+        this.$store.dispatch('material/fetchMaterials');
+        this.$store.dispatch('category/fetchCategorys');
+    },
+    computed: {
+        isLoading () {
+            return this.$store.getters['material/isLoading'];
         },
-        data () {
-            return {
-                name: '',
-                isActive: true,
-                serialNumber: '',
-                id: '',
-                category:'',
-                file: '',
-                labels: {
-                    name: 'Nom du matériel',
-                    serialNumber: 'Numéro de série',
-                    category: 'Catégorie'
+        hasError () {
+            return this.$store.getters['material/hasError'];
         },
-            };
+        error () {
+            return this.$store.getters['material/error'];
         },
-        created () {
-            this.$store.dispatch('material/fetchMaterials');
-            this.$store.dispatch('category/fetchCategorys');
+        hasMaterials () {
+            return this.$store.getters['material/hasMaterials'];
         },
-        computed: {
-            isLoading () {
-                return this.$store.getters['material/isLoading'];
-            },
-            hasError () {
-                return this.$store.getters['material/hasError'];
-            },
-            error () {
-                return this.$store.getters['material/error'];
-            },
-            hasMaterials () {
-                return this.$store.getters['material/hasMaterials'];
-            },
-            materials () {
-                return this.$store.getters['material/materials'];
-            },
-            
-            categorys () {
-                return this.$store.getters['category/categorys'];
-            },
-            canCreateMaterial () {
-                return this.$store.getters['security/hasRole']('ROLE_FOO');
-            },
-            canEditMaterial () {
-                return this.$store.getters['security/hasRole']('ROLE_FOO');
-            }
+        materials () {
+            return this.$store.getters['material/materials'];
         },
-        methods: {
 
-            submitForm(){
-                let formData = new FormData();
-                formData.append('file', this.file);
-                console.log(formData);
-                axios.post('/api/material/import',
-                    formData,
-                    {
+        categorys () {
+            return this.$store.getters['category/categorys'];
+        },
+        canCreateMaterial () {
+            return this.$store.getters['security/hasRole']('ROLE_FOO');
+        },
+        canEditMaterial () {
+            return this.$store.getters['security/hasRole']('ROLE_FOO');
+        }
+    },
+    methods: {
+
+        submitForm(){
+            let formData = new FormData();
+            formData.append('file', this.file);
+            console.log(formData);
+            axios.post('/api/material/import',
+                formData,
+                {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 }
                 ).then(function(data){
-                document.location.reload(true);
+                    document.location.reload(true);
                 })
                 .catch(function(){
-                console.log('FAILURE!!');
+                    console.log('FAILURE!!');
                 });
             },
-             onChangeFileUpload(){
+            onChangeFileUpload(){
                 this.file = event.target.files[0];
             },
             createMaterial () {
@@ -316,4 +318,4 @@ import axios from 'axios';
             
         },
     }
-</script>
+    </script>

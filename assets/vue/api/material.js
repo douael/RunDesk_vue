@@ -20,6 +20,15 @@ export default {
         );
     },
 
+    availableMaterial(id, available) {
+        return axios.post(
+            '/api/material/available', {
+                id: id,
+                available: available
+            }
+        );
+    },
+
     delete(id) {
         return axios.post(
             '/api/material/delete', {

@@ -96,6 +96,12 @@ export default {
                 .then(res => commit('EDITING_MATERIAL_SUCCESS'))
                 .catch(err => commit('EDITING_MATERIAL_ERROR', err));
         },
+        availableMaterial({ commit }, payload) {
+            commit('EDITING_MATERIAL');
+            return MaterialAPI.availableMaterial(payload.id, payload.available)
+                .then(res => commit('EDITING_MATERIAL_SUCCESS'))
+                .catch(err => commit('EDITING_MATERIAL_ERROR', err));
+        },
 
         deleteMaterial({ commit }, id ) {
             commit('DELETING_MATERIAL');
