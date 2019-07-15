@@ -10,24 +10,24 @@ export default {
         profils: []
     },
     getters: {
-        isLoading (state) {
+        isLoading(state) {
             return state.isLoading;
         },
-        hasError (state) {
+        hasError(state) {
             return state.error !== null;
         },
-        error (state) {
+        error(state) {
             return state.error;
         },
-        isAuthenticated (state) {
+        isAuthenticated(state) {
             return state.isAuthenticated;
         },
-        hasRole (state) {
+        hasRole(state) {
             return role => {
                 return state.roles.indexOf(role) !== -1;
             }
         },
-        
+
         profils(state) {
             return state.profils;
         },
@@ -53,6 +53,8 @@ export default {
         ['EDITING_PASSWORD_SUCCESS'](state) {
             state.isLoading = true;
             state.error = null;
+            //document.location.reload(true);
+
         },
         ['AUTHENTICATING_ERROR'](state, error) {
             state.isLoading = false;
@@ -87,19 +89,19 @@ export default {
         },
     },
     actions: {
-        login ({commit}, payload) {
+        login({ commit }, payload) {
             commit('AUTHENTICATING');
             return SecurityAPI.login(payload.login, payload.password)
                 .then(res => commit('AUTHENTICATING_SUCCESS', res.data))
                 .catch(err => commit('AUTHENTICATING_ERROR', err));
         },
-        editPassword ({commit}, payload) {
+        editPassword({ commit }, payload) {
             commit('EDITING_PASSWORD');
-            return SecurityAPI.editPassword(payload.id,payload.oldPassword,payload.newPassword,payload.confirmPassword)
-                .then(res => commit('EDITING_PASSWORD_SUCCESS', res.data))
+            return SecurityAPI.editPassword(payload.id, payload.oldPassword, payload.newPassword, payload.confirmPassword)
+                .then(res => commit('EDITING_PASSWORD_SUCCESS'))
                 .catch(err => commit('EDITING_PASSWORD_ERROR', err));
         },
-        onRefresh({commit}, payload) {
+        onRefresh({ commit }, payload) {
             commit('PROVIDING_DATA_ON_REFRESH_SUCCESS', payload);
         },
         fetchProfils({ commit }) {
