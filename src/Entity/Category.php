@@ -24,14 +24,11 @@ class Category
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Type")
      */
     private $type;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantity;
+
 
 
     public function __construct()
@@ -56,29 +53,29 @@ class Category
         return $this;
     }
 
-    public function getType(): ?int
+    public function getType(): ?Type
     {
         return $this->type;
     }
 
-    public function setType(int $type): self
+    public function setType(?Type $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
+    // public function getQuantity(): ?int
+    // {
+    //     return $this->quantity;
+    // }
 
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
+    // public function setQuantity(int $quantity): self
+    // {
+    //     $this->quantity = $quantity;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
 
 }

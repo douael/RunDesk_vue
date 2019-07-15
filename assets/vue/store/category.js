@@ -86,7 +86,7 @@ export default {
     actions: {
         createCategory({ commit }, payload) {
             commit('CREATING_CATEGORY');
-            return CategoryAPI.create(payload.name, payload.type, payload.quantity)
+            return CategoryAPI.create(payload.name, payload.type)
                 .then(res => commit('CREATING_CATEGORY_SUCCESS', res.data))
                 .catch(err => commit('CREATING_CATEGORY_ERROR', err));
         },
@@ -105,7 +105,7 @@ export default {
         },
         updateCategory({ commit }, payload, ) {
             commit('EDITING_CATEGORY');
-            return CategoryAPI.update(payload.id,payload.name, payload.type,payload.quantity)
+            return CategoryAPI.update(payload.id,payload.name, payload.type)
                 .then(res => commit('EDITING_CATEGORY_SUCCESS'))
                 .catch(err => commit('EDITING_CATEGORY_ERROR', err));
         },

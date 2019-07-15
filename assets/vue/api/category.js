@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 export default {
-    create(name, type, quantity) {
+    create(name, type) {
         return axios.post(
             '/api/category/create', {
                 name: name,
                 type: type,
-                quantity: quantity
+                // quantity: quantity
             }
         );
     },
@@ -27,13 +27,13 @@ export default {
         );
     },
 
-    update(id, name, type, quantity) {
+    update(id, name, type) {
         return axios.post(
             '/api/category/update', {
                 id: id,
                 name: name,
                 type: type,
-                quantity: quantity
+                // quantity: quantity
             }
         );
     },
