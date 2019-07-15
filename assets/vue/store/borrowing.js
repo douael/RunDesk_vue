@@ -33,6 +33,7 @@ export default {
             state.isLoading = false;
             state.error = null;
             state.borrowings.unshift(borrowing);
+            document.location.reload(true);
         },
         ['CREATING_BORROWING_ERROR'](state, error) {
             state.isLoading = false;

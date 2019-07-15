@@ -73,3 +73,10 @@ Création de la demande du material : <strong>test</strong> pour l'employee : <s
 Materiel de nouveau disponible : <strong>test</strong> # 2019-07-15 11:42:40
 Restitution du material : test # 2019-07-15 11:42:43
 Suppression du matériel : <strong>testtest</strong> # 2019-07-15 12:07:03
+Création de la demande du material : <strong>test</strong> pour l'employee : <strong>employee1 employee1</strong> # 2019-07-15 12:26:57
+Création de la demande du material : <strong>test</strong> pour l'employee : <strong>employee1 employee1</strong> # 2019-07-15 12:27:05
+Materiel de nouveau disponible : <strong>test</strong> # 2019-07-15 12:29:40
+Restitution du material : test # 2019-07-15 12:29:44
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-15 12:30:25
+Création de la demande du material : <strong>material2</strong> pour l'employee : <strong>Echo Echo</strong> # 2019-07-15 12:33:06
+Création de la demande du material : <strong>test</strong> pour l'employee : <strong>employee1 employee1</strong> # 2019-07-15 12:33:33
