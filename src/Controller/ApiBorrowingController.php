@@ -81,6 +81,23 @@ final class ApiBorrowingController extends AbstractController
 
         return new JsonResponse($data, 200, [], true);
     }
+        /**
+     * @Rest\Post("/api/borrowing/restitute", name="restituteMaterial")
+     * @param Request $request
+     * @param BorrowingRepository $borrowingRepository
+     * @return JsonResponse
+     * @IsGranted("ROLE_FOO")
+     */
+    public function restituteAction(BorrowingRepository $borrowingRepository, Request $request): JsonResponse
+    {
+        //var_dump($request->request);
+        $id = $request->request->get('borrowingId');
+        $date_restitution = new \DateTime('now');;
+        $borrowingEntity = $this->borrowingService->resituteMaterial($id,$date_restitution);
+        $data = $this->serializer->serialize($borrowingEntity, 'json');
+
+        return new JsonResponse($data, 200, [], true);
+    }
     /**
      * @Rest\Post("/api/borrowing/delete", name="deleteBorrowing")
      * @param BorrowingRepository $borrowingRepository

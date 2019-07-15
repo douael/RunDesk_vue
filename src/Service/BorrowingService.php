@@ -86,6 +86,25 @@ final class BorrowingService extends AbstractController
         $this->em->flush();
         return $borrowing;
     }
+
+      /**
+     * @param integer $id
+     * @param DateTime $date_restitution
+     * @return Borrowing
+     */
+    public function resituteMaterial(int $id, \DateTime $date_restitution): Borrowing
+    {
+  
+
+        $borrowing = $this->em->getRepository(Borrowing::class)->find($id);
+
+        $borrowing->setDateRestitution($date_restitution);
+        $material = $borrowing->getMaterial();
+        
+        $this->writeLog("Restitution du material : ".$material->getName()." - ".date('Y-m-d H:i:s'));
+        $this->em->flush();
+        return $borrowing;
+    }
     /**
      * @return object[]
      */

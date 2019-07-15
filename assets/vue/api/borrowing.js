@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-    create(employee, material,date_start,date_end) {
+    create(employee, material, date_start, date_end) {
         return axios.post(
             '/api/borrowing/create', {
                 employee: employee,
@@ -18,7 +18,7 @@ export default {
             }
         );
     },
-    update(id, employee, material,date_start,date_end) {
+    update(id, employee, material, date_start, date_end) {
         return axios.post(
             '/api/borrowing/update', {
                 id: id,
@@ -29,8 +29,16 @@ export default {
             }
         );
     },
+
+    restitute(borrowingId) {
+        return axios.post(
+            '/api/borrowing/restitute', {
+                borrowingId: borrowingId
+            }
+        );
+    },
     getAll() {
         return axios.get('/api/borrowings');
     },
-    
+
 }

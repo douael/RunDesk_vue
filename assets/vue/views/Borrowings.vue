@@ -20,7 +20,7 @@
                         <div class="col-12">
                             <label :for="material" class="mr-2">{{ labels.material }}</label>
                             <select class="form-control" name="material" v-model="material" >
-                                <option v-for="material in materials" v-if="material.available == 1 && material.isActive == 1" v-bind:value="material">
+                                <option v-for="material in materials" v-if="material.available == 1" v-bind:value="material">
                                     {{ material.name }}
                                 </option>
                             </select>
@@ -112,8 +112,8 @@
             </td> -->
             <td>
                 <form >
-                    <button type="button" class="btn btn-warning" v-if="borrowing.material.available == 0 && borrowing.material.isActive == 1" @click="availableMaterial(borrowing.material.id)">Restituer</button>
-                    <span  v-else-if="borrowing.material.available == 1 && borrowing.material.isActive == 1">Disponible</span>
+                    <button type="button" class="btn btn-warning" v-if="borrowing.material.available == 0" @click="availableMaterial(borrowing.material.id,borrowing.id)">Valider restitution</button>
+                    <span  v-else-if="borrowing.material.available == 1">Restitué le {{borrowing.dateRestitution | formatDate}}</span>
                     <span  v-else>Inactif</span>
                     <input type="hidden" id="id" name="id" class="form-control" :value="material.id">
                 </form>
@@ -122,6 +122,7 @@
     </tbody>
 </table>
 </div>
+
 <div v-for="borrowing in borrowings">
  <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+borrowing.id">
     <div class="modal-dialog modal-dialog-centered">
@@ -167,6 +168,7 @@
 </div><!-- /.modal -->
 
 
+
 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
 style="display: none;"
 :id="'delete-borrowing'+borrowing.id">
@@ -194,8 +196,6 @@ style="display: none;"
 </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
 style="display: none;"
 id="import">
@@ -311,22 +311,23 @@ export default {
                 let payload = {employee: this.$data.employee, material: this.$data.material, date_start: this.$data.date_start, date_end: this.$data.date_end};
 
                 this.$store.dispatch('borrowing/createBorrowing', payload);
-            },    
-            editBorrowing(id,employee,material,date_start,date_end){
+        },    
+        editBorrowing(id,employee,material,date_start,date_end){
                 let payload = {id: id, employee:employee, material: material, date_start: date_start, date_end: date_end};
 
                 this.$store.dispatch('borrowing/updateBorrowing', payload);
-            },    
-            deleteBorrowing (id) {
+        },    
+        deleteBorrowing (id) {
                 this.$store.dispatch('borrowing/deleteBorrowing', id);
-            }
         },
-        availableMaterial (id) {
+        
+        availableMaterial (id,borrowingId) {
             let payload = {id: id, available: 1};
             this.$store.dispatch('material/availableMaterial', payload);
-        },
+            this.$store.dispatch('borrowing/restituteMaterial', borrowingId);
+        }
     }
-
+};
     var dateToday = new Date(); 
     $(function() {
         $( "#datepicker" ).datepicker({

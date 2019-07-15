@@ -116,5 +116,11 @@ export default {
                 .then(res => commit('FETCHING_BORROWINGS_SUCCESS', res.data))
                 .catch(err => commit('FETCHING_BORROWINGS_ERROR', err));
         },
+        restituteMaterial({ commit }, borrowingId) {
+            commit('EDITING_BORROWING');
+            return BorrowingAPI.restitute(borrowingId)
+                .then(res => commit('EDITING_BORROWING_SUCCESS'))
+                .catch(err => commit('EDITING_BORROWING_ERROR', err));
+        }
     },
 }

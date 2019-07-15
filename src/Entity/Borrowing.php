@@ -29,6 +29,11 @@ class Borrowing
     private $date_end;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $date_restitution;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\user")
      */
     private $user;
@@ -75,6 +80,18 @@ class Borrowing
     public function setDateEnd(?\DateTimeInterface $date_end): self
     {
         $this->date_end = $date_end;
+
+        return $this;
+    }
+    
+    public function getDateRestitution(): ?\DateTimeInterface
+    {
+        return $this->date_restitution;
+    }
+
+    public function setDateRestitution(?\DateTimeInterface $date_restitution): self
+    {
+        $this->date_restitution = $date_restitution;
 
         return $this;
     }
