@@ -43,6 +43,11 @@ class Material
      */
     private $user_id;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $available;
+
     
     
     public function getId(): ?int
@@ -105,6 +110,18 @@ class Material
     public function setUserId(?user $user_id): self
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getAvailable(): ?bool
+    {
+        return $this->available;
+    }
+
+    public function setAvailable(?bool $available): self
+    {
+        $this->available = $available;
 
         return $this;
     }
