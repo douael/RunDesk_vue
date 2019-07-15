@@ -42,6 +42,9 @@ final class BorrowingService extends AbstractController
         $employee = $this->em->getRepository(Employee::class)->find($employee['id']);
         $material = $this->em->getRepository(Material::class)->find($material['id']);
         $borrowingEntity = new Borrowing();
+        
+        // Le matériel est maintenant indisponible
+        $material->setAvailable(0);
 
         $borrowingEntity->setUser($user);
         $borrowingEntity->setEmployee($employee);

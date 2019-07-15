@@ -56,5 +56,3 @@ Modification de la catégorie : <strong>Clavier</strong> # 2019-07-13 22:10:46
 Suppression de la catégorie : <strong>category1</strong> # 2019-07-13 22:11:40
 Suppression de la catégorie : <strong>category1</strong> # 2019-07-13 22:13:08
 Suppression du type : <strong>Software</strong> # 2019-07-13 22:14:06
-Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-15 07:55:03
-Création de la demande du material : <strong>material1</strong> pour l'employee : <strong>Echo Echo</strong> # 2019-07-15 08:37:09

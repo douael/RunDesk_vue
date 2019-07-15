@@ -11,7 +11,7 @@
                     <div class="form-row">
                         <div class="col-12">
                             <label :for="employee" class="mr-2">{{ labels.employee }}</label>
-                            <select v-validate="employee" data-rules="required|employee" class="form-control" name="employee" v-model="employee" >
+                            <select class="form-control" name="employee" v-model="employee" >
                                 <option v-for="employee in employees" v-bind:value="employee">
                                     {{ employee.firstname + ' ' + employee.lastname }}
                                 </option>
@@ -20,7 +20,7 @@
                         <div class="col-12">
                             <label :for="material" class="mr-2">{{ labels.material }}</label>
                             <select class="form-control" name="material" v-model="material" >
-                                <option v-for="material in materials" v-bind:value="material">
+                                <option v-for="material in materials" v-if="material.available == 1 && material.isActive == 1" v-bind:value="material">
                                     {{ material.name }}
                                 </option>
                             </select>
@@ -83,22 +83,41 @@
               <th>Matériels</th>
               <th>Date de début</th>
               <th>Date de fin</th>
-              <th>Supprimer</th>
+              <th>Actions</th>
           </tr>
       </thead>
       <tbody >
         <tr  v-for="borrowing in borrowings" >
             <td>{{ borrowing.employee.firstname }}&nbsp; {{ borrowing.employee.lastname }}</td>
-            <td>{{ borrowing.material.name }}</td>
+            <td>{{ borrowing.material.category.name }} - {{ borrowing.material.name }}</td>
             <td>{{ borrowing.dateStart | formatDate}}</td>
             <td>{{ borrowing.dateEnd | formatDate}}</td>
 
 
-            <td>
+            <!-- <td>
                 <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(borrowing.id)" >
                     <i class="fa fa-trash"></i> Supprimer
                 </button>
-            </td>            
+            </td> -->      
+            <!-- <td v-if="borrowing.material.available == 0 && borrowing.material.isActive == 1">
+                <button type="button" class="btn btn-default">
+                    Restituer
+                </button>
+            </td>
+            <td v-else-if="borrowing.material.available == 1 && borrowing.material.isActive == 1">
+                 Matériel disponible
+            </td> 
+            <td v-else>
+                Matériel inactif
+            </td> -->
+            <td>
+                <form >
+                    <button type="button" class="btn btn-warning" v-if="borrowing.material.available == 0 && borrowing.material.isActive == 1" @click="availableMaterial(borrowing.material.id)">Restituer</button>
+                    <span  v-else-if="borrowing.material.available == 1 && borrowing.material.isActive == 1">Disponible</span>
+                    <span  v-else>Inactif</span>
+                    <input type="hidden" id="id" name="id" class="form-control" :value="material.id">
+                </form>
+            </td>                
         </tr>
     </tbody>
 </table>
@@ -301,6 +320,10 @@ export default {
             deleteBorrowing (id) {
                 this.$store.dispatch('borrowing/deleteBorrowing', id);
             }
+        },
+        availableMaterial (id) {
+            let payload = {id: id, available: 1};
+            this.$store.dispatch('material/availableMaterial', payload);
         },
     }
 

@@ -43,6 +43,8 @@ final class MaterialService extends AbstractController
         $materialEntity->setSerialNumber($serialNumber);
         $materialEntity->setCategory($category);
         $materialEntity->setUserId($user);
+        $materialEntity->setAvailable(1);
+
         $this->em->persist($materialEntity);
         $this->em->flush();
         $this->writeLog("Création de Materiel : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
@@ -62,6 +64,25 @@ final class MaterialService extends AbstractController
 
         $material->setIsActive($isActive);
         $this->writeLog("Changement de statut : <strong>".$material->getName()."</strong> # ".date('Y-m-d H:i:s'));
+
+        $this->em->flush();
+
+        return $material;
+    }
+
+    /**
+     * @param integer $id
+     * @param integer $available
+     * @return Material
+     */
+    public function availableMaterial(int $id,int $available): Material
+    {
+        
+        $material = $this->em->getRepository(Material::class)->find($id);
+        //var_dump($bla);
+
+        $material->setAvailable($available);
+        $this->writeLog("Materiel de nouveau disponible : <strong>".$material->getName()."</strong> # ".date('Y-m-d H:i:s'));
 
         $this->em->flush();
 
