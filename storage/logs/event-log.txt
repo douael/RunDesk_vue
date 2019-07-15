@@ -63,4 +63,13 @@ Materiel de nouveau disponible : <strong>test</strong> # 2019-07-15 09:00:20
 Materiel de nouveau disponible : <strong>test</strong> # 2019-07-15 09:36:05
 Materiel de nouveau disponible : <strong>test</strong> # 2019-07-15 09:37:47
 Materiel de nouveau disponible : <strong>test</strong> # 2019-07-15 09:39:00
-Restitution du material : test - 2019-07-15 09:39:03
+Restitution du material : test # 2019-07-15 09:39:03
+Materiel de nouveau disponible : <strong>test</strong> # 2019-07-15 11:30:08
+Restitution du material : test # 2019-07-15 11:30:11
+Changement de statut : <strong>test</strong> # 2019-07-15 11:33:54
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-15 11:37:59
+Création de Materiel : <strong>testtest</strong> # 2019-07-15 11:39:38
+Création de la demande du material : <strong>test</strong> pour l'employee : <strong>employee1 employee1</strong> # 2019-07-15 11:42:28
+Materiel de nouveau disponible : <strong>test</strong> # 2019-07-15 11:42:40
+Restitution du material : test # 2019-07-15 11:42:43
+Suppression du matériel : <strong>testtest</strong> # 2019-07-15 12:07:03

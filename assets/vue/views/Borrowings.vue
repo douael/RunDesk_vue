@@ -32,10 +32,14 @@
                                     
                                     <div class="row">
                                         <div class="col-md-6">
-                                          <div class="form-group">
-                                            <label class="label-control mr-2" :for="date_start" >{{ labels.date_start }}</label>
-                                            <input type="date" class="form-control datetimepicker" v-model="date_start" disabled>
-                                        </div>
+                                         
+                                        <label :for="date_start" class="mr-2">{{ labels.date_start }}</label>
+                                <datepicker disabled
+                                v-model="date_start"
+                                :format="DatePickerFormat"
+                                >
+                            </datepicker>
+
                                     </div>
                                 </div>
 
@@ -256,7 +260,7 @@ export default {
             },
             DatePickerFormat: "dd/MM/yyyy",
             disabledDates: {
-                to: new Date(Date.now() - 8640000)
+                to: new Date(Date.now() - 8640000),
             }
         };
     },
@@ -328,12 +332,5 @@ export default {
         }
     }
 };
-    var dateToday = new Date(); 
-    $(function() {
-        $( "#datepicker" ).datepicker({
-            numberOfMonths: 3,
-            showButtonPanel: true,
-            minDate: dateToday
-        });
-    });
+ 
     </script>

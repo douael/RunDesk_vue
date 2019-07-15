@@ -101,7 +101,7 @@ final class BorrowingService extends AbstractController
         $borrowing->setDateRestitution($date_restitution);
         $material = $borrowing->getMaterial();
         
-        $this->writeLog("Restitution du material : ".$material->getName()." - ".date('Y-m-d H:i:s'));
+        $this->writeLog("Restitution du material : ".$material->getName()." # ".date('Y-m-d H:i:s'));
         $this->em->flush();
         return $borrowing;
     }
