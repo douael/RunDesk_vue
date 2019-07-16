@@ -105,6 +105,13 @@ export default {
                 .then(res => commit('DELETING_BORROWING_SUCCESS'))
                 .catch(err => commit('DELETING_BORROWING_ERROR', err));
         },
+
+        printReceipt({ commit }, id, ) {
+            commit('FETCHING_BORROWINGS');
+            return BorrowingAPI.print(id)
+                .then(res => commit('FETCHING_BORROWINGS_SUCCESS'))
+                .catch(err => commit('FETCHING_BORROWINGS_ERROR', err));
+        },
         updateBorrowing({ commit }, payload, ) {
             commit('EDITING_BORROWING');
             return BorrowingAPI.update(payload.id, payload.employee, payload.material, payload.date_start, payload.date_end)

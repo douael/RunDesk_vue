@@ -147,7 +147,9 @@
             <td>
                 <form >
                     <button type="button" class="btn btn-warning" v-if="borrowing.dateRestitution==null" @click="availableMaterial(borrowing.material.id,borrowing.id)">Valider restitution</button>
-                    <span  v-else-if="borrowing.dateRestitution!=null">Restitué le {{borrowing.dateRestitution | formatDate}}</span>
+                    <span  v-else-if="borrowing.dateRestitution!=null">Restitué le {{borrowing.dateRestitution | formatDate}} à {{borrowing.dateRestitution | formatHour}}
+                        <button type="button" class="btn btn-primary" @click="printReceipt(borrowing.id)">Imprimer Recu</button>
+                    </span>
                     <span  v-else>Inactif</span>
                     <input type="hidden" id="id" name="id" class="form-control" :value="material.id">
                 </form>
@@ -270,6 +272,11 @@ Vue.filter('formatDate', function(value) {
         return moment(String(value)).format('DD/MM/YYYY')
     }
 });
+Vue.filter('formatHour', function(value) {
+    if (value) {
+        return moment(String(value)).format('HH:mm')
+    }
+});
 export default {
     name: 'borrowings',
     components: {
@@ -368,6 +375,10 @@ export default {
             let payload = {id: id, available: 1};
             this.$store.dispatch('material/availableMaterial', payload);
             this.$store.dispatch('borrowing/restituteMaterial', borrowingId);
+        },
+        printReceipt(id){
+                this.$store.dispatch('borrowing/printReceipt', id);
+
         }
     }
 };

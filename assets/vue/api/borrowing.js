@@ -18,6 +18,14 @@ export default {
             }
         );
     },
+
+    print(id) {
+        return axios.post(
+            '/api/borrowing/print', {
+                id: id
+            }
+        );
+    },
     update(id, employee, material, date_start, date_end) {
         return axios.post(
             '/api/borrowing/update', {

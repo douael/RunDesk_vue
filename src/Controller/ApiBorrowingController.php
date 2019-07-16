@@ -121,6 +121,40 @@ final class ApiBorrowingController extends AbstractController
 
         return new JsonResponse($data, 200, [], true);
     }  
+        /**
+     * @Rest\Post("/api/borrowing/print", name="printReceipt")
+     * @param BorrowingRepository $borrowingRepository
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function print(BorrowingRepository $borrowingRepository, Request $request): JsonResponse
+    {
+        // $id = $request->request->get('id');
+        // $em = $this->getDoctrine()->getManager();
+        // $borrowings = $borrowingRepository->findById($id);
+        // foreach ($borrowings as $borrowing) {
+        //  $em->remove($borrowing);
+        //  }
+ 
+        // $em->flush();
+ 
+        // $data = $this->serializer->serialize($borrowings, 'json');
+ 
+        //  return new JsonResponse($data, 200, [], true);
+        
+       $html = $this->renderView('AppBundle:Demo:pdf.html.twig');
+
+        $filename = sprintf('test-%s.pdf', date('Y-m-d'));
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            [
+                'Content-Type'        => 'application/pdf',
+                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+            ]
+        );
+    }  
     /**
      * @Rest\Get("/api/borrowings", name="getAllBorrowings")
      * @return JsonResponse
