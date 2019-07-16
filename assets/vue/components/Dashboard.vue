@@ -15,7 +15,8 @@
       :per-page="perPage"
       :current-page="currentPage"
       small
-    ></b-table>
+    >
+    </b-table>
   </div>
 </template>
 
