@@ -44,6 +44,7 @@
                 <thead>
                     <tr>
                         <th>Nom</th>
+                        <th>Nombre de categories</th>
                         
                         <!-- <th>Type</th> -->
                         <th>Supprimer</th>
@@ -53,10 +54,14 @@
                 <tbody >
                     <tr v-for="type in types">
                         <td>{{ type.name }}</td>
+                        <td v-if='type.count==1'>{{ type.count }} categorie</td>
+                        <td v-else-if='type.count>1'>{{ type.count }} categories</td>
+                        <td v-else>Aucune categorie</td>
                         <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" @click="deleteModal(type.id)" >
+                            <button  v-if='type.count==0' type="button" class="btn btn-danger" data-toggle="modal" @click="deleteModal(type.id)" >
                                 <i class="fa fa-trash"></i> Supprimer
                             </button>
+                            <button  v-else-if="type.count>0" class="btn btn-warning" disabled>Suppression non autorisé</button>
                         </td>
 
                         <td>

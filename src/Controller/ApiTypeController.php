@@ -126,12 +126,14 @@ private $em;
         $typeEntities = $this->typeService->getAll();
         //var_dump($typeEntities);
         $data = $this->serializer->serialize($typeEntities, 'json');
-        foreach(json_decode($data,true) as $type){
+        $bla = json_decode($data,true);
+        foreach($bla as &$type){
             $categorys =$this->em->getRepository(Category::class)->findByType($type['id']);
             //$categorys = $categoryRepository->findById($id);
-            $type["numberOfCat"]=count($categorys);
+            $type['count']=count($categorys);
         }
-        $data = $this->serializer->serialize($data, 'json');
+        
+        $data = $this->serializer->serialize($bla, 'json');
         return new JsonResponse($data, 200, [], true);
     }
 
