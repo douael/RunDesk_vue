@@ -53,6 +53,7 @@
                     <tr>
                         <th>Nom</th>
                         <th>Type</th>
+                        <th>Nombre de materiels</th>
                         <th>Supprimer</th>
                         <th>Modifier</th>
                     </tr>
@@ -61,10 +62,14 @@
                     <tr v-for="category in categorys" v-if="category.id!=0">
                         <td>{{ category.name }}</td>
                         <td>{{ category.type.name }}</td>
+                        <td v-if='category.count==1'>{{ category.count }} matériel</td>
+                        <td v-else-if='category.count>1'>{{ category.count }} matériels</td>
+                        <td v-else>Aucun matériel</td>
                         <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" @click="deleteModal(category.id,category.name)" >
+                            <button  v-if='category.count==0' type="button" class="btn btn-danger" data-toggle="modal" @click="deleteModal(category.id,category.name)" >
                                 <i class="fa fa-trash"></i> Supprimer
                             </button>
+                            <button  v-else-if="category.count>0" class="btn btn-warning" disabled>Suppression non autorisé</button>
                         </td>
 
                         <td>

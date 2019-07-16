@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Material;
 
 /**
  * Class ApiCategoryController
@@ -22,16 +24,21 @@ final class ApiCategoryController extends AbstractController
     /** @var SerializerInterface */
     private $serializer;
 
+/** @var EntityManagerInterface */
+private $em;
+
     /** @var CategoryService */
     private $categoryService;
 
     /**
      * ApiCategoryController constructor.
      * @param SerializerInterface $serializer
+     * @param EntityManagerInterface $em
      * @param CategoryService $categoryService
      */
-    public function __construct(SerializerInterface $serializer, CategoryService $categoryService)
+    public function __construct(SerializerInterface $serializer, CategoryService $categoryService,EntityManagerInterface $em)
     {
+        $this->em = $em;
         $this->serializer = $serializer;
         $this->categoryService = $categoryService;
     }
@@ -124,6 +131,14 @@ final class ApiCategoryController extends AbstractController
     {
         $categoryEntities = $this->categoryService->getAll();
         $data = $this->serializer->serialize($categoryEntities, 'json');
+        $bla = json_decode($data,true);
+        foreach($bla as &$category){
+            $materials =$this->em->getRepository(Material::class)->findByCategory($category['id']);
+            //$categorys = $categoryRepository->findById($id);
+            $category['count']=count($materials);
+       
+        }
+        $data = $this->serializer->serialize($bla, 'json');
         return new JsonResponse($data, 200, [], true);
     }
 

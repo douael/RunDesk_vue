@@ -30,7 +30,7 @@ class TypeRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('a');
 
         return $qb
-            ->where('a.type_d =:id')
+            ->where('a.type_id =:id')
             ->setParameter('id',$id)
             ->getQuery()
             ->getResult();

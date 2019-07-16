@@ -94,3 +94,5 @@ Materiel de nouveau disponible : <strong>material1</strong> # 2019-07-16 12:48:2
 Suppression du type : <strong>type2</strong> # 2019-07-16 12:55:13
 Création du type : <strong>ee</strong> # 2019-07-16 14:58:14
 Suppression du type : <strong>ee</strong> # 2019-07-16 14:58:34
+Modification du materiel : <strong>test</strong> # 2019-07-16 15:12:09
+Modification du materiel : <strong>test</strong> # 2019-07-16 15:15:07

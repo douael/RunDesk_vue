@@ -36,6 +36,25 @@ class MaterialRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+       /**
+     * @param integer $id
+     * @param string $delimiter
+     * @return Material[]
+     */
+    public function findByCategory($id, $delimiter = ',')
+    {
+        // var_dump($id);
+        
+        $qb = $this->createQueryBuilder('a');
+
+        return $qb
+            ->where('a.category =:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Material[] Returns an array of Material objects
     //  */
