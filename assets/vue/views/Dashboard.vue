@@ -25,14 +25,15 @@
       <div class="col-6 col-sm-3 placeholder">
         <b-card title="Matériels" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
           <b-card-text>
-            {{ materials.length }} Matériels
+            Matériels disponible
           </b-card-text>
 
-          <b-progress :max="10" height="2rem">
-            <b-progress-bar :value="10" variant="info">
-              Disponibles : <strong>{{ countAvailableMaterials }} / {{ materials.length }}</strong>
+          <b-progress :max="materials.length" height="2rem">
+            <b-progress-bar :value="countAvailableMaterials" variant="info">
+              
             </b-progress-bar>
           </b-progress>
+          <strong>{{ countAvailableMaterials }} / {{ materials.length }}</strong>
           <br/>
 
           <b-button href="/materials" class="purple-bg">Voir plus</b-button>

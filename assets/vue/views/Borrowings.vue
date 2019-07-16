@@ -145,8 +145,8 @@
             </td> -->
             <td>
                 <form >
-                    <button type="button" class="btn btn-warning" v-if="borrowing.material.available == 0" @click="availableMaterial(borrowing.material.id,borrowing.id)">Valider restitution</button>
-                    <span  v-else-if="borrowing.material.available == 1">Restitué le {{borrowing.dateRestitution | formatDate}}</span>
+                    <button type="button" class="btn btn-warning" v-if="borrowing.dateRestitution==null" @click="availableMaterial(borrowing.material.id,borrowing.id)">Valider restitution</button>
+                    <span  v-else-if="borrowing.dateRestitution!=null">Restitué le {{borrowing.dateRestitution | formatDate}}</span>
                     <span  v-else>Inactif</span>
                     <input type="hidden" id="id" name="id" class="form-control" :value="material.id">
                 </form>
