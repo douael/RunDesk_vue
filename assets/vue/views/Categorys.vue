@@ -58,7 +58,7 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <tr v-for="category in categorys" v-if="category.id!=3">
+                    <tr v-for="category in categorys" v-if="category.id!=0">
                         <td>{{ category.name }}</td>
                         <td>{{ category.type.name }}</td>
                         <td>

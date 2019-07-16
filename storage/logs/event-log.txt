@@ -92,3 +92,5 @@ Création de la demande du material : <strong>material1</strong> pour l'employee
 Restitution du material : material1 # 2019-07-16 12:48:12
 Materiel de nouveau disponible : <strong>material1</strong> # 2019-07-16 12:48:27
 Suppression du type : <strong>type2</strong> # 2019-07-16 12:55:13
+Création du type : <strong>ee</strong> # 2019-07-16 14:58:14
+Suppression du type : <strong>ee</strong> # 2019-07-16 14:58:34
