@@ -19,11 +19,12 @@
                         </div>
                         <div class="col-12">
                             <label :for="material" class="mr-2">{{ labels.material }}</label>
-                            <select class="form-control" name="material" v-model="material" >
+                            <select class="form-control" name="material" v-model="material" v-if="countAvailableMaterials>0">
                                 <option v-for="material in materials" v-if="material.available == 1" v-bind:value="material">
                                     {{ material.name }}
                                 </option>
                             </select>
+                            <input v-else-if="!isLoading" type="text" disabled class="form-control" value="Aucun materiel n'est disponible">
                         </div>
                         <div class="row col-12">
                             <div class="col-6">
@@ -326,7 +327,16 @@ export default {
         },
         canEditMaterial () {
             return this.$store.getters['security/hasRole']('ROLE_FOO');
-        }
+        },
+    countAvailableMaterials(){
+      var array = this.$store.getters['material/materials'];
+      var count = 0;
+      for(var i = 0; i < array.length; ++i){
+          if(array[i]['available'] == true)
+              count++;
+      }
+      return count;
+    }
     },
 
     methods: {

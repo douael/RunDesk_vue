@@ -9,12 +9,12 @@
       <div class="col-6 col-sm-3 placeholder">
         <b-card title="Catégories" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
           <b-card-text>
-            {{ categorys.length }} Catégories
+            Nombres de Catégories
           </b-card-text>
 
           <b-progress :max="10" height="2rem">
             <b-progress-bar :value="10" variant="info">
-              Total : <strong>{{ categorys.length }}</strong>
+              <strong>{{ categorys.length }}</strong>
             </b-progress-bar>
           </b-progress>
           <br/>
@@ -42,12 +42,12 @@
       <div class="col-6 col-sm-3 placeholder">
         <b-card title="Emprunts" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
           <b-card-text>
-            {{ borrowings.length }} Emprunts
+            Emprunts realisés
           </b-card-text>
 
           <b-progress :max="10" height="2rem">
             <b-progress-bar :value="10" variant="info">
-              Empruntés : <strong>{{ borrowings.length }} / {{ materials.length }}</strong>
+             <strong> {{ borrowings.length }}</strong>
             </b-progress-bar>
           </b-progress>
           <br/>
@@ -58,12 +58,12 @@
       <div class="col-6 col-sm-3 placeholder">
         <b-card title="Employés" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
           <b-card-text>
-            {{ employees.length }} Employés
+            Nombre d'employés
           </b-card-text>
 
           <b-progress :max="10" height="2rem">
             <b-progress-bar :value="10" variant="info">
-              Total : <strong>{{ employees.length }}</strong>
+              <strong>{{ employees.length }}</strong>
             </b-progress-bar>
           </b-progress>
           <br/>
@@ -72,10 +72,30 @@
         </b-card>
       </div>
     </section>
+<div v-if="isLoading" class="row col">
+        <div class="container">
+	<div class="row">
+		<div class="container">
+	<div class="row">
+	<a href="#" class="intro-banner-vdo-play-btn pinkBg" target="_blank">
+<i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+<span class="ripple pinkBg"></span>
+<span class="ripple pinkBg"></span>
+<span class="ripple pinkBg"></span>
+</a>
+	</div>
+</div>
 
+</div>
+</div>
+    </div>
+
+    
     <h2>Dernières actions</h2>
+    <div v-if="!hasLogs && !isLoading" class="row col">
+        Pas d'actions enregistrées !
+    </div>
      <dashboard ></dashboard>
-
 
   </div>
 </template>
@@ -111,6 +131,13 @@ export default {
 
   },
   computed: {
+    
+    isLoading () {
+        return this.$store.getters['dashboard/isLoading']
+    },
+    hasLogs () {
+      return this.$store.getters['dashboard/hasDashboards'];
+    },
     materials () {
       return this.$store.getters['material/materials'];
     },
