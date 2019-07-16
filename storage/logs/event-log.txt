@@ -89,3 +89,6 @@ Materiel de nouveau disponible : <strong>test</strong> # 2019-07-16 12:08:57
 Restitution du material : test # 2019-07-16 12:09:01
 Création de la demande du material : <strong>test</strong> pour l'employee : <strong>Echo Echo</strong> # 2019-07-16 12:09:34
 Création de la demande du material : <strong>material1</strong> pour l'employee : <strong>Echo Echo</strong> # 2019-07-16 12:46:35
+Restitution du material : material1 # 2019-07-16 12:48:12
+Materiel de nouveau disponible : <strong>material1</strong> # 2019-07-16 12:48:27
+Suppression du type : <strong>type2</strong> # 2019-07-16 12:55:13

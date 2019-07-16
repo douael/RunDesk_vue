@@ -96,7 +96,7 @@ export default {
                 .then(res => commit('EDITING_TYPE_SUCCESS'))
                 .catch(err => commit('EDITING_TYPE_ERROR', err));
         },
-        
+
         deleteType({ commit }, id, ) {
             commit('DELETING_TYPE');
             return TypeAPI.delete(id)
@@ -105,7 +105,7 @@ export default {
         },
         updateType({ commit }, payload, ) {
             commit('EDITING_TYPE');
-            return TypeAPI.update(payload.id,payload.name, payload.type)
+            return TypeAPI.update(payload.id, payload.name, payload.type)
                 .then(res => commit('EDITING_TYPE_SUCCESS'))
                 .catch(err => commit('EDITING_TYPE_ERROR', err));
         },

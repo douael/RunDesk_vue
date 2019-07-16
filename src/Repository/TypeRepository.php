@@ -18,6 +18,23 @@ class TypeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Type::class);
     }
+   /**
+     * @param integer $id
+     * @param string $delimiter
+     * @return Category[]
+     */
+    public function findByType($id, $delimiter = ',')
+    {
+        // var_dump($id);
+        
+        $qb = $this->createQueryBuilder('a');
+
+        return $qb
+            ->where('a.type_d =:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
 
 
     // /**

@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Category;
 
 /**
  * Class ApiTypeController
@@ -21,7 +24,8 @@ final class ApiTypeController extends AbstractController
 {
     /** @var SerializerInterface */
     private $serializer;
-
+/** @var EntityManagerInterface */
+private $em;
     /** @var TypeService */
     private $typeService;
 
@@ -29,9 +33,11 @@ final class ApiTypeController extends AbstractController
      * ApiTypeController constructor.
      * @param SerializerInterface $serializer
      * @param TypeService $typeService
+     * @param EntityManagerInterface $em
      */
-    public function __construct(SerializerInterface $serializer, TypeService $typeService)
+    public function __construct(SerializerInterface $serializer, TypeService $typeService,EntityManagerInterface $em)
     {
+        $this->em = $em;
         $this->serializer = $serializer;
         $this->typeService = $typeService;
     }
@@ -118,7 +124,14 @@ final class ApiTypeController extends AbstractController
     public function getAllActions(): JsonResponse
     {
         $typeEntities = $this->typeService->getAll();
+        //var_dump($typeEntities);
         $data = $this->serializer->serialize($typeEntities, 'json');
+        foreach(json_decode($data,true) as $type){
+            $categorys =$this->em->getRepository(Category::class)->findByType($type['id']);
+            //$categorys = $categoryRepository->findById($id);
+            $type["numberOfCat"]=count($categorys);
+        }
+        $data = $this->serializer->serialize($data, 'json');
         return new JsonResponse($data, 200, [], true);
     }
 
