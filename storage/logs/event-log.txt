@@ -82,3 +82,5 @@ Création de la demande du material : <strong>material2</strong> pour l'employee
 Création de la demande du material : <strong>test</strong> pour l'employee : <strong>employee1 employee1</strong> # 2019-07-15 12:33:33
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-15 14:48:29
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-15 15:35:22
+Materiel de nouveau disponible : <strong>material2</strong> # 2019-07-16 09:15:17
+Restitution du material : material2 # 2019-07-16 09:15:32

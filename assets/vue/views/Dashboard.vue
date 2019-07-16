@@ -30,7 +30,7 @@
 
           <b-progress :max="10" height="2rem">
             <b-progress-bar :value="10" variant="info">
-              Disponibles : <strong>{{ materials.length-borrowings.length }} / {{ materials.length }}</strong>
+              Disponibles : <strong>{{ countAvailableMaterials }} / {{ materials.length }}</strong>
             </b-progress-bar>
           </b-progress>
           <br/>
@@ -125,6 +125,15 @@ export default {
     dashboards () {
       return this.$store.getters['dashboard/dashboards'];
     },
+    countAvailableMaterials(){
+      var array = this.$store.getters['material/materials'];
+      var count = 0;
+      for(var i = 0; i < array.length; ++i){
+          if(array[i]['available'] == true)
+              count++;
+      }
+      return count;
+    }
   },
   methods: {
     fillData () {
@@ -145,9 +154,10 @@ export default {
     },
     getRandomInt () {
       return Math.floor(Math.random() * (50 - 5 + 1)) + 5
-    }
+    },
   }
 }
+
 </script>
 
 <style>
