@@ -170,3 +170,9 @@ Materiel de nouveau disponible : <strong>test</strong> # 2019-07-17 13:25:42
 Restitution du material : test # 2019-07-17 13:25:47
 Materiel de nouveau disponible : <strong>test</strong> # 2019-07-17 13:32:32
 Restitution du material : test # 2019-07-17 13:32:38
+Materiel de nouveau disponible : <strong>test</strong> # 2019-07-17 14:30:23
+Restitution du material : test # 2019-07-17 14:30:32
+Materiel de nouveau disponible : <strong>test</strong> # 2019-07-17 14:31:54
+Restitution du material : test # 2019-07-17 14:31:58
+Materiel de nouveau disponible : <strong>test</strong> # 2019-07-17 14:33:36
+Restitution du material : test # 2019-07-17 14:33:41
