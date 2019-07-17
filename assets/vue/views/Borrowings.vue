@@ -109,7 +109,7 @@
                 <form >
                     <button type="button" class="btn btn-warning" v-if="borrowing.dateRestitution==null" @click="availableMaterial(borrowing.material.id,borrowing.id)">Valider restitution</button>
                     <span  v-else-if="borrowing.dateRestitution!=null">Restitué le {{borrowing.dateRestitution | formatDate}} à {{borrowing.dateRestitution | formatHour}}
-                        <button type="button" target="blank" class="btn btn-primary" @click.prevent="downloadItem('/public/pdf/borrowing' + borrowing.id + '.pdf')">Telecharger Recu</button>
+                        <button type="button" target="blank" class="btn btn-primary" @click.prevent="downloadItem('/pdf/borrowing' + borrowing.id + '.pdf')">Telecharger Recu</button>
                     </span>
                     <span  v-else>Inactif</span>
                     <input type="hidden" id="id" name="id" class="form-control" :value="material.id">
