@@ -23,7 +23,7 @@
       <table>
         <thead>
           <tr>
-            <th class="service">Materiel <br>  Numero de serie</th>
+            <th class="service">Materiel - Numero de serie</th>
             <th class="desc">Category - Type</th>
           </tr>
         </thead>
@@ -33,15 +33,15 @@
             <td class="desc">{{ categoryN}} - {{ type }}</td>
           </tr>
           <tr>
-            <td>Date debut d'emprunt</td>
+            <td colspan="4">Date debut d'emprunt</td>
             <td class="total">{{ date_start | date('d/m/Y')}}</td>
           </tr>
           <tr>
-            <td>Date de fin prévu</td>
+            <td colspan="4">Date de fin prévu</td>
             <td class="total">{{ date_end | date('d/m/Y')}}</td>
           </tr>
           <tr>
-            <td class="grand total">Date de restitution</td>
+            <td colspan="4" class="grand total">Date de restitution</td>
             <td class="grand total">{{ date_restitution | date('d/m/Y')}}</td>
           </tr>
         </tbody>
@@ -153,7 +153,6 @@ table th {
 table .service,
 table .desc {
   text-align: left;
-  width: 500px !important;
 }
 
 table td {

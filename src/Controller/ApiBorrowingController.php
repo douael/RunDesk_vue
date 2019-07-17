@@ -14,6 +14,8 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Dompdf\Dompdf;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Borrowing;
 use Dompdf\Options;
 /**
  * Class ApiBorrowingController
@@ -25,6 +27,9 @@ final class ApiBorrowingController extends AbstractController
     /** @var SerializerInterface */
     private $serializer;
 
+    /** @var EntityManagerInterface */
+    private $em;
+    
     /** @var BorrowingService */
     private $borrowingService;
 
@@ -32,9 +37,11 @@ final class ApiBorrowingController extends AbstractController
      * ApiBorrowingController constructor.
      * @param SerializerInterface $serializer
      * @param BorrowingService $borrowingService
+     * @param EntityManagerInterface $em
      */
-    public function __construct(SerializerInterface $serializer, BorrowingService $borrowingService)
+    public function __construct(SerializerInterface $serializer, BorrowingService $borrowingService,EntityManagerInterface $em)
     {
+        $this->em = $em;
         $this->serializer = $serializer;
         $this->borrowingService = $borrowingService;
     }
@@ -100,46 +107,62 @@ final class ApiBorrowingController extends AbstractController
         $date_restitution = new \DateTime('now');;
         $borrowingEntity = $this->borrowingService->resituteMaterial($id,$date_restitution);
         $data = $this->serializer->serialize($borrowingEntity, 'json');
-// Configure Dompdf according to your needs
-$pdfOptions = new Options();
-$pdfOptions->set('defaultFont', 'Arial');
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
 
-// Instantiate Dompdf with our options
-$dompdf = new Dompdf($pdfOptions);
-$id = $request->request->get('borrowingId');
-$em = $this->getDoctrine()->getManager();
-$borrowing = $borrowingRepository->findById($id);
-$employee = $employeeRepository->findById($borrowing['employee']);
-$material = $materialRepository->findById($borrowing['material']);
-// Retrieve the HTML generated in our twig file
-$html = $this->renderView('default/mypdf.html.twig', [
-    'borrowing' => $borrowing,
-    'employee' => $employee,
-    'material' => $material,
-]);
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $id = $request->request->get('borrowingId');
+        $borrowing = $this->em->getRepository(Borrowing::class)->find($id);
+        $employeeF =$borrowing->getEmployee()->getFirstname();
+        $employeeL =$borrowing->getEmployee()->getLastname();
+        $material = $borrowing->getMaterial()->getName();
+        $serialNumber = $borrowing->getMaterial()->getSerialNumber();
+        $category = $borrowing->getMaterial()->getCategory();
+        $categoryN = $category->getName();
+        $type = $category->getType()->getName();
+        $employeeS = $borrowing->getEmployee()->getSite();
+        $date_start = $borrowing->getDateStart();
+        $date_end = $borrowing->getDateEnd();
+        $date_restitution = $borrowing->getDateRestitution();
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('default/mypdf.html.twig', [
+            'borrowing' => $borrowing,
+            'employeeL' => $employeeL,
+            'employeeF' => $employeeF,
+            'employeeS' => $employeeS,
+            'material' => $material,
+            'serialNumber' => $serialNumber,
+            'categoryN' => $categoryN,
+            'type' => $type,
+            'date_start' => $date_start,
+            'date_end' => $date_end,
+            'date_restitution' => $date_restitution,
+        ]);
 
-// Load HTML to Dompdf
-$dompdf->loadHtml($html);
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
 
-// (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-$dompdf->setPaper('A4', 'portrait');
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
 
-// Render the HTML as PDF
-$dompdf->render();
+        // Render the HTML as PDF
+        $dompdf->render();
 
-  // Store PDF Binary Data
-  $output = $dompdf->output();
+        // Store PDF Binary Data
+        $output = $dompdf->output();
 
-  // In this case, we want to write the file in the public directory
-  $publicDirectory = $this->getParameter('pdf_directory');
-    if (!is_dir($publicDirectory)) {
-    mkdir($publicDirectory, 0775, true);
-    }
-  // e.g /var/www/project/public/mypdf.pdf
-  $pdfFilepath =  $publicDirectory . '/borrowing'.$id.'.pdf';
-  
-  // Write file to the desired path
-  file_put_contents($pdfFilepath, $output);
+        // In this case, we want to write the file in the public directory
+        $publicDirectory = $this->getParameter('pdf_directory');
+            if (!is_dir($publicDirectory)) {
+            mkdir($publicDirectory, 0775, true);
+            }
+        // e.g /var/www/project/public/mypdf.pdf
+        $pdfFilepath =  $publicDirectory . '/borrowing'.$id.'.pdf';
+        
+        // Write file to the desired path
+        file_put_contents($pdfFilepath, $output);
         return new JsonResponse($data, 200, [], true);
     }
     /**
@@ -165,47 +188,7 @@ $dompdf->render();
 
         return new JsonResponse($data, 200, [], true);
     }  
-        /**
-     * @Rest\Post("/api/borrowing/print", name="printReceipt")
-     * @param BorrowingRepository $borrowingRepository
-     * @param Request $request
-     */
-    public function print(BorrowingRepository $borrowingRepository, Request $request): JsonResponse
-    {
-        // Configure Dompdf according to your needs
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
-        
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-        $id = $request->request->get('id');
-       $em = $this->getDoctrine()->getManager();
-       $borrowings = $borrowingRepository->findById($id);
-        // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('default/mypdf.html.twig', [
-            'borrowing' => $borrowings
-        ]);
-        
-        // Load HTML to Dompdf
-        $dompdf->loadHtml($html);
-        
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
 
-        // Render the HTML as PDF
-        $dompdf->render();
-
-          // Store PDF Binary Data
-          $output = $dompdf->output();
-        
-          // In this case, we want to write the file in the public directory
-          $publicDirectory = $this->get('kernel')->getProjectDir() . '/public';
-          // e.g /var/www/project/public/mypdf.pdf
-          $pdfFilepath =  $publicDirectory . '/borrowing'.$id.'.pdf';
-          
-          // Write file to the desired path
-          file_put_contents($pdfFilepath, $output);
-    }  
     /**
      * @Rest\Get("/api/borrowings", name="getAllBorrowings")
      * @return JsonResponse
