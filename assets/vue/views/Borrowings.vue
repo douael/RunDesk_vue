@@ -78,29 +78,7 @@
         <div id="particleCanvas-White"></div>
     </div>
 
-<!--
 
-    OTHER STYLE LOADER
-  <div v-if="isLoading" class="row col">
-        <div class="container">
-	<div class="row">
-		<div class="container">
-	<div class="row">
-	<a href="#" class="intro-banner-vdo-play-btn pinkBg" target="_blank">
-<i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
-<span class="ripple pinkBg"></span>
-<span class="ripple pinkBg"></span>
-<span class="ripple pinkBg"></span>
-</a>
-	</div>
-</div>
-
-</div>
-</div>
-    </div>
-
-
-    -->
     <div v-else-if="hasError" class="row col">
         <error-employee :error="error"></error-employee>
         <error-material :error="error"></error-material>
@@ -127,28 +105,11 @@
             <td>{{ borrowing.dateStart | formatDate}}</td>
             <td>{{ borrowing.dateEnd | formatDate}}</td>
 
-
-            <!-- <td>
-                <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(borrowing.id)" >
-                    <i class="fa fa-trash"></i> Supprimer
-                </button>
-            </td> -->      
-            <!-- <td v-if="borrowing.material.available == 0 && borrowing.material.isActive == 1">
-                <button type="button" class="btn btn-default">
-                    Restituer
-                </button>
-            </td>
-            <td v-else-if="borrowing.material.available == 1 && borrowing.material.isActive == 1">
-                 Matériel disponible
-            </td> 
-            <td v-else>
-                Matériel inactif
-            </td> -->
             <td>
                 <form >
                     <button type="button" class="btn btn-warning" v-if="borrowing.dateRestitution==null" @click="availableMaterial(borrowing.material.id,borrowing.id)">Valider restitution</button>
                     <span  v-else-if="borrowing.dateRestitution!=null">Restitué le {{borrowing.dateRestitution | formatDate}} à {{borrowing.dateRestitution | formatHour}}
-                        <button type="button" class="btn btn-primary" @click="printReceipt(borrowing.id)">Imprimer Recu</button>
+                        <button type="button" target="blank" class="btn btn-primary" @click.prevent="downloadItem('/public/pdf/borrowing' + borrowing.id + '.pdf')">Telecharger Recu</button>
                     </span>
                     <span  v-else>Inactif</span>
                     <input type="hidden" id="id" name="id" class="form-control" :value="material.id">
@@ -265,6 +226,7 @@ import moment from 'moment'
 import Vue from 'vue';
 import VueSelect from 'vue-select';
 import Datepicker from "vuejs-datepicker";
+import axios from 'axios';
 
 Vue.component('v-select', VueSelect)
 Vue.filter('formatDate', function(value) {
@@ -335,15 +297,15 @@ export default {
         canEditMaterial () {
             return this.$store.getters['security/hasRole']('ROLE_FOO');
         },
-    countAvailableMaterials(){
-      var array = this.$store.getters['material/materials'];
-      var count = 0;
-      for(var i = 0; i < array.length; ++i){
-          if(array[i]['available'] == true)
-              count++;
-      }
-      return count;
-    }
+        countAvailableMaterials(){
+            var array = this.$store.getters['material/materials'];
+            var count = 0;
+            for(var i = 0; i < array.length; ++i){
+                if(array[i]['available'] == true)
+                    count++;
+            }
+            return count;
+        }
     },
 
     methods: {
@@ -376,9 +338,18 @@ export default {
             this.$store.dispatch('material/availableMaterial', payload);
             this.$store.dispatch('borrowing/restituteMaterial', borrowingId);
         },
-        printReceipt(id){
-                this.$store.dispatch('borrowing/printReceipt', id);
-
+        downloadItem (url) {
+            axios.get(url, { responseType: 'blob' })
+            .then(({ data }) => {
+                let blob = new Blob([data], { type: 'application/pdf' })
+                let link = document.createElement('a')
+                link.href = window.URL.createObjectURL(blob)
+                link.download = 'recu.pdf'
+                link.click()
+            .catch(error => {
+                console.error(error)
+            })
+            })
         }
     }
 };
