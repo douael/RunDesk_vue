@@ -88,6 +88,12 @@
         Pas d'emprunt enregistré !
     </div>
     <div v-else class="table-responsive">
+        <div class="well">
+            <form class="form-inline">
+                <!-- <h1><label>Rechercher</label></h1> -->
+                <input placeholder="Rechercher" type="text" name="name" class="form-control" v-model="search">
+            </form>
+        </div>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -99,7 +105,7 @@
           </tr>
       </thead>
       <tbody >
-        <tr  v-for="borrowing in borrowings" >
+        <tr  v-for="borrowing in borrowings"> <!-- filterBy search in 'name' -->
             <td>{{ borrowing.employee.firstname }}&nbsp; {{ borrowing.employee.lastname }}</td>
             <td>{{ borrowing.material.category.name }} - {{ borrowing.material.name }}</td>
             <td>{{ borrowing.dateStart | formatDate}}</td>
@@ -248,6 +254,7 @@ export default {
     data () {
         return {
             employee: '',
+            search:'',
             date_start : new Date().toISOString().slice(0,10),
             date_end : '',
             material: '',
