@@ -18,7 +18,23 @@ class EmployeeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Employee::class);
     }
+  /**
+     * @param integer $id
+     * @param string $delimiter
+     * @return Employee[]
+     */
+    public function findById($id, $delimiter = ',')
+    {
+        // var_dump($id);
+        
+        $qb = $this->createQueryBuilder('a');
 
+        return $qb
+            ->where('a.id =:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Employee[] Returns an array of Employee objects
     //  */

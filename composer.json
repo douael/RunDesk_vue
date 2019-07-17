@@ -7,7 +7,10 @@
         "ext-iconv": "*",
         "doctrine/doctrine-fixtures-bundle": "^3.2",
         "doctrine/doctrine-migrations-bundle": "^1.0",
+        "dompdf/dompdf": "^0.8.3",
         "friendsofsymfony/rest-bundle": "^2.4",
+        "h4cc/wkhtmltopdf-amd64": "^0.12.4",
+        "knplabs/knp-snappy-bundle": "^1.6",
         "nesbot/carbon": "^2.7",
         "sensio/framework-extra-bundle": "^5.3",
         "symfony/apache-pack": "^1.0",
@@ -28,9 +31,9 @@
         "symfony/twig-bundle": "4.2.*",
         "symfony/validator": "4.2.*",
         "symfony/web-link": "4.2.*",
+        "symfony/web-server-bundle": "4.2.*",
         "symfony/webpack-encore-bundle": "^1.0",
         "symfony/yaml": "4.2.*",
-        "symfony/web-server-bundle": "4.2.*",
         "thecodingmachine/safe": "^0.1.8"
     },
     "require-dev": {

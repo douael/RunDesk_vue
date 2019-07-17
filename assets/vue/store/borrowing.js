@@ -108,9 +108,7 @@ export default {
 
         printReceipt({ commit }, id, ) {
             commit('FETCHING_BORROWINGS');
-            return BorrowingAPI.print(id)
-                .then(res => commit('FETCHING_BORROWINGS_SUCCESS'))
-                .catch(err => commit('FETCHING_BORROWINGS_ERROR', err));
+            BorrowingAPI.print(id);
         },
         updateBorrowing({ commit }, payload, ) {
             commit('EDITING_BORROWING');
