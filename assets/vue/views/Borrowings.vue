@@ -297,7 +297,10 @@ export default {
         },
         filteredList() {
             return this.borrowings.filter(borrowing => {
-                return borrowing.material.name.toLowerCase().includes(this.search.toLowerCase());
+                return borrowing.employee.firstname.toLowerCase().includes(this.search.toLowerCase()) ||
+                borrowing.employee.lastname.toLowerCase().includes(this.search.toLowerCase()) ||
+                borrowing.material.category.name.toLowerCase().includes(this.search.toLowerCase()) ||
+                borrowing.material.name.toLowerCase().includes(this.search.toLowerCase());
             });
         },
         
