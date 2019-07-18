@@ -105,7 +105,7 @@
           </tr>
       </thead>
       <tbody >
-        <tr  v-for="borrowing in borrowings"> <!-- filterBy search in 'name' -->
+        <tr  v-for="borrowing in filteredList"> <!-- filterBy search in 'name' -->
             <td>{{ borrowing.employee.firstname }}&nbsp; {{ borrowing.employee.lastname }}</td>
             <td>{{ borrowing.material.category.name }} - {{ borrowing.material.name }}</td>
             <td>{{ borrowing.dateStart | formatDate}}</td>
@@ -293,6 +293,11 @@ export default {
         },
         borrowings () {
             return this.$store.getters['borrowing/borrowings'];
+        },
+        filteredList() {
+            return this.borrowings.filter(borrowing => {
+                return borrowing.material.name.toLowerCase().includes(this.search.toLowerCase());
+            });
         },
         
         employees () {
