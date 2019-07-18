@@ -39,7 +39,12 @@
             </div>
 
         </div>
-
+        <div class="well">
+            <form class="form-inline">
+                <!-- <h1><label>Rechercher</label></h1> -->
+                <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search">
+            </form>
+        </div>
         <div v-if="isLoading" class="row col">
             <div class="e-loadholder">
                 <div class="m-loader">
@@ -72,7 +77,7 @@
               </tr>
           </thead>
           <tbody >
-              <tr  v-for="material in materials" >
+              <tr  v-for="material in filteredList" >
                 <td>{{ material.name }}</td>
                 <td>{{ material.serialNumber }}</td>
                 <td>{{ material.category.name }}</td>
@@ -214,6 +219,7 @@ export default {
     },
     data () {
         return {
+            search:'',
             name: '',
             isActive: true,
             serialNumber: '',
@@ -246,6 +252,13 @@ export default {
         },
         materials () {
             return this.$store.getters['material/materials'];
+        },
+        filteredList() {
+            return this.materials.filter(material => {
+                return material.name.toLowerCase().includes(this.search.toLowerCase()) ||
+                material.serialNumber.toLowerCase().includes(this.search.toLowerCase()) ||
+                material.category.name.toLowerCase().includes(this.search.toLowerCase()) ;
+            });
         },
 
         categorys () {
