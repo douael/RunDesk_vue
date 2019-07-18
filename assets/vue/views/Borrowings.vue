@@ -67,7 +67,12 @@
 
         </div>
     </div>
-
+    <div class="well">
+        <form class="form-inline">
+            <!-- <h1><label>Rechercher</label></h1> -->
+            <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search">
+        </form>
+    </div>
     <div v-if="isLoading" class="row col">
         <div class="e-loadholder">
             <div class="m-loader">
@@ -84,16 +89,12 @@
         <error-material :error="error"></error-material>
 
     </div>
+
     <div v-else-if="!hasBorrowings" class="row col">
         Pas d'emprunt enregistré !
     </div>
+
     <div v-else class="table-responsive">
-        <div class="well">
-            <form class="form-inline">
-                <!-- <h1><label>Rechercher</label></h1> -->
-                <input placeholder="Rechercher" type="text" name="name" class="form-control" v-model="search">
-            </form>
-        </div>
         <table class="table table-striped">
           <thead>
             <tr>
