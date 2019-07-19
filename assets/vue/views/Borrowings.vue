@@ -115,7 +115,7 @@
 
             <td>
                 <form >
-                    <button type="button" class="btn btn-warning" v-if="borrowing.dateRestitution==null" @click="availableMaterial(borrowing.material.id,borrowing.id)">Valider restitution</button>
+                    <button type="button" class="btn btn-warning" v-if="borrowing.dateRestitution==null" @click="validateModal(borrowing.id)">Valider restitution</button>
                     <span  v-else-if="borrowing.dateRestitution!=null">Restitué le {{borrowing.dateRestitution | formatDate}} à {{borrowing.dateRestitution | formatHour}}
                         <button type="button" target="blank" class="btn btn-primary" @click.prevent="downloadItem('/pdf/borrowing' + borrowing.id + '.pdf')">Telecharger Recu</button>
                     </span>
@@ -175,33 +175,34 @@
 
 
 
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-style="display: none;"
-:id="'delete-borrowing'+borrowing.id">
-<div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" >Suppression d'emprunt</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    </div>
-    <div class="modal-body">
-        Etes-vous sûr de vouloir supprimer cet emprunt ?
-        <ul>
-          <li >
-            Emprunt de : {{ borrowing.material.name }}
-        </li>
-    </ul>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-    <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
-    @click.prevent="deleteBorrowing(borrowing.id)">
-    Supprimer
-</button>
-</div>
-</div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+
+
+ <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'validate-borrowing'+borrowing.id">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" >Valider la restitution</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="modal-body">
+                                    Etes-vous sûr de vouloir valider la restitution de l'article suivant ?
+                                    <ul>
+                                    <li >
+                                        Nom : {{ borrowing.material.name }}
+                                        Numero de serie : {{ borrowing.material.serialNumber }}
+                                    </li>
+                                </ul>
+                            </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
+                           @click.prevent="availableMaterial(borrowing.material.id,borrowing.id)">
+    Valider
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
 style="display: none;"
 id="import">
@@ -356,8 +357,8 @@ export default {
         importModal(id){
             $('#import').modal();
         },
-        deleteModal(id,name){
-            $('#delete-borrowing'+id).modal();
+        validateModal(id,name){
+            $('#validate-borrowing'+id).modal();
         },
         createBorrowing () {
                 // console.log(this.$data.employee);
