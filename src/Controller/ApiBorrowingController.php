@@ -56,6 +56,8 @@ final class ApiBorrowingController extends AbstractController
     {   
         $employee = $request->request->get('employee');
         $material = $request->request->get('material');
+        $material =explode(" - ",$material);
+        $employee =explode(" - ",$employee);
 
         $date_start = new \DateTime($request->request->get('date_start'));
         $date_end = new \DateTime($request->request->get('date_end'));

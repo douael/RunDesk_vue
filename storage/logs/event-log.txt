@@ -194,3 +194,10 @@ Materiel de nouveau disponible : <strong>material2</strong> # 2019-07-19 09:20:3
 Restitution du material : material2 # 2019-07-19 09:20:37
 Materiel de nouveau disponible : <strong>material2</strong> # 2019-07-19 09:22:04
 Restitution du material : material2 # 2019-07-19 09:22:08
+Création de la demande du material : <strong>test</strong> pour l'employee : <strong>Echo Echo</strong> # 2019-07-19 13:00:56
+Création de la demande du material : <strong>material2</strong> pour l'employee : <strong>employee1 employee1</strong> # 2019-07-19 13:01:27
+Materiel de nouveau disponible : <strong>material2</strong> # 2019-07-19 13:01:57
+Restitution du material : material2 # 2019-07-19 13:02:05
+Création de la demande du material : <strong>material2</strong> pour l'employee : <strong>employee1 employee1</strong> # 2019-07-19 13:08:13
+Materiel de nouveau disponible : <strong>material2</strong> # 2019-07-19 13:08:46
+Restitution du material : material2 # 2019-07-19 13:08:51

@@ -11,19 +11,12 @@
                     <div class="form-row">
                         <div class="col-12">
                             <label :for="employee" class="mr-2">{{ labels.employee }}</label>
-                            <select class="form-control" name="employee" v-model="employee" >
-                                <option v-for="employee in employees" v-bind:value="employee">
-                                    {{ employee.firstname + ' ' + employee.lastname }}
-                                </option>
-                            </select>
+                            <v-select :options="availableemployees"  v-model="employee"></v-select>
                         </div>
                         <div class="col-12">
                             <label :for="material" class="mr-2">{{ labels.material }}</label>
-                            <select class="form-control" name="material" v-model="material" v-if="countAvailableMaterials>0">
-                                <option v-for="material in materials" v-if="material.available == 1" v-bind:value="material">
-                                    {{ material.name }}
-                                </option>
-                            </select>
+                 
+                        <v-select :options="availablematerials" v-if="countAvailableMaterials>0" v-model="material"></v-select>
                             <input v-else-if="!isLoading" type="text" disabled class="form-control" value="Aucun materiel n'est disponible">
                         </div>
                         <div class="row col-12">
@@ -165,6 +158,7 @@
                               {{ Othermaterial.name }}
                           </option>
                       </select>
+                      
                   </div>
               </div>
 
@@ -242,8 +236,11 @@ import Vue from 'vue';
 import VueSelect from 'vue-select';
 import Datepicker from "vuejs-datepicker";
 import axios from 'axios';
+import Autocomplete from 'v-autocomplete'
+import vSelect from 'vue-select'
+ 
+Vue.component('v-select', vSelect)
 
-Vue.component('v-select', VueSelect)
 Vue.filter('formatDate', function(value) {
     if (value) {
         return moment(String(value)).format('DD/MM/YYYY')
@@ -276,7 +273,8 @@ export default {
             DatePickerFormat: "dd/MM/yyyy",
             disabledDates: {
                 to: new Date(Date.now() - 8640000),
-            }
+            },
+            isEditing: false,
         };
     },
     created () {
@@ -299,6 +297,25 @@ export default {
         },
         materials () {
             return this.$store.getters['material/materials'];
+        },
+        
+        availablematerials () {
+            var array = this.$store.getters['material/materials'];
+            var options = [];
+            for(var i = 0; i < array.length; ++i){
+                if(array[i]['available'] == true)
+                    options.push(array[i]['id']+' - '+array[i]['name']);
+            }
+            return options;
+        },
+        
+        availableemployees () {
+            var array = this.$store.getters['employee/employees'];
+            var options = [];
+            for(var i = 0; i < array.length; ++i){
+                    options.push(array[i]['id']+' - '+array[i]['firstname']+' - '+array[i]['lastname']);
+            }
+            return options;
         },
         borrowings () {
             return this.$store.getters['borrowing/borrowings'];
@@ -374,7 +391,15 @@ export default {
                 console.error(error)
             })
             })
-        }
+        },
+        customFilter (item, queryText, itemText) {
+            const textOne = item.name.toLowerCase()
+            const textTwo = item.abbr.toLowerCase()
+            const searchText = queryText.toLowerCase()
+
+            return textOne.indexOf(searchText) > -1 ||
+                textTwo.indexOf(searchText) > -1
+            }
     }
 };
  
