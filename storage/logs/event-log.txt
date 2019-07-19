@@ -178,3 +178,13 @@ Materiel de nouveau disponible : <strong>test</strong> # 2019-07-17 14:33:36
 Restitution du material : test # 2019-07-17 14:33:41
 Materiel de nouveau disponible : <strong>material1</strong> # 2019-07-17 15:32:34
 Restitution du material : material1 # 2019-07-17 15:32:40
+Materiel de nouveau disponible : <strong>Samsung 454</strong> # 2019-07-18 07:14:37
+Restitution du material : Samsung 454 # 2019-07-18 07:14:42
+Création du type : <strong>Clavier</strong> # 2019-07-18 07:18:17
+Création du type : <strong>Ecran</strong> # 2019-07-18 07:18:26
+Création du type : <strong>Souris</strong> # 2019-07-18 07:18:34
+Modification du materiel : <strong>Samsung 454</strong> # 2019-07-18 13:43:43
+Modification du materiel : <strong>Samsung 454</strong> # 2019-07-18 13:45:56
+Création Categorie : <strong>Anti-virus</strong> # 2019-07-18 13:50:11
+Création du type : <strong>Test</strong> # 2019-07-18 14:18:40
+Modification du type : <strong>Test</strong> # 2019-07-18 14:18:51

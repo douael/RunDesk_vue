@@ -28,7 +28,12 @@
                 </div>
             </form>
         </div>
-
+        <div class="well">
+            <form class="form-inline">
+                <!-- <h1><label>Rechercher</label></h1> -->
+                <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search">
+            </form>
+        </div>
         <div v-if="isLoading" class="row col">
             <div class="e-loadholder">
                 <div class="m-loader">
@@ -59,7 +64,7 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <tr v-for="category in categorys" v-if="category.id!=0">
+                    <tr v-for="category in filteredList" v-if="category.id!=0">
                         <td>{{ category.name }}</td>
                         <td>{{ category.type.name }}</td>
                         <td v-if='category.count==1'>{{ category.count }} matériel</td>
@@ -161,6 +166,7 @@ export default {
     },
     data () {
         return {
+            search:'',
             name: '',
             type: '',
             id: '',
@@ -189,6 +195,12 @@ export default {
         },
         categorys () {
             return this.$store.getters['category/categorys'];
+        },
+        filteredList() {
+            return this.categorys.filter(category => {
+                return category.name.toLowerCase().includes(this.search.toLowerCase()) ||
+                category.type.name.toLowerCase().includes(this.search.toLowerCase()) ;
+            });
         },
         canCreateCategory () {
             return this.$store.getters['security/hasRole']('ROLE_FOO');

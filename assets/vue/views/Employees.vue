@@ -35,7 +35,12 @@
                 </div>
             </div>
         </div>
-
+        <div class="well">
+            <form class="form-inline">
+                <!-- <h1><label>Rechercher</label></h1> -->
+                <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search">
+            </form>
+        </div>
         <div v-if="isLoading" class="row col">
             <div class="e-loadholder">
                 <div class="m-loader">
@@ -66,7 +71,7 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <tr v-for="employee in employees" >
+                    <tr v-for="employee in filteredList" >
             <td>{{employee.lastname }}</td>
             <td>{{employee.firstname }}</td>
             <td>{{employee.site }}</td>
@@ -192,6 +197,7 @@
         },
         data () {
             return {
+                search: '',
                 firstname: '',
                 lastname: '',
                 site: '',
@@ -223,7 +229,13 @@
             employees () {
                 return this.$store.getters['employee/employees'];
             },
-
+            filteredList() {
+                return this.employees.filter(employee => {
+                    return employee.firstname.toLowerCase().includes(this.search.toLowerCase()) ||
+                    employee.lastname.toLowerCase().includes(this.search.toLowerCase()) ||
+                    employee.site.toLowerCase().includes(this.search.toLowerCase());
+                });
+            },
             canCreateEmployee () {
                 return this.$store.getters['security/hasRole']('ROLE_FOO');
             },

@@ -67,7 +67,12 @@
 
         </div>
     </div>
-
+    <div class="well">
+        <form class="form-inline">
+            <!-- <h1><label>Rechercher</label></h1> -->
+            <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search">
+        </form>
+    </div>
     <div v-if="isLoading" class="row col">
         <div class="e-loadholder">
             <div class="m-loader">
@@ -84,9 +89,11 @@
         <error-material :error="error"></error-material>
 
     </div>
+
     <div v-else-if="!hasBorrowings" class="row col">
         Pas d'emprunt enregistré !
     </div>
+
     <div v-else class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -99,7 +106,7 @@
           </tr>
       </thead>
       <tbody >
-        <tr  v-for="borrowing in borrowings" >
+        <tr  v-for="borrowing in filteredList"> <!-- filterBy search in 'name' -->
             <td>{{ borrowing.employee.firstname }}&nbsp; {{ borrowing.employee.lastname }}</td>
             <td>{{ borrowing.material.category.name }} - {{ borrowing.material.name }}</td>
             <td>{{ borrowing.dateStart | formatDate}}</td>
@@ -248,6 +255,7 @@ export default {
     data () {
         return {
             employee: '',
+            search:'',
             date_start : new Date().toISOString().slice(0,10),
             date_end : '',
             material: '',
@@ -286,6 +294,14 @@ export default {
         },
         borrowings () {
             return this.$store.getters['borrowing/borrowings'];
+        },
+        filteredList() {
+            return this.borrowings.filter(borrowing => {
+                return borrowing.employee.firstname.toLowerCase().includes(this.search.toLowerCase()) ||
+                borrowing.employee.lastname.toLowerCase().includes(this.search.toLowerCase()) ||
+                borrowing.material.category.name.toLowerCase().includes(this.search.toLowerCase()) ||
+                borrowing.material.name.toLowerCase().includes(this.search.toLowerCase());
+            });
         },
         
         employees () {

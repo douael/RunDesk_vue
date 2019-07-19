@@ -20,7 +20,12 @@
                 </div>
             </form>
         </div>
-
+        <div class="well">
+            <form class="form-inline">
+                <!-- <h1><label>Rechercher</label></h1> -->
+                <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search">
+            </form>
+        </div>
         <div v-if="isLoading" class="row col">
             <div class="e-loadholder">
                 <div class="m-loader">
@@ -52,7 +57,7 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <tr v-for="type in types">
+                    <tr v-for="type in filteredList">
                         <td>{{ type.name }}</td>
                         <td v-if='type.count==1'>{{ type.count }} categorie</td>
                         <td v-else-if='type.count>1'>{{ type.count }} categories</td>
@@ -145,6 +150,7 @@
         },
         data () {
             return {
+                search:'',
                 name: '',
                 type: '',
                 // quantity: '',
@@ -172,6 +178,11 @@
             },
             types () {
                 return this.$store.getters['type/types'];
+            },
+            filteredList() {
+                return this.types.filter(type => {
+                    return type.name.toLowerCase().includes(this.search.toLowerCase());
+                });
             },
             canCreateType () {
                 return this.$store.getters['security/hasRole']('ROLE_FOO');
