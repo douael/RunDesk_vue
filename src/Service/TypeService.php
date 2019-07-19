@@ -33,7 +33,7 @@ final class TypeService extends AbstractController
         $typeEntity = new Type();
         $typeEntity->setName($name);
         $this->em->persist($typeEntity);
-        $this->writeLog("Création du type : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création du type : ".$name." # ".date('d-m-Y H:i:s'));
         $this->em->flush();
         return $typeEntity;
     }
@@ -52,7 +52,7 @@ final class TypeService extends AbstractController
 
         $type->setName($name);
         // $type->setQuantity($quantity);
-        $this->writeLog("Modification du type : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Modification du type : ".$name." # ".date('d-m-Y H:i:s'));
         $this->em->flush();
 
         return $type;
@@ -70,9 +70,15 @@ final class TypeService extends AbstractController
         if (!is_dir($chemin)) {
             mkdir($chemin, 0775, true);
         }
+        $a = htmlentities($phrase);
+        $phrase_decode = html_entity_decode($a);
+
         $chemin_url = $chemin . "/event-log.txt";
-        $handle = fopen($chemin_url, "a+");
-        fputs($handle, $phrase."\n");
+        $nouveau_contenu = html_entity_decode($a."\r\n");
+
+        $nouveau_contenu .= file_get_contents($chemin_url);
+
+        file_put_contents($chemin_url, $nouveau_contenu);
     }
 
 }

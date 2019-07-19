@@ -39,8 +39,8 @@ final class BorrowingService extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $employee = $this->em->getRepository(Employee::class)->find($employee['id']);
-        $material = $this->em->getRepository(Material::class)->find($material['id']);
+        $employee = $this->em->getRepository(Employee::class)->find($employee[0]);
+        $material = $this->em->getRepository(Material::class)->find($material[0]);
         $borrowingEntity = new Borrowing();
         
         // Le matériel est maintenant indisponible
@@ -53,7 +53,7 @@ final class BorrowingService extends AbstractController
         $borrowingEntity->setDateEnd($date_end);
 
         $this->em->persist($borrowingEntity);
-        $this->writeLog("Création de la demande du material : <strong>".$material->getName()."</strong> pour l'employee : <strong>".$employee->getFirstName().' '.$employee->getFirstName()."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création de la demande du material : ".$material->getName()." pour l'employee : ".$employee->getFirstName().' '.$employee->getFirstName()." # ".date('d-m-Y H:i:s'));
 
         $this->em->flush();
         return $borrowingEntity;
@@ -101,7 +101,7 @@ final class BorrowingService extends AbstractController
         $borrowing->setDateRestitution($date_restitution);
         $material = $borrowing->getMaterial();
         
-        $this->writeLog("Restitution du material : ".$material->getName()." # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Restitution du material : ".$material->getName()." # ".date('d-m-Y H:i:s'));
         $this->em->flush();
         return $borrowing;
     }
@@ -118,9 +118,14 @@ final class BorrowingService extends AbstractController
         if (!is_dir($chemin)) {
             mkdir($chemin, 0775, true);
         }
+        $a = htmlentities($phrase);
+        $phrase_decode = html_entity_decode($a);
+
         $chemin_url = $chemin . "/event-log.txt";
-        $handle = fopen($chemin_url, "a+");
-        fputs($handle, $phrase."\n");
+        $nouveau_contenu = html_entity_decode($a."\r\n");
+
+        $nouveau_contenu .= file_get_contents($chemin_url);
+
+        file_put_contents($chemin_url, $nouveau_contenu);
     }
-    
 }

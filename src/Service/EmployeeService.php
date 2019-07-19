@@ -40,7 +40,7 @@ final class EmployeeService extends AbstractController
         $employeeEntity->setSite($site);
         $employeeEntity->setUserId($user);
         $this->em->persist($employeeEntity);
-        $this->writeLog("Création de l'employe : <strong>".$firstname." ".$lastname."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création de l'employe : ".$firstname." ".$lastname." # ".date('d-m-Y H:i:s'));
         $this->em->flush();
         return $employeeEntity;
     }
@@ -60,7 +60,7 @@ final class EmployeeService extends AbstractController
         $employee->setLastname($lastname);
         $employee->setFirstname($firstname);
         $employee->setSite($site);
-        $this->writeLog("Modification de l'employe : <strong>".$firstname." ".$lastname."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Modification de l'employe : ".$firstname." ".$lastname." # ".date('d-m-Y H:i:s'));
         $this->em->flush();
 
         return $employee;
@@ -78,8 +78,14 @@ final class EmployeeService extends AbstractController
         if (!is_dir($chemin)) {
             mkdir($chemin, 0775, true);
         }
+        $a = htmlentities($phrase);
+        $phrase_decode = html_entity_decode($a);
+
         $chemin_url = $chemin . "/event-log.txt";
-        $handle = fopen($chemin_url, "a+");
-        fputs($handle, $phrase."\n");
+        $nouveau_contenu = html_entity_decode($a."\r\n");
+
+        $nouveau_contenu .= file_get_contents($chemin_url);
+
+        file_put_contents($chemin_url, $nouveau_contenu);
     }
 }

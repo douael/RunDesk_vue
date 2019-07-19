@@ -47,7 +47,7 @@ final class MaterialService extends AbstractController
 
         $this->em->persist($materialEntity);
         $this->em->flush();
-        $this->writeLog("Création de Materiel : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création de Materiel : ".$name." # ".date('d-m-Y H:i:s'));
         return $materialEntity;
     }
 
@@ -63,7 +63,7 @@ final class MaterialService extends AbstractController
         //var_dump($bla);
 
         $material->setIsActive($isActive);
-        $this->writeLog("Changement de statut : <strong>".$material->getName()."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Changement de statut : ".$material->getName()." # ".date('d-m-Y H:i:s'));
 
         $this->em->flush();
 
@@ -82,7 +82,7 @@ final class MaterialService extends AbstractController
         //var_dump($bla);
 
         $material->setAvailable($available);
-        $this->writeLog("Materiel de nouveau disponible : <strong>".$material->getName()."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Materiel de nouveau disponible : ".$material->getName()." # ".date('d-m-Y H:i:s'));
 
         $this->em->flush();
 
@@ -108,7 +108,7 @@ final class MaterialService extends AbstractController
         $material->setName($name);
         $material->setSerialNumber($serialNumber);
         $material->setCategory($category);
-        $this->writeLog("Modification du materiel : <strong>".$material->getName()."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Modification du materiel : ".$material->getName()." # ".date('d-m-Y H:i:s'));
         $this->em->flush();
 
         return $material;
@@ -126,9 +126,15 @@ final class MaterialService extends AbstractController
         if (!is_dir($chemin)) {
             mkdir($chemin, 0775, true);
         }
+        $a = htmlentities($phrase);
+        $phrase_decode = html_entity_decode($a);
+
         $chemin_url = $chemin . "/event-log.txt";
-        $handle = fopen($chemin_url, "a+");
-        fputs($handle, $phrase."\n");
+        $nouveau_contenu = html_entity_decode($a."\r\n");
+
+        $nouveau_contenu .= file_get_contents($chemin_url);
+
+        file_put_contents($chemin_url, $nouveau_contenu);
     }
     
 }

@@ -40,7 +40,7 @@ final class CategoryService extends AbstractController
         $categoryEntity->setType($type);
 
         $this->em->persist($categoryEntity);
-        $this->writeLog("Création Categorie : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création Categorie : ".$name." # ".date('d-m-Y H:i:s'));
         $this->em->flush();
         return $categoryEntity;
     }
@@ -77,7 +77,7 @@ final class CategoryService extends AbstractController
       
         $category->setName($name);
         $category->setType($type);
-        $this->writeLog("Modification de la catégorie : <strong>".$category->getName()."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Modification de la catégorie : ".$category->getName()." # ".date('d-m-Y H:i:s'));
         $this->em->flush();
 
         return $category;
@@ -97,9 +97,15 @@ final class CategoryService extends AbstractController
         if (!is_dir($chemin)) {
             mkdir($chemin, 0775, true);
         }
+        $a = htmlentities($phrase);
+        $phrase_decode = html_entity_decode($a);
+
         $chemin_url = $chemin . "/event-log.txt";
-        $handle = fopen($chemin_url, "a+");
-        fputs($handle, $phrase."\n");
+        $nouveau_contenu = html_entity_decode($a."\r\n");
+
+        $nouveau_contenu .= file_get_contents($chemin_url);
+
+        file_put_contents($chemin_url, $nouveau_contenu);
     }
 
 }
