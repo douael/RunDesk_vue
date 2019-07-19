@@ -203,8 +203,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-style="display: none;"
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;"
 id="import">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -357,7 +356,7 @@ export default {
         importModal(id){
             $('#import').modal();
         },
-        validateModal(id,name){
+        validateModal(id){
             $('#validate-borrowing'+id).modal();
         },
         createBorrowing () {
