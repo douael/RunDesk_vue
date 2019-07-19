@@ -23,7 +23,14 @@
         <div class="well">
             <form class="form-inline">
                 <!-- <h1><label>Rechercher</label></h1> -->
-                <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-search"></i>
+                    </span>
+                  </div>
+                  <input type="text"  placeholder="Rechercher" name="recherche" class="form-control" v-model="search">
+                </div>
             </form>
         </div>
         <div v-if="isLoading" class="row col">

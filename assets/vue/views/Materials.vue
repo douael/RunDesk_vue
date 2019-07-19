@@ -42,7 +42,14 @@
         <div class="well">
             <form class="form-inline">
                 <!-- <h1><label>Rechercher</label></h1> -->
-                <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search">
+               <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-search"></i>
+                    </span>
+                  </div>
+                  <input type="text"  placeholder="Rechercher" name="recherche" class="form-control" v-model="search">
+                </div>
             </form>
         </div>
         <div v-if="isLoading" class="row col">
@@ -71,7 +78,7 @@
                   <th>Nom</th>
                   <th>Numéro de série</th>
                   <th>Catégorie</th>
-                  <th>Supprimer</th>
+                  <!-- <th>Supprimer</th> -->
                   <th>Modifier</th>
                   <th>Changer de statut</th>
               </tr>
@@ -81,15 +88,18 @@
                 <td>{{ material.name }}</td>
                 <td>{{ material.serialNumber }}</td>
                 <td>{{ material.category.name }}</td>
-                <td>
+                <!-- <td>
                     <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(material.id,material.name)" >
                         <i class="fa fa-trash"></i> Supprimer
                     </button>
-                </td>
+                </td> -->
 
                 <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(material.id)">
+                    <button v-if="material.available==1" type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(material.id)">
                         <i class="fa fa-edit"></i> Modifier
+                    </button>
+                    <button v-else type="button" class="btn btn-warning" disabled>
+                        <i class="fa fa-warning"></i> Material Reservé
                     </button>
                 </td>
                 <td>

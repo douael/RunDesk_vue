@@ -38,7 +38,14 @@
         <div class="well">
             <form class="form-inline">
                 <!-- <h1><label>Rechercher</label></h1> -->
-                <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-search"></i>
+                    </span>
+                  </div>
+                  <input type="text"  placeholder="Rechercher" name="recherche" class="form-control" v-model="search">
+                </div>
             </form>
         </div>
         <div v-if="isLoading" class="row col">
@@ -66,7 +73,7 @@
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Site</th>
-                        <th>Supprimer</th>
+                        <!-- <th>Supprimer</th> -->
                         <th>Modifier</th>
                     </tr>
                 </thead>
@@ -75,11 +82,11 @@
             <td>{{employee.lastname }}</td>
             <td>{{employee.firstname }}</td>
             <td>{{employee.site }}</td>
-            <td>
+            <!-- <td>
                 <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(employee.id)" >
                     <i class="fa fa-trash"></i> Supprimer
                 </button>
-            </td>
+            </td> -->
             <td>
                 <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(employee.id)">
                     <i class="fa fa-edit"></i> Modifier
