@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Borrowing;
 
 /**
  * Class ApiMaterialController
@@ -27,14 +29,17 @@ final class ApiMaterialController extends AbstractController
 
     /** @var MaterialService */
     private $materialService;
-
+    
+    /** @var EntityManagerInterface */
+    private $em;
     /**
      * ApiMaterialController constructor.
      * @param SerializerInterface $serializer
      * @param MaterialService $materialService
      */
-    public function __construct(SerializerInterface $serializer, MaterialService $materialService)
+    public function __construct(SerializerInterface $serializer, MaterialService $materialService, EntityManagerInterface $em)
     {
+        $this->em = $em;
         $this->serializer = $serializer;
         $this->materialService = $materialService;
     }
@@ -174,8 +179,16 @@ final class ApiMaterialController extends AbstractController
     public function getAllActions(): JsonResponse
     {
         $materialEntities = $this->materialService->getAll();
-        
         $data = $this->serializer->serialize($materialEntities, 'json');
+
+        $mats = json_decode($data,true);
+
+        foreach($mats as &$mat){
+            $borrowings = $this->em->getRepository(Borrowing::class)->findByMaterial($mat['id']);
+            $mat['count']=count($borrowings);
+       
+        }
+        $data = $this->serializer->serialize($mats, 'json');
         return new JsonResponse($data, 200, [], true);
     }
 

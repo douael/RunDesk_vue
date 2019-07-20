@@ -76,8 +76,11 @@
             <td>{{employee.firstname }}</td>
             <td>{{employee.site }}</td>
             <td>
-                <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(employee.id)" >
+                <button v-if="employee.count == 0" type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(employee.id)" >
                     <i class="fa fa-trash"></i> Supprimer
+                </button>
+                <button v-else type="button" class="btn btn-warning" title="Cet employé est lié à des emprunts">
+                    </i> Impossible de supprimer cet employé
                 </button>
             </td>
             <td>

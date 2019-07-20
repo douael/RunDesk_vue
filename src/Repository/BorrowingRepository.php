@@ -19,6 +19,42 @@ class BorrowingRepository extends ServiceEntityRepository
         parent::__construct($registry, Borrowing::class);
     }
 
+       /**
+     * @param integer $id
+     * @param string $delimiter
+     * @return Borrowing[]
+     */
+    public function findByMaterial($id, $delimiter = ',')
+    {
+        // var_dump($id);
+        
+        $qb = $this->createQueryBuilder('a');
+
+        return $qb
+            ->where('a.material =:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param integer $id
+     * @param string $delimiter
+     * @return Borrowing[]
+     */
+    public function findByEmployee($id, $delimiter = ',')
+    {
+        // var_dump($id);
+        
+        $qb = $this->createQueryBuilder('a');
+
+        return $qb
+            ->where('a.employee =:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Borrowing[] Returns an array of Borrowing objects
     //  */

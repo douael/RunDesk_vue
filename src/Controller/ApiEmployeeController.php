@@ -14,6 +14,8 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Service\EmployeeImporterService;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Borrowing;
 /**
  * Class ApiEmployeeController
  * @package App\Controller
@@ -27,13 +29,16 @@ final class ApiEmployeeController extends AbstractController
     /** @var EmployeeService */
     private $employeeService;
 
+    /** @var EntityManagerInterface */
+    private $em;
     /**
      * ApiEmployeeController constructor.
      * @param SerializerInterface $serializer
      * @param EmployeeService $employeeService
      */
-    public function __construct(SerializerInterface $serializer, EmployeeService $employeeService)
+    public function __construct(SerializerInterface $serializer, EmployeeService $employeeService, EntityManagerInterface $em)
     {
+        $this->em = $em;
         $this->serializer = $serializer;
         $this->employeeService = $employeeService;
     }
@@ -134,7 +139,17 @@ final class ApiEmployeeController extends AbstractController
     public function getAllActions(): JsonResponse
     {
         $employeeEntities = $this->employeeService->getAll();
-        
+        $data = $this->serializer->serialize($employeeEntities, 'json');
+        $emps = json_decode($data,true);
+
+        foreach($emps as &$emp){
+            $borrowings = $this->em->getRepository(Borrowing::class)->findByEmployee($emp['id']);
+            $emp['count']=count($borrowings);
+       
+        }
+        $data = $this->serializer->serialize($emps, 'json');
+        return new JsonResponse($data, 200, [], true);
+
         $data = $this->serializer->serialize($employeeEntities, 'json');
         return new JsonResponse($data, 200, [], true);
     }

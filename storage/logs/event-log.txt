@@ -1,3 +1,9 @@
+Création de Materiel : test # 20-07-2019 22:47:52
+Création de Materiel : teest # 20-07-2019 22:26:39
+Création de Materiel : test # 20-07-2019 22:25:31
+Restitution du material : PO1556 # 20-07-2019 22:18:39
+Materiel de nouveau disponible : PO1556 # 20-07-2019 22:18:37
+Création Categorie : test # 20-07-2019 21:58:19
 Création du type : Test # 19-07-2019 17:48:34
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-06-29 21:55:58
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-06-30 15:40:45
@@ -189,3 +195,10 @@ Modification du materiel : <strong>Samsung 454</strong> # 2019-07-18 13:45:56
 Création Categorie : <strong>Anti-virus</strong> # 2019-07-18 13:50:11
 Création du type : <strong>Test</strong> # 2019-07-18 14:18:40
 Modification du type : <strong>Test</strong> # 2019-07-18 14:18:51
+Suppression du matériel : <strong>Test</strong> # 2019-07-20 16:10:01
+Suppression du matériel : <strong>A54459</strong> # 2019-07-20 16:10:11
+Suppression de l'employe : <strong>BENYOUCEF Rachel</strong> # 2019-07-20 21:50:14
+Suppression du matériel : <strong>PO1556</strong> # 2019-07-20 22:21:57
+Suppression du matériel : <strong>test</strong> # 2019-07-20 22:26:19
+Suppression du matériel : <strong>teest</strong> # 2019-07-20 22:47:04
+Suppression de l'employe : <strong>Le Duc  Kevin</strong> # 2019-07-20 22:59:55

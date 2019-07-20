@@ -82,10 +82,18 @@
                 <td>{{ material.serialNumber }}</td>
                 <td>{{ material.category.name }}</td>
                 <td>
-                    <button type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(material.id,material.name)" >
+                    <button v-if='material.count == 0' type="button" class="btn btn-danger" data-toggle="modal"  @click="deleteModal(material.id,material.name)" >
                         <i class="fa fa-trash"></i> Supprimer
                     </button>
+                     <button v-else type="button" class="btn btn-warning" title="Ce matériel est ou a déjà été lié à un emprunt">
+                        Impossible de supprimer ce matériel
+                    </button>
                 </td>
+                <!-- <td>
+                    <button type="button" class="btn btn-warning">
+                        <i class="fa fa-trash"></i> Suppression non autorisé 
+                    </button>
+                </td> -->
 
                 <td>
                     <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(material.id)">
