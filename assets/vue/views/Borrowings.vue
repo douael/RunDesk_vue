@@ -107,7 +107,7 @@
           </tr>
       </thead>
       <tbody >
-        <tr  v-for="borrowing in filteredList | paginate"> <!-- filterBy search in 'name' -->
+        <tr  v-for="borrowing in filteredList"> <!-- filterBy search in 'name' -->
             <td>{{ borrowing.employee.firstname }}&nbsp; {{ borrowing.employee.lastname }}</td>
             <td>{{ borrowing.material.category.name }} - {{ borrowing.material.name }}</td>
             <td>{{ borrowing.dateStart | formatDate}}</td>
@@ -126,63 +126,10 @@
         </tr>
     </tbody>
 </table>
-<ul>
-    <li v-for="pageNumber in totalPages">
-        <a href="#" @click="setPage(pageNumber)"> {{ pageNumber+1 }} </a>
-    </li>
-</ul>
 </div>
 
-<div v-for="borrowing in borrowings">
- <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+borrowing.id">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" >Modifier</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="col-12">
-                    <div class="col-6">
-                        <input v-model="borrowing.date_start" type="date" class="form-control">
-                    </div>
-                    <div class="col-6">
-                        <input v-model="borrowing.date_end" type="date" class="form-control">
-                    </div>
-
-                    <div class="col-6">
-                      <select class="form-control" name="employee" v-model="borrowing.employee" >
-                          <option v-for="Otheremployee in employees" v-bind:value="Otheremployee.id" >
-                              {{ Otheremployee.firstname + " " + Otheremployee.lastname }}
-                          </option>
-                      </select>
-                  </div>
-                  <div class="col-6">
-                      <select class="form-control" name="material" v-model="borrowing.material" >
-                          <option v-for="Othermaterial in materials" v-bind:value="Othermaterial.id" >
-                              {{ Othermaterial.name }}
-                          </option>
-                      </select>
-                      
-                  </div>
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
-                @click="editBorrowing(borrowing.id,borrowing.date_start,borrowing.date_end,borrowing.employee,borrowing.material)">
-                Modifier
-            </button>
-        </div>
-    </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-
-
-
- <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'validate-borrowing'+borrowing.id">
+ 
+ <div class="modal fade bg-dark"   v-for="borrowing in borrowings" tabindex="-1" role="dialog" aria-hidden="true" :id="'validate-borrowing'+borrowing.id">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -193,7 +140,9 @@
                                     Etes-vous sûr de vouloir valider la restitution de l'article suivant ?
                                     <ul>
                                     <li >
-                                        Nom : {{ borrowing.material.name }}
+                                        Nom : {{ borrowing.material.name }} 
+                                    </li>
+                                    <li>
                                         Numero de serie : {{ borrowing.material.serialNumber }}
                                     </li>
                                 </ul>
@@ -208,29 +157,9 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;"
-id="import">
-<div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" >Import Material with csv </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    </div>
-
-    <div class="modal-footer">
-        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
-        v-on:click="submitForm()">
-        Import
-    </button>
-</div>
-</div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-</div>
 
 
-</div>
+
 </div>
 </template>
 
@@ -264,11 +193,6 @@ export default {
     },
     data () {
         return {
-            currentPage: 0,
-            itemsPerPage: 5,
-            resultCount: 0,
-            ccn: null,
-            order: 1,
             employee: '',
             search:'',
             date_start : new Date().toISOString().slice(0,10),
@@ -293,11 +217,6 @@ export default {
         this.$store.dispatch('borrowing/fetchBorrowings');
     },
     computed: {
-        totalPages () {
-            // console.log(this.borrowings.length);
-            console.log(Math.ceil(this.borrowings.length / this.itemsPerPage) + " totalPages");
-            return Math.ceil(this.borrowings.length / this.itemsPerPage); 
-        },
         isLoading () {
             return this.$store.getters['borrowing/isLoading'];
         },
@@ -402,9 +321,9 @@ export default {
                 link.href = window.URL.createObjectURL(blob)
                 link.download = 'recu.pdf'
                 link.click()
-                .catch(error => {
-                    console.error(error)
-                })
+            .catch(error => {
+                console.error(error)
+            })
             })
         },
         customFilter (item, queryText, itemText) {
@@ -413,29 +332,8 @@ export default {
             const searchText = queryText.toLowerCase()
 
             return textOne.indexOf(searchText) > -1 ||
-            textTwo.indexOf(searchText) > -1
-        },
-        setPage (pageNumber) {
-            this.currentPage = pageNumber; 
-            console.log(pageNumber); 
-        },
-        
-    },
-    filters: {
-        paginate (List) {
-            this.resultCount = this.borrowings.length; 
-            console.log(this.resultCount + " Result count"); 
-            console.log(this.currentPage + " current page"); 
-            console.log(this.itemsPage + " items per page"); 
-            console.log(this.totalPages + " Total pages 2");
-            if (this.currentPage >= this.totalPages) {
-                this.currentPage >= Math.max(0, this.totalPages - 1); 
+                textTwo.indexOf(searchText) > -1
             }
-            var index = this.currentPage * this.itemsPerPage; 
-            console.log(index + " index"); 
-            console.log(this.borrowings.slice(index, index, + this.itemsPerPage)); 
-            return this.borrowings.slice(index, index + this.itemsPerPage); 
-        }
     }
 };
  

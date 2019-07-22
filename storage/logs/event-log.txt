@@ -204,3 +204,6 @@ Restitution du material : material2 # 2019-07-19 13:08:51
 Materiel de nouveau disponible : <strong>test</strong> # 2019-07-19 13:11:27
 Restitution du material : test # 2019-07-19 13:11:32
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-21 10:22:09
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-22 08:41:54
+Materiel de nouveau disponible : <strong>material1</strong> # 2019-07-22 12:31:33
+Restitution du material : material1 # 2019-07-22 12:31:39
