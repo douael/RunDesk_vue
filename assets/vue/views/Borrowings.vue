@@ -342,7 +342,21 @@ export default {
                 textTwo.indexOf(searchText) > -1
         },
         uploadHistory(){
-            axios.post('/api/borrowing/uploadHistory');
+            axios.post('/api/borrowing/uploadHistory').
+            then(function (response) {
+                console.log(response);
+            //     axios.get('/history/'+Object.keys(response)[0]+'.csv', { responseType: 'blob' })
+            // .then(({ data }) => {
+            //     let blob = new Blob([data], { type: 'text/csv;charset=utf-8;' })
+            //     let link = document.createElement('a')
+            //     link.href = window.URL.createObjectURL(blob)
+            //     link.download = 'history.csv'
+            //     link.click()
+            // .catch(error => {
+            //     console.error(error)
+            // })
+            // })
+            })
         }
     }
 };

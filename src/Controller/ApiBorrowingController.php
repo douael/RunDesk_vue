@@ -194,18 +194,39 @@ final class ApiBorrowingController extends AbstractController
      * @Rest\Post("/api/borrowing/uploadHistory", name="uploadHistory")
      * @param BorrowingRepository $borrowingRepository
      * @param Request $request
-     * @return JsonResponse
+     * @return string
      */
-    public function uploadHistory(BorrowingRepository $borrowingRepository, Request $request): JsonResponse
+    public function uploadHistory(BorrowingRepository $borrowingRepository, Request $request)
     {
         $date = $request->request->get('date');
         
        $borrowings = $borrowingRepository->findByDate($date);
 
-       $data = $this->serializer->serialize($borrowings, 'json');
-        var_dump($borrowings);
-        var_dump($bla);
-        return new JsonResponse($data, 200, [], true);
+       $chemin = $this->getParameter('history_directory');
+       if (!is_dir($chemin)) {
+           mkdir($chemin, 0775, true);
+       }
+       foreach($borrowings as $key => $value){
+           
+        $borrowing = $this->em->getRepository(Borrowing::class)->find($borrowings[$key]['id']);
+           $borrowings[$key]['employee_id'] =  $borrowing->getEmployee()->getFirstname().' '.$borrowing->getEmployee()->getLastname();
+           $borrowings[$key]['material_id'] =  $borrowing->getMaterial()->getName();
+           $borrowings[$key]['serialNumber'] = $borrowing->getMaterial()->getSerialNumber();
+         } 
+       var_dump($borrowings);
+       $filename = "history".uniqid();
+    $chemin_url = $chemin .'/'. $filename .".csv";
+     $firstline = array('id','date start','date end','date restitution','employee','material','serial Number');
+    $fp = fopen($chemin_url, 'w');
+    fputcsv($fp,$firstline);
+     foreach ($borrowings as $fields) {
+         fputcsv($fp, $fields);
+     }
+     
+     fclose($fp);
+          $data = $this->serializer->serialize($filename, 'json');
+   
+        return $filename;
     }  
 
     /**
@@ -229,4 +250,5 @@ final class ApiBorrowingController extends AbstractController
         $handle = fopen($chemin_url, "a+");
         fputs($handle, $phrase."\n");
     }
+
 }

@@ -25,22 +25,17 @@ class BorrowingRepository extends ServiceEntityRepository
      */
     public function findByDate($date, $delimiter = ',')
     {
-        $em = $this->getDoctrine()->getManager();
         if(!isset($date)){
 
-            $RAW_QUERY = 'SELECT * FROM borrowings where borrowings.date_restitution BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY)
+            $RAW_QUERY = 'SELECT id,date_start,date_end,date_restitution,employee_id,material_id FROM borrowing where borrowing.date_restitution BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY)
             AND NOW();';
         }else{
-            $RAW_QUERY = 'SELECT * FROM borrowings where borrowings.date_restitution BETWEEN DATE_SUB(NOW(), INTERVAL "'.$date.'" DAY)
+            $RAW_QUERY = 'SELECT * FROM borrowing where borrowing.date_restitution BETWEEN DATE_SUB(NOW(), INTERVAL "'.$date.'" DAY)
             AND NOW();';
         }
         
-        $statement = $em->getConnection()->prepare($RAW_QUERY);
-        // Set parameters 
-        $statement->execute();
+        return $this->getEntityManager()->getConnection()->executeQuery($RAW_QUERY)->fetchAll();
 
-        $result = $statement->fetchAll();
-        return $result;
     }
 
     // /**
