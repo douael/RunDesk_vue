@@ -18,6 +18,30 @@ class BorrowingRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Borrowing::class);
     }
+    /**
+     * @param integer $date
+     * @param string $delimiter
+     * @return Category[]
+     */
+    public function findByDate($date, $delimiter = ',')
+    {
+        $em = $this->getDoctrine()->getManager();
+        if(!isset($date)){
+
+            $RAW_QUERY = 'SELECT * FROM borrowings where borrowings.date_restitution BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY)
+            AND NOW();';
+        }else{
+            $RAW_QUERY = 'SELECT * FROM borrowings where borrowings.date_restitution BETWEEN DATE_SUB("'.$date.'", INTERVAL 30 DAY)
+            AND NOW();';
+        }
+        
+        $statement = $em->getConnection()->prepare($RAW_QUERY);
+        // Set parameters 
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+        return $result;
+    }
 
     // /**
     //  * @return Borrowing[] Returns an array of Borrowing objects

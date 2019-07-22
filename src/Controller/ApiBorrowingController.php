@@ -190,6 +190,23 @@ final class ApiBorrowingController extends AbstractController
 
         return new JsonResponse($data, 200, [], true);
     }  
+      /**
+     * @Rest\Post("/api/borrowing/uploadHistory", name="uploadHistory")
+     * @param BorrowingRepository $borrowingRepository
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function uploadHistory(BorrowingRepository $borrowingRepository, Request $request): JsonResponse
+    {
+        $date = $request->request->get('date');
+        
+       $borrowings = $borrowingRepository->findByDate($date);
+
+       $data = $this->serializer->serialize($borrowings, 'json');
+        var_dump($borrowings);
+        var_dump($bla);
+        return new JsonResponse($data, 200, [], true);
+    }  
 
     /**
      * @Rest\Get("/api/borrowings", name="getAllBorrowings")

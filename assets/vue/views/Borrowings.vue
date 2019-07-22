@@ -60,20 +60,7 @@
 
         </div>
     </div>
-    <div class="well">
-        <form class="form-inline">
-            <!-- <h1><label>Rechercher</label></h1> -->
-            <!-- <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search"> -->
-            <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="fa fa-search"></i>
-                    </span>
-                  </div>
-                  <input type="text"  placeholder="Rechercher" name="recherche" class="form-control" v-model="search">
-                </div>
-        </form>
-    </div>
+    
     <div v-if="isLoading" class="row col">
         <div class="e-loadholder">
             <div class="m-loader">
@@ -96,6 +83,26 @@
     </div>
 
     <div v-else class="table-responsive">
+
+        <div class="well">
+        <form class="form-inline">
+            <!-- <h1><label>Rechercher</label></h1> -->
+            <!-- <input placeholder="Rechercher" type="text" name="recherche" class="form-control" v-model="search"> -->
+            <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-search"></i>
+                    </span>
+                  </div>
+                  <input type="text"  placeholder="Rechercher" name="recherche" class="form-control" v-model="search">
+                  
+                </div>
+                <div class="input-group" style="    margin-left: 50%;">
+                  <button  @click="uploadHistory()" type="button" class="btn btn-info" ><i class="fa fa-download"></i> Telecharger un recapitulatif </button>
+                </div>
+        </form>
+    </div>
+   
         <table class="table table-striped">
           <thead>
             <tr>
@@ -333,7 +340,10 @@ export default {
 
             return textOne.indexOf(searchText) > -1 ||
                 textTwo.indexOf(searchText) > -1
-            }
+        },
+        uploadHistory(){
+            axios.post('/api/borrowing/uploadHistory');
+        }
     }
 };
  
