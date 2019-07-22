@@ -107,7 +107,7 @@
           </tr>
       </thead>
       <tbody >
-        <tr  v-for="borrowing in filteredList"> <!-- filterBy search in 'name' -->
+        <tr  v-for="borrowing in filteredList | paginate"> <!-- filterBy search in 'name' -->
             <td>{{ borrowing.employee.firstname }}&nbsp; {{ borrowing.employee.lastname }}</td>
             <td>{{ borrowing.material.category.name }} - {{ borrowing.material.name }}</td>
             <td>{{ borrowing.dateStart | formatDate}}</td>
@@ -126,6 +126,11 @@
         </tr>
     </tbody>
 </table>
+<ul>
+    <li v-for="pageNumber in totalPages">
+        <a href="#" @click="setPage(pageNumber)"> {{ pageNumber+1 }} </a>
+    </li>
+</ul>
 </div>
 
 <div v-for="borrowing in borrowings">
@@ -259,6 +264,11 @@ export default {
     },
     data () {
         return {
+            currentPage: 0,
+            itemsPerPage: 5,
+            resultCount: 0,
+            ccn: null,
+            order: 1,
             employee: '',
             search:'',
             date_start : new Date().toISOString().slice(0,10),
@@ -283,6 +293,11 @@ export default {
         this.$store.dispatch('borrowing/fetchBorrowings');
     },
     computed: {
+        totalPages () {
+            // console.log(this.borrowings.length);
+            console.log(Math.ceil(this.borrowings.length / this.itemsPerPage) + " totalPages");
+            return Math.ceil(this.borrowings.length / this.itemsPerPage); 
+        },
         isLoading () {
             return this.$store.getters['borrowing/isLoading'];
         },
@@ -387,9 +402,9 @@ export default {
                 link.href = window.URL.createObjectURL(blob)
                 link.download = 'recu.pdf'
                 link.click()
-            .catch(error => {
-                console.error(error)
-            })
+                .catch(error => {
+                    console.error(error)
+                })
             })
         },
         customFilter (item, queryText, itemText) {
@@ -398,8 +413,29 @@ export default {
             const searchText = queryText.toLowerCase()
 
             return textOne.indexOf(searchText) > -1 ||
-                textTwo.indexOf(searchText) > -1
+            textTwo.indexOf(searchText) > -1
+        },
+        setPage (pageNumber) {
+            this.currentPage = pageNumber; 
+            console.log(pageNumber); 
+        },
+        
+    },
+    filters: {
+        paginate (List) {
+            this.resultCount = this.borrowings.length; 
+            console.log(this.resultCount + " Result count"); 
+            console.log(this.currentPage + " current page"); 
+            console.log(this.itemsPage + " items per page"); 
+            console.log(this.totalPages + " Total pages 2");
+            if (this.currentPage >= this.totalPages) {
+                this.currentPage >= Math.max(0, this.totalPages - 1); 
             }
+            var index = this.currentPage * this.itemsPerPage; 
+            console.log(index + " index"); 
+            console.log(this.borrowings.slice(index, index, + this.itemsPerPage)); 
+            return this.borrowings.slice(index, index + this.itemsPerPage); 
+        }
     }
 };
  
