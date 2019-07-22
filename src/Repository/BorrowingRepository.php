@@ -21,7 +21,7 @@ class BorrowingRepository extends ServiceEntityRepository
     /**
      * @param integer $date
      * @param string $delimiter
-     * @return Category[]
+     * @return Borrowing[]
      */
     public function findByDate($date, $delimiter = ',')
     {
@@ -31,7 +31,7 @@ class BorrowingRepository extends ServiceEntityRepository
             $RAW_QUERY = 'SELECT * FROM borrowings where borrowings.date_restitution BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY)
             AND NOW();';
         }else{
-            $RAW_QUERY = 'SELECT * FROM borrowings where borrowings.date_restitution BETWEEN DATE_SUB("'.$date.'", INTERVAL 30 DAY)
+            $RAW_QUERY = 'SELECT * FROM borrowings where borrowings.date_restitution BETWEEN DATE_SUB(NOW(), INTERVAL "'.$date.'" DAY)
             AND NOW();';
         }
         
