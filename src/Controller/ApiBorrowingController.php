@@ -194,9 +194,9 @@ final class ApiBorrowingController extends AbstractController
      * @Rest\Post("/api/borrowing/uploadHistory", name="uploadHistory")
      * @param BorrowingRepository $borrowingRepository
      * @param Request $request
-     * @return string
+     * @return JsonResponse
      */
-    public function uploadHistory(BorrowingRepository $borrowingRepository, Request $request)
+    public function uploadHistory(BorrowingRepository $borrowingRepository, Request $request): JsonResponse
     {
         $date = $request->request->get('date');
         
@@ -213,7 +213,7 @@ final class ApiBorrowingController extends AbstractController
            $borrowings[$key]['material_id'] =  $borrowing->getMaterial()->getName();
            $borrowings[$key]['serialNumber'] = $borrowing->getMaterial()->getSerialNumber();
          } 
-       var_dump($borrowings);
+    //    var_dump($borrowings);
        $filename = "history".uniqid();
     $chemin_url = $chemin .'/'. $filename .".csv";
      $firstline = array('id','date start','date end','date restitution','employee','material','serial Number');
@@ -224,9 +224,10 @@ final class ApiBorrowingController extends AbstractController
      }
      
      fclose($fp);
+        
           $data = $this->serializer->serialize($filename, 'json');
-   
-        return $filename;
+
+          return new JsonResponse($data, 200, [], true);
     }  
 
     /**
