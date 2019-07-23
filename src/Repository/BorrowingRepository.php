@@ -30,7 +30,7 @@ class BorrowingRepository extends ServiceEntityRepository
             $RAW_QUERY = 'SELECT id,date_start,date_end,date_restitution,employee_id,material_id FROM borrowing where borrowing.date_restitution BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY)
             AND NOW();';
         }else{
-            $RAW_QUERY = 'SELECT * FROM borrowing where borrowing.date_restitution BETWEEN DATE_SUB(NOW(), INTERVAL "'.$date.'" DAY)
+            $RAW_QUERY = 'SELECT id,date_start,date_end,date_restitution,employee_id,material_id FROM borrowing where borrowing.date_restitution BETWEEN DATE_SUB(NOW(), INTERVAL "'.$date.'" DAY)
             AND NOW();';
         }
         

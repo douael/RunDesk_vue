@@ -97,10 +97,15 @@
                   <input type="text"  placeholder="Rechercher" name="recherche" class="form-control" v-model="search">
                   
                 </div>
+                
+        
                 <div class="input-group" style="    margin-left: 50%;">
-                  <button  @click="uploadHistory()" type="button" class="btn btn-info" ><i class="fa fa-download"></i> Telecharger un recapitulatif </button>
+                    <form class="form-inline">
+                  <input type="number"  placeholder="30 jours par défaut" name="date" class="form-control" v-model="date">
+                  <button  @click="uploadHistory(date)" type="button" class="btn btn-info" ><i class="fa fa-download"></i> Telecharger un recapitulatif </button>
+                </form>
                 </div>
-        </form>
+                </form>
     </div>
    
         <table class="table table-striped">
@@ -341,22 +346,41 @@ export default {
             return textOne.indexOf(searchText) > -1 ||
                 textTwo.indexOf(searchText) > -1
         },
-        uploadHistory(){
-            axios.post('/api/borrowing/uploadHistory')
-            .then(function (res) {
-                console.log(res.data);
-                axios.get('/history/'+res.data+'.csv', { responseType: 'blob' })
-            .then(({ data }) => {
-                let blob = new Blob([data], { type: 'text/csv;charset=utf-8;' })
-                let link = document.createElement('a')
-                link.href = window.URL.createObjectURL(blob)
-                link.download = 'history.csv'
-                link.click()
-            .catch(error => {
-                console.error(error)
+        uploadHistory(date){
+            if(date == undefined){
+                axios.post('/api/borrowing/uploadHistory')
+                    .then(function (res) {
+                        console.log(res.data);
+                        axios.get('/history/'+res.data+'.csv', { responseType: 'blob' })
+                    .then(({ data }) => {
+                        let blob = new Blob([data], { type: 'text/csv;charset=utf-8;' })
+                        let link = document.createElement('a')
+                        link.href = window.URL.createObjectURL(blob)
+                        link.download = 'history.csv'
+                        link.click()
+                    .catch(error => {
+                        console.error(error)
+                    })
+                    })
+                })
+            }else{
+                 axios.post('/api/borrowing/uploadHistory',{date:date})
+                    .then(function (res) {
+                        console.log(res.data);
+                        axios.get('/history/'+res.data+'.csv', { responseType: 'blob' })
+                    .then(({ data }) => {
+                        let blob = new Blob([data], { type: 'text/csv;charset=utf-8;' })
+                        let link = document.createElement('a')
+                        link.href = window.URL.createObjectURL(blob)
+                        link.download = 'history.csv'
+                        link.click()
+                    .catch(error => {
+                        console.error(error)
+                    })
+                    })
             })
-            })
-            })
+            }
+            
         }
     }
 };

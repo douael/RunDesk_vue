@@ -216,7 +216,7 @@ final class ApiBorrowingController extends AbstractController
     //    var_dump($borrowings);
        $filename = "history".uniqid();
     $chemin_url = $chemin .'/'. $filename .".csv";
-     $firstline = array('id','date start','date end','date restitution','employee','material','serial Number');
+     $firstline = array('id','Date de debut','Date de fin','Date de restitution','Nom de l\'employee','Nom du materiel','Numero de serie');
     $fp = fopen($chemin_url, 'w');
     fputcsv($fp,$firstline);
      foreach ($borrowings as $fields) {
