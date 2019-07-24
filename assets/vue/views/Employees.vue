@@ -128,7 +128,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <div v-for="employee in employees">
-<div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+employee.id">
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+employee.id">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">

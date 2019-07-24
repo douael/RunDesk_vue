@@ -92,11 +92,8 @@
                 </td> -->
 
                 <td>
-                    <button v-if="material.available==1" type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(material.id)">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(material.id)">
                         <i class="fa fa-edit"></i> Modifier
-                    </button>
-                    <button v-else type="button" class="btn btn-warning" disabled>
-                        <i class="fa fa-warning"></i> Material Reservé
                     </button>
                 </td>
                 <td>
@@ -111,7 +108,7 @@
     </table>
 </div>
 <div v-for="material in materials">
- <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+material.id">
+ <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+material.id">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -128,7 +125,7 @@
                     </div>
                     <div class="col-6">
                       <select class="form-control" name="category" v-model="material.category" >
-                          <option v-for="Othercategory in categorys" v-bind:value="Othercategory.id" >
+                          <option v-for="Othercategory in categorysC" v-bind:value="Othercategory.id" >
                               {{ Othercategory.name }}
                           </option>
 
@@ -201,7 +198,7 @@ id="import">
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
     <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal"
     v-on:click="submitForm()">
     Importer
@@ -276,6 +273,9 @@ export default {
                 options.push(array[i]['id']+' - '+array[i]['name']);
             }
             return options;
+        },
+        categorysC () {
+            return this.$store.getters['category/categorys'];
         },
         canCreateMaterial () {
             return this.$store.getters['security/hasRole']('ROLE_FOO');

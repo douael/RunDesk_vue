@@ -42,14 +42,14 @@
       <div class="col-6 col-sm-3 placeholder">
         <b-card title="Emprunts" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
           <b-card-text>
-            Emprunts realisés
+            Emprunts en cours
           </b-card-text>
 
-          <b-progress :max="10" height="2rem">
-            <b-progress-bar :value="10" variant="info">
-             <strong> {{ borrowings.length }}</strong>
+          <b-progress :max="borrowings.length" height="2rem">
+            <b-progress-bar :value="materials.length - countAvailableMaterials" variant="info">
             </b-progress-bar>
           </b-progress>
+             <strong>{{ materials.length - countAvailableMaterials }} / {{ borrowings.length }}</strong>
           <br/>
 
           <b-button href="/borrowings" class="purple-bg">Voir plus</b-button>

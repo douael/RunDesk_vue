@@ -141,7 +141,7 @@
 </div>
 
  
- <div class="modal fade bg-dark"   v-for="borrowing in borrowings" tabindex="-1" role="dialog" aria-hidden="true" :id="'validate-borrowing'+borrowing.id">
+ <div class="modal fade"   v-for="borrowing in borrowings" tabindex="-1" role="dialog" aria-hidden="true" :id="'validate-borrowing'+borrowing.id">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">

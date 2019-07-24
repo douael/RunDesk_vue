@@ -91,7 +91,7 @@
             </div>
             <div v-for="category in categorys">
 
-                <div class="modal fade bg-dark" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+category.id">
+                <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+category.id">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -108,11 +108,12 @@
                                     <div class="col-6">
                                         <label>Type</label>
                                         <select class="form-control" name="type" v-model="category.type" >
-                                          <option v-for="Othertype in types" v-bind:value="Othertype.id" >
+                                          <option v-for="Othertype in typesC" v-bind:value="Othertype.id" >
                                               {{ Othertype.name }}
                                           </option>
                                           
                                       </select>
+
                                   </div>
                               </div>
                           </div>
@@ -222,6 +223,9 @@ export default {
                 options.push(array[i]['id']+' - '+array[i]['name']);
             }
             return options;
+        },
+        typesC () {
+           return  this.$store.getters['type/types'];
         }
     },
     methods: {
