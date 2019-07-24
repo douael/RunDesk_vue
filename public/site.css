@@ -494,3 +494,22 @@
 .search_active_go_btn {
     right: 10px !important;
 }
+
+/*Pagination*/
+
+.current {
+    color: red; 
+}
+
+ul {
+    text-align: center;
+    padding: 0; 
+    list-style-type: none; 
+}
+
+li {
+    display: inline;
+    margin: 5px 5px;
+}
+
+
