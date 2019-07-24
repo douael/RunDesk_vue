@@ -1,6 +1,9 @@
-Modification de la catégorie : <strong>testttt</strong> # 2019-07-24 08:45:50
-Création Categorie : <strong>test</strong> # 2019-07-24 08:46:04
-Modification de la catégorie : <strong>test</strong> # 2019-07-24 08:46:10
-Suppression de la catégorie : <strong>test</strong> # 2019-07-24 08:46:22
-Modification du materiel : <strong>ER</strong> # 2019-07-24 08:47:55
-Création de la demande du material : <strong>Test</strong> pour l'employee : <strong>employee1 employee1</strong> # 2019-07-24 08:50:08
+Modification de la catégorie :>testtt> # 2019-07-24 08:45:50
+Création Categorie :>tes> # 2019-07-24 08:46:04
+Modification de la catégorie test # 2019-07-24 08:46:10
+Suppression de la catégorie :test # 2019-07-24 08:46:22
+Modification du materiel : ER # 2019-07-24 08:47:55
+Création de la demande du material : Test pour l'employee : employee1 employee1 # 2019-07-24 08:50:08
+Connexion de l'utilisateur : foo # 2019-07-24 11:17:23
+Materiel de nouveau disponible : material2 # 2019-07-24 11:18:53
+Restitution du material : material2 # 2019-07-24 11:18:53
