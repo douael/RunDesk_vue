@@ -68,6 +68,18 @@
         </div>
 
         <div v-else class="table-responsive">
+                           <!-- Pagination -->
+    <nav aria-label="Page navigation example">
+
+  <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#" @click="prevPage()">Précedent</a></li>
+        <li v-for="pageNumber in totalPages" class="page-item">
+
+            <a class="page-link" href="#" @click="setPage(pageNumber-1)"> {{ pageNumber }} </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#" @click="nextPage()">Suivant</a></li>
+    </ul> 
+    </nav>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -99,15 +111,7 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- Pagination -->
-            <ul> 
-                <li><a href="#" @click="prevPage()"><</a></li>
-                <li v-for="pageNumber in totalPages">
 
-                    <a href="#" @click="setPage(pageNumber-1)"> {{ pageNumber }} </a>
-                </li>
-                <li><a href="#" @click="nextPage()">></a></li>
-            </ul> 
         </div>
         <div v-for="material in materials">
             <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+material.id">

@@ -94,14 +94,25 @@
 
 
             <div class="input-group" style="    margin-left: 50%;">
-                <form class="form-inline">
-                    <input type="number"  placeholder="30 jours par défaut" name="date" class="form-control" v-model="date">
-                    <button  @click="uploadHistory(date)" type="button" class="btn btn-info" ><i class="fa fa-download"></i> Telecharger un recapitulatif </button>
+                <form >
+                    <input type="number"  placeholder="30 jours par défaut" min='1' max='365' name="date" class="input-md form-control" v-model="date" style="    width: 82% !important;">
+                    <button  @click="uploadHistory(date)" :disabled="date>365 || date<1 " type="button" class="btn btn-info" ><i class="fa fa-download"></i> Telecharger un recapitulatif </button>
                 </form>
             </div>
         </form>
     </div>
+    <!-- Pagination -->
+    <nav aria-label="Page navigation example">
 
+  <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#" @click="prevPage()">Précedent</a></li>
+        <li v-for="pageNumber in totalPages" class="page-item">
+
+            <a class="page-link" href="#" @click="setPage(pageNumber-1)"> {{ pageNumber }} </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#" @click="nextPage()">Suivant</a></li>
+    </ul> 
+    </nav>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -133,15 +144,7 @@
         </tbody>
 
     </table>
-    <!-- Pagination -->
-    <ul> 
-        <li><a href="#" @click="prevPage()"><</a></li>
-        <li v-for="pageNumber in totalPages">
 
-            <a href="#" @click="setPage(pageNumber-1)"> {{ pageNumber }} </a>
-        </li>
-        <li><a href="#" @click="nextPage()">></a></li>
-    </ul> 
 </div>
 
 
