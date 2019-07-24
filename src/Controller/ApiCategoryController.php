@@ -56,6 +56,8 @@ private $em;
             throw new BadRequestHttpException('name cannot be empty');
         }
         $type = $request->request->get('type');
+        
+        $type =explode(" - ",$type);
         // $quantity = $request->request->get('quantity');
         $categoryEntity = $this->categoryService->createCategory($name,$type);
         $data = $this->serializer->serialize($categoryEntity, 'json');

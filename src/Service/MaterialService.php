@@ -36,7 +36,7 @@ final class MaterialService extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $category = $this->em->getRepository(Category::class)->find($category['id']);
+        $category = $this->em->getRepository(Category::class)->find($category[0]);
         $materialEntity = new Material();
         $materialEntity->setName($name);
         $materialEntity->setIsActive($isActive);

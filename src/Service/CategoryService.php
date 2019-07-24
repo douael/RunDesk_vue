@@ -36,7 +36,7 @@ final class CategoryService extends AbstractController
         $categoryEntity = new Category();
         $categoryEntity->setName($name);
 
-        $type = $this->em->getRepository(Type::class)->find($type['id']);
+        $type = $this->em->getRepository(Type::class)->find($type[0]);
         $categoryEntity->setType($type);
 
         $this->em->persist($categoryEntity);

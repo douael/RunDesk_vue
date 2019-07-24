@@ -14,15 +14,12 @@
                         </div>
                         <div class="col-6">
                             <label :for="type" class="mr-2">{{ labels.type }}</label>
-                            <select class="form-control" name="type" v-model="type">
-                                <option v-for="type in types" v-bind:value="type">
-                                    {{ type.name }}
-                                </option>
-                            </select>
+                            
+                            <v-select :options="types" v-model="type"></v-select>
                         </div>
 
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="createCategory()" :disabled="name.length === 0 || isLoading || type.length == 0"type="button" class="btn btn-primary">Créer</button>
+                            <button @click="createCategory()" :disabled="name.length === 0 || isLoading || type.length == 0" type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </div>
@@ -165,6 +162,9 @@
 import Category from '../components/Category';
 import ErrorMessage from '../components/ErrorMessage';
 
+import vSelect from 'vue-select'
+ 
+Vue.component('v-select', vSelect)
 export default {
     name: 'categorys',
     components: {
@@ -216,7 +216,12 @@ export default {
             return this.$store.getters['security/hasRole']('ROLE_FOO');
         },
         types () {
-            return this.$store.getters['type/types'];
+            var array =  this.$store.getters['type/types'];
+            var options = [];
+            for(var i = 0; i < array.length; ++i){
+                options.push(array[i]['id']+' - '+array[i]['name']);
+            }
+            return options;
         }
     },
     methods: {

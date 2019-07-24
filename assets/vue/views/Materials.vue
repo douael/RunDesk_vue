@@ -19,11 +19,8 @@
                         </div>
                         <div class="col-12">
                             <label :for="category" class="mr-2">{{ labels.category }}</label>
-                            <select class="form-control" name="category" v-model="category" >
-                                <option v-for="category in categorys" v-bind:value="category">
-                                    {{ category.name }}
-                                </option>
-                            </select>
+                            
+                            <v-select :options="categorys" v-model="category"></v-select>
                         </div>
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
                             <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Créer</button>
@@ -80,7 +77,7 @@
                   <th>Catégorie</th>
                   <!-- <th>Supprimer</th> -->
                   <th>Modifier</th>
-                  <th>Changer de statut</th>
+                  <th>Reservé</th>
               </tr>
           </thead>
           <tbody >
@@ -104,9 +101,8 @@
                 </td>
                 <td>
                     <form >
-                        <button type="button" class="btn btn-warning" v-if="!material.isActive" @click="activateMaterial(material.id)">Inactif</button>
-                        <button type="button" class="btn btn-success" v-else  @click="unactivateMaterial(material.id)">Actif</button>
-                        <input type="hidden" id="id" name="id" class="form-control" :value="material.id">
+                        <button type="button" class="btn btn-warning" v-if="!material.available" disabled>Reservé</button>
+                        <button type="button" class="btn btn-success" v-else disabled>Dans le stock</button>
 
                     </form>
                 </td>                
@@ -221,7 +217,9 @@ id="import">
 <script>
 import ErrorMessage from '../components/ErrorMessage';
 import axios from 'axios';
-
+import vSelect from 'vue-select'
+ 
+Vue.component('v-select', vSelect)
 export default {
     name: 'materials',
     components: {
@@ -272,7 +270,12 @@ export default {
         },
 
         categorys () {
-            return this.$store.getters['category/categorys'];
+            var array= this.$store.getters['category/categorys'];
+            var options = [];
+            for(var i = 0; i < array.length; ++i){
+                options.push(array[i]['id']+' - '+array[i]['name']);
+            }
+            return options;
         },
         canCreateMaterial () {
             return this.$store.getters['security/hasRole']('ROLE_FOO');

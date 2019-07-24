@@ -53,6 +53,8 @@ final class ApiMaterialController extends AbstractController
         }
         $isActive = $request->request->get('isActive');
         $category = $request->request->get('category');
+        
+        $category =explode(" - ",$category);
         $serialNumber = $request->request->get('serialNumber');
         $materialEntity = $this->materialService->createMaterial($name,$isActive,$serialNumber, $category);
         $data = $this->serializer->serialize($materialEntity, 'json');
