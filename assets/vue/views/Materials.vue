@@ -103,8 +103,13 @@
                         </td>
                         <td>
                             <form >
-                                <button type="button" class="btn btn-warning" v-if="!material.available" disabled>Reservé</button>
-                                <button type="button" class="btn btn-success" v-else disabled>Dans le stock</button>
+                                <button type="button" class="btn btn-warning" v-if="!material.available && material.isActive" disabled>Reservé</button>
+                                <div v-else-if="material.available && material.isActive" >
+                                     <button type="button" class="btn btn-success" disabled>Dans le stock</button>
+                                     <button type="button" class="btn btn-warning" @click="unactivateMaterial(material.id)">Enlever du stock</button>
+
+                                    </div>
+                                <button type="button" class="btn btn-error" v-else @click="activateMaterial(material.id)">Remettre dans le stock</button>
 
                             </form>
                         </td>                

@@ -17,3 +17,10 @@ Création de Materiel : <strong>Stringtough</strong> # 2019-07-24 13:40:06
 Création de Materiel : <strong>Keylex</strong> # 2019-07-24 13:40:06
 Création de Materiel : <strong>Daltfresh</strong> # 2019-07-24 13:40:06
 Création de Materiel : <strong>Latlux</strong> # 2019-07-24 13:40:06
+Changement de statut : <strong>Stringtough</strong> # 2019-07-24 14:26:11
+Changement de statut : <strong>Stringtough</strong> # 2019-07-24 14:27:00
+Création de Materiel : <strong>Cookley</strong> # 2019-07-24 14:40:33
+Création de Materiel : <strong>Stringtough</strong> # 2019-07-24 14:40:33
+Création de Materiel : <strong>Keylex</strong> # 2019-07-24 14:40:33
+Création de Materiel : <strong>Daltfresh</strong> # 2019-07-24 14:40:33
+Création de Materiel : <strong>Latlux</strong> # 2019-07-24 14:40:33

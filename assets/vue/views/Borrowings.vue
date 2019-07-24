@@ -259,7 +259,7 @@
                 var array = this.$store.getters['material/materials'];
                 var options = [];
                 for(var i = 0; i < array.length; ++i){
-                    if(array[i]['available'] == true)
+                    if(array[i]['available'] == true && array[i]['isActive'] == true)
                         options.push(array[i]['id']+' - '+array[i]['name']);
                 }
                 return options;
