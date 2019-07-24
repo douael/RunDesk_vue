@@ -78,7 +78,7 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <tr v-for="category in filteredList" v-if="category.id!=0">
+                    <tr v-for="category in filteredList" v-if="category.id!=1">
                         <td>{{ category.name }}</td>
                         <td>{{ category.type.name }}</td>
                         <td v-if='category.count==1'>{{ category.count }} matériel</td>
