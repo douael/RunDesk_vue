@@ -95,7 +95,7 @@
     <div v-if="!hasLogs && !isLoading" class="row col">
         Pas d'actions enregistrées !
     </div>
-     <dashboard ></dashboard>
+     <dashboard></dashboard>
 
   </div>
 </template>
