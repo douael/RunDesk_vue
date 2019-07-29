@@ -57,7 +57,7 @@ final class DashboardService extends AbstractController
                     );
                 }
             }
-            $i++:
+            $i++;
             
         }
         return $text;
