@@ -11,7 +11,7 @@
 
     <b-table striped hover
       id="my-table"
-      :items="dashboards.slice(0, 20)"
+      :items="dashboards.slice(0, 20).reverse()"
       :per-page="perPage"
       :current-page="currentPage"
       small
