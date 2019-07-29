@@ -25,7 +25,7 @@
       <div class="col-6 col-sm-3 placeholder">
         <b-card title="Matériels" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
           <b-card-text>
-            Matériels disponible
+            Matériels disponible dans le stock
           </b-card-text>
 
           <b-progress :max="materials.length" height="2rem">
