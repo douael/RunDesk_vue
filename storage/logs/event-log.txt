@@ -26,3 +26,5 @@ Création de Materiel : <strong>Stringtough</strong> # 2019-07-24 13:40:06
 Création de Materiel : <strong>Keylex</strong> # 2019-07-24 13:40:06
 Création de Materiel : <strong>Daltfresh</strong> # 2019-07-24 13:40:06
 Création de Materiel : <strong>Latlux</strong> # 2019-07-24 13:40:06
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-29 08:00:40
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-29 09:19:28
