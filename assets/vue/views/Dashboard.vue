@@ -46,10 +46,10 @@
           </b-card-text>
 
           <b-progress :max="borrowings.length" height="2rem">
-            <b-progress-bar :value="materials.length - countAvailableMaterialsAndActive" variant="info">
+            <b-progress-bar :value="materials.length - countAvailableMaterials" variant="info">
             </b-progress-bar>
           </b-progress>
-             <strong>{{ materials.length - countAvailableMaterialsAndActive }} / {{ borrowings.length }}</strong>
+             <strong>{{ materials.length - countAvailableMaterials }} / {{ borrowings.length }}</strong>
           <br/>
 
           <b-button href="/borrowings" class="purple-bg">Voir plus</b-button>
