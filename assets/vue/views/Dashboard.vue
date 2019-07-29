@@ -46,7 +46,7 @@
           </b-card-text>
 
           <b-progress :max="borrowings.length" height="2rem">
-            <b-progress-bar :value="materials.length - countAvailableMaterials" variant="info">
+            <b-progress-bar :value="materials.length - countAvailableMaterialsAndActive" variant="info">
             </b-progress-bar>
           </b-progress>
              <strong>{{ materials.length - countAvailableMaterials }} / {{ borrowings.length }}</strong>
@@ -154,6 +154,15 @@ export default {
       return this.$store.getters['dashboard/dashboards'];
     },
     countAvailableMaterials(){
+      var array = this.$store.getters['material/materials'];
+      var count = 0;
+      for(var i = 0; i < array.length; ++i){
+          if(array[i]['available'] == true )
+              count++;
+      }
+      return count;
+    },
+    countAvailableMaterialsAndActive(){
       var array = this.$store.getters['material/materials'];
       var count = 0;
       for(var i = 0; i < array.length; ++i){
