@@ -42,16 +42,23 @@ final class DashboardService extends AbstractController
         $text = explode("\n", $text);
         $i = 0;
         $len = count($text);
+        $i = 0;
+        $len = count($text);
+
         foreach ($text as &$line) {
-            
-            if( next( $text )){
-                $line = explode("#", $line);
-            //var_dump($line);
-                $line = array(
-                    'Actions'=>$line[0],
-                    'Date'=>$line[1]
-                );
+            if ($i != 0) {
+             {
+                if( previous( $text )){
+                    $line = explode("#", $line);
+                //var_dump($line);
+                    $line = array(
+                        'Actions'=>$line[0],
+                        'Date'=>$line[1]
+                    );
+                }
             }
+            $i++:
+            
         }
         return $text;
     }
