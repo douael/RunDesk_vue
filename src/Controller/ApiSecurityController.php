@@ -37,7 +37,7 @@ final class ApiSecurityController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $this->writeLog("Connexion de l'utilisateur : <strong>".$user->getLogin()."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Connexion de l'utilisateur : ".$user->getLogin()." # ".date('Y-m-d H:i:s'));
         $response = new JsonResponse($user->getRoles());
         return $response;
     }

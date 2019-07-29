@@ -107,7 +107,7 @@ private $em;
        $em = $this->getDoctrine()->getManager();
        $types = $typeRepository->findById($id);
        foreach ($types as $type) {
-            $this->writeLog("Suppression du type : <strong>".$type->getName()."</strong> # ".date('Y-m-d H:i:s'));
+            $this->writeLog("Suppression du type : ".$type->getName()." # ".date('Y-m-d H:i:s'));
             $em->remove($type);
         }
 

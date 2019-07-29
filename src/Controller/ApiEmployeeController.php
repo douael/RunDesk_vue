@@ -117,7 +117,7 @@ final class ApiEmployeeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $employees = $employeeRepository->findById($id);
         foreach ($employees as $employee) {
-            $this->writeLog("Suppression de l'employe : <strong>".$employee->getFirstname()." ".$employee->getLastname()."</strong> # ".date('Y-m-d H:i:s'));
+            $this->writeLog("Suppression de l'employe : ".$employee->getFirstname()." ".$employee->getLastname()." # ".date('Y-m-d H:i:s'));
             $em->remove($employee);
         }
 

@@ -180,7 +180,7 @@ final class ApiBorrowingController extends AbstractController
        $em = $this->getDoctrine()->getManager();
        $borrowings = $borrowingRepository->findById($id);
        foreach ($borrowings as $borrowing) {
-        $this->writeLog("Suppression de l'emprunt de material : <strong>".$borrowing->getMaterial()->getName()."</strong> pour l'employee : <strong>".$borrowing->getEmployee()->getFirstName()." ".$borrowing->getEmployee()->getFirstName()."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Suppression de l'emprunt de material : ".$borrowing->getMaterial()->getName()." pour l'employee : ".$borrowing->getEmployee()->getFirstName()." ".$borrowing->getEmployee()->getFirstName()." # ".date('Y-m-d H:i:s'));
         $em->remove($borrowing);
         }
 

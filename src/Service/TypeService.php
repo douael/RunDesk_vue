@@ -33,7 +33,7 @@ final class TypeService extends AbstractController
         $typeEntity = new Type();
         $typeEntity->setName($name);
         $this->em->persist($typeEntity);
-        $this->writeLog("Création du type : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création du type : ".$name." # ".date('Y-m-d H:i:s'));
         $this->em->flush();
         return $typeEntity;
     }
@@ -52,7 +52,7 @@ final class TypeService extends AbstractController
 
         $type->setName($name);
         // $type->setQuantity($quantity);
-        $this->writeLog("Modification du type : <strong>".$name."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Modification du type : ".$name." # ".date('Y-m-d H:i:s'));
         $this->em->flush();
 
         return $type;
