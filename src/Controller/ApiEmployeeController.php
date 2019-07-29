@@ -146,6 +146,6 @@ final class ApiEmployeeController extends AbstractController
         }
         $chemin_url = $chemin . "/event-log.txt";
         $handle = fopen($chemin_url, "a+");
-        fputs($handle, $phrase."\n");
+        fputs($handle, "\n".$phrase);
     }
 }
