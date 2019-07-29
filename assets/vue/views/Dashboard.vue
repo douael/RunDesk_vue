@@ -29,11 +29,11 @@
           </b-card-text>
 
           <b-progress :max="materials.length" height="2rem">
-            <b-progress-bar :value="countAvailableMaterials" variant="info">
+            <b-progress-bar :value="countAvailableMaterialsAndActive" variant="info">
               
             </b-progress-bar>
           </b-progress>
-          <strong>{{ countAvailableMaterials }} / {{ materials.length }}</strong>
+          <strong>{{ countAvailableMaterialsAndActive }} / {{ materials.length }}</strong>
           <br/>
 
           <b-button href="/materials" class="purple-bg">Voir plus</b-button>
