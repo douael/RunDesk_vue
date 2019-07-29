@@ -243,7 +243,7 @@ final class ApiBorrowingController extends AbstractController
     }
     
     public function writeLog($phrase) {
-        $chemin = $this->getParameter('logs_directory');
+        $chemin = $this->getParameter('ourlogs_directory');
         if (!is_dir($chemin)) {
             mkdir($chemin, 0775, true);
         }

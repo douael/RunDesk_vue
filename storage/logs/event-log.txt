@@ -28,3 +28,7 @@ Création de Materiel : <strong>Daltfresh</strong> # 2019-07-24 13:40:06
 Création de Materiel : <strong>Latlux</strong> # 2019-07-24 13:40:06
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-29 08:00:40
 Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-29 09:19:28
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-29 15:41:28
+Changement de statut : <strong>Cookley</strong> # 2019-07-29 15:41:45
+Changement de statut : <strong>Cookley</strong> # 2019-07-29 15:41:50
+Connexion de l'utilisateur : <strong>foo</strong> # 2019-07-29 15:43:03

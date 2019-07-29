@@ -33,7 +33,7 @@ final class DashboardService extends AbstractController
     }
 
     public function readLog() {
-        $chemin = $this->getParameter('logs_directory');
+        $chemin = $this->getParameter('ourlogs_directory');
         $chemin_url = $chemin . "/event-log.txt";
         $myfile = fopen($chemin_url, "r") or die("Unable to open file!");
         $text = fread($myfile,filesize($chemin_url));
