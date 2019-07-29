@@ -157,7 +157,7 @@ export default {
       var array = this.$store.getters['material/materials'];
       var count = 0;
       for(var i = 0; i < array.length; ++i){
-          if(array[i]['available'] == true)
+          if(array[i]['available'] == true && array[i]['isActive'] == true)
               count++;
       }
       return count;
