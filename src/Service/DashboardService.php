@@ -38,27 +38,19 @@ final class DashboardService extends AbstractController
         $myfile = fopen($chemin_url, "r") or die("Unable to open file!");
         $text = fread($myfile,filesize($chemin_url));
         fclose($myfile);
-        $text = array_reverse($text);
         $text = explode("\n", $text);
         $i = 0;
         $len = count($text);
-        $i = 0;
-        $len = count($text);
-
         foreach ($text as &$line) {
-            if ($i != 0) {
-             {
-                if( previous( $text )){
-                    $line = explode("#", $line);
-                //var_dump($line);
-                    $line = array(
-                        'Actions'=>$line[0],
-                        'Date'=>$line[1]
-                    );
-                }
-            }
-            $i++;
             
+            if( next( $text )){
+                $line = explode("#", $line);
+            //var_dump($line);
+                $line = array(
+                    'Actions'=>$line[0],
+                    'Date'=>$line[1]
+                );
+            }
         }
         return $text;
     }
