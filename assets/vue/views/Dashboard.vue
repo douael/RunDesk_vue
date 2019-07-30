@@ -20,7 +20,9 @@
           <small>*La catégorie Default est comprise</small>
 
           <br/>
-          <b-button href="/categorys" class="purple-bg">Voir plus</b-button>
+          <b-button  class="purple-bg"><router-link to="/categorys">
+                        <a >Voir plus</a>
+                    </router-link></b-button>
         </b-card>
       </div>
 
@@ -37,9 +39,6 @@
           </b-progress>
           <strong>{{ countAvailableMaterialsAndActive }} / {{ materials.length }}</strong>
           <br/>
-<router-link class="nav-item" tag="li" to="/materials" active-class="active">
-                        <a class="nav-link">Matériels</a>
-                    </router-link>
           <b-button class="purple-bg"><router-link to="/materials">
                         <a >Voir plus</a>
                     </router-link></b-button>
@@ -58,7 +57,9 @@
              <strong>{{ materials.length - countAvailableMaterials }} / {{ borrowings.length }}</strong>
           <br/>
 
-          <b-button href="/borrowings" class="purple-bg">Voir plus</b-button>
+          <b-buttonclass="purple-bg"><router-link to="/borrowings">
+                        <a >Voir plus</a>
+                    </router-link></b-button>
         </b-card>
       </div>
       <div class="col-6 col-sm-3 placeholder">
@@ -74,7 +75,9 @@
           </b-progress>
           <br/>
 
-          <b-button href="/employees" class="purple-bg">Voir plus</b-button>
+          <b-button  class="purple-bg"><router-link to="/employees">
+                        <a >Voir plus</a>
+                    </router-link></b-button>
         </b-card>
       </div>
     </section>
