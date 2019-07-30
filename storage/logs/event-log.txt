@@ -22,3 +22,9 @@ Modification de la catégorie :test # 2019-07-24 08:46:10
 Suppression de la catégorie :test # 2019-07-24 08:46:22
 Modification du materiel : ER # 2019-07-24 08:47:55
 Création de la demande du material : Test pour l'employee : employee1 employee1 # 2019-07-24 08:50:09
+Changement de statut : Latlux # 2019-07-29 17:35:06
+Changement de statut : Daltfresh # 2019-07-29 17:35:18
+Changement de statut : Latlux # 2019-07-29 17:58:46
+Changement de statut : Latlux # 2019-07-29 18:02:20
+Changement de statut : Daltfresh # 2019-07-29 18:02:23
+Changement de statut : Stringtough # 2019-07-29 18:02:27
