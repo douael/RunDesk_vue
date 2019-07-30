@@ -140,7 +140,7 @@
                         </div>
                                 <div class="col-12">
                             <label :for="material.category" class="mr-2">{{ labels.category }} : {{ material.category.name }}</label>
-                                    <select class="form-control" name="category" v-model="material.category" required>
+                                    <select class="form-control" name="category" v-model="material.category" v-validate="{ required: true}">
                                         <option v-for="Othercategory in categorysC" v-bind:value="Othercategory.id" >
                                             {{ Othercategory.name }}
                                         </option>
