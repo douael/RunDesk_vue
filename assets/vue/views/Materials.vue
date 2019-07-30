@@ -23,7 +23,7 @@
                             <v-select :options="categorys" v-model="category"></v-select>
                         </div>
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Créer</button>
+                            <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0 || category.length == 0" type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </form>
@@ -122,20 +122,25 @@
             <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+material.id">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
+                        <form>
                         <div class="modal-header">
                             <h4 class="modal-title" >Modifier</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
                         </div>
                         <div class="modal-body">
                             <div class="col-12">
-                                <div class="col-6">
+                                <div class="col-12">
+                            <label :for="material.name" class="mr-2">{{ labels.name }}</label>
+                                    
                                     <input v-model="material.name" type="text" class="form-control">
                                 </div>
-                                <div class="col-6">
-                                    <input v-model="material.serialNumber" type="text" class="form-control">
-                                </div>
-                                <div class="col-6">
-                                    <select class="form-control" name="category" v-model="material.category" >
+                                <div class="col-12">
+                            <label :for="material.serialNumber" class="mr-2">{{ labels.serialNumber }}</label>
+                            <input v-model="material.serialNumber" type="text" class="form-control">
+                        </div>
+                                <div class="col-12">
+                            <label :for="material.category" class="mr-2">{{ labels.category }} : {{ material.category.name }}</label>
+                                    <select class="form-control" name="category" v-model="material.category" required>
                                         <option v-for="Othercategory in categorysC" v-bind:value="Othercategory.id" >
                                             {{ Othercategory.name }}
                                         </option>
@@ -147,12 +152,13 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-                            <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
-                            @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)">
+                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
+                            <button type="submit" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
+                            @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)" :disabled="material.name.length === 0 || material.serialNumber.length == 0 || material.category.length == 0">
                             Modifier
                         </button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -162,7 +168,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" >Suppression de Materiel</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
                     </div>
                     <div class="modal-body">
                         Êtes-vous sûr de vouloir supprimer ce matériel ? 
@@ -173,7 +179,7 @@
                         </ul>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
                         <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" @click.prevent="deleteMaterial(material.id)">
                             Supprimer
                         </button>
@@ -187,7 +193,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" >Importer du matériels en CSV</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
                     </div>
                     <div class="modal-body">
                         Format du csv :<br><br>
@@ -202,7 +208,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
                         <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" v-on:click="submitForm()">
                             Importer
                         </button>

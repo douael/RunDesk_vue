@@ -159,7 +159,7 @@ final class ApiMaterialController extends AbstractController
        $em = $this->getDoctrine()->getManager();
        $materials = $materialRepository->findById($id);
        foreach ($materials as $material) {
-            $this->writeLog("Suppression du matériel : <strong>".$material->getName()."</strong> # ".date('Y-m-d H:i:s'));
+            $this->writeLog("Suppression du matériel : ".$material->getName()." # ".date('Y-m-d H:i:s'));
             $em->remove($material);
         }
 
@@ -182,12 +182,12 @@ final class ApiMaterialController extends AbstractController
     }
 
     public function writeLog($phrase) {
-        $chemin = $this->getParameter('logs_directory');
+        $chemin = $this->getParameter('ourlogs_directory');
         if (!is_dir($chemin)) {
             mkdir($chemin, 0775, true);
         }
         $chemin_url = $chemin . "/event-log.txt";
         $handle = fopen($chemin_url, "a+");
-        fputs($handle, $phrase."\n");
+        fputs($handle, "\n".$phrase);
     }
 }

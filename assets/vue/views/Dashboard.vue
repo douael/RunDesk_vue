@@ -9,7 +9,7 @@
       <div class="col-6 col-sm-3 placeholder">
         <b-card title="Catégories" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
           <b-card-text>
-            Nombres de Catégories
+            Nombres de Catégories*
           </b-card-text>
 
           <b-progress :max="10" height="2rem">
@@ -17,26 +17,31 @@
               <strong>{{ categorys.length }}</strong>
             </b-progress-bar>
           </b-progress>
+          <small>*La catégorie Default est comprise</small>
+
           <br/>
-          <b-button href="/categorys" class="purple-bg">Voir plus</b-button>
+          <b-button  class="purple-bg"><router-link to="/categorys">
+                        <a >Voir plus</a>
+                    </router-link></b-button>
         </b-card>
       </div>
 
       <div class="col-6 col-sm-3 placeholder">
         <b-card title="Matériels" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
           <b-card-text>
-            Matériels disponible
+            Matériels disponible dans le stock
           </b-card-text>
 
           <b-progress :max="materials.length" height="2rem">
-            <b-progress-bar :value="countAvailableMaterials" variant="info">
+            <b-progress-bar :value="countAvailableMaterialsAndActive" variant="info">
               
             </b-progress-bar>
           </b-progress>
-          <strong>{{ countAvailableMaterials }} / {{ materials.length }}</strong>
+          <strong>{{ countAvailableMaterialsAndActive }} / {{ materials.length }}</strong>
           <br/>
-
-          <b-button href="/materials" class="purple-bg">Voir plus</b-button>
+          <b-button class="purple-bg"><router-link to="/materials">
+                        <a >Voir plus</a>
+                    </router-link></b-button>
         </b-card>
       </div>
       <div class="col-6 col-sm-3 placeholder">
@@ -52,7 +57,9 @@
              <strong>{{ materials.length - countAvailableMaterials }} / {{ borrowings.length }}</strong>
           <br/>
 
-          <b-button href="/borrowings" class="purple-bg">Voir plus</b-button>
+          <b-button class="purple-bg"><router-link to="/borrowings">
+                        <a >Voir plus</a>
+                    </router-link></b-button>
         </b-card>
       </div>
       <div class="col-6 col-sm-3 placeholder">
@@ -68,7 +75,9 @@
           </b-progress>
           <br/>
 
-          <b-button href="/employees" class="purple-bg">Voir plus</b-button>
+          <b-button  class="purple-bg"><router-link to="/employees">
+                        <a >Voir plus</a>
+                    </router-link></b-button>
         </b-card>
       </div>
     </section>
@@ -157,7 +166,16 @@ export default {
       var array = this.$store.getters['material/materials'];
       var count = 0;
       for(var i = 0; i < array.length; ++i){
-          if(array[i]['available'] == true)
+          if(array[i]['available'] == true )
+              count++;
+      }
+      return count;
+    },
+    countAvailableMaterialsAndActive(){
+      var array = this.$store.getters['material/materials'];
+      var count = 0;
+      for(var i = 0; i < array.length; ++i){
+          if(array[i]['available'] == true && array[i]['isActive'] == true)
               count++;
       }
       return count;

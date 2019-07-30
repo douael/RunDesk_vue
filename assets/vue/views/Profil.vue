@@ -69,7 +69,7 @@
   </div>
 </div>
 <button type="button" class="btn btn-primary waves-effect waves-light" 
-                            @click="editPassword(myprofil.id,oldPassword,newPassword,confirmPassword)" :disabled="newPassword != confirmPassword">
+                            @click="editPassword(myprofil.id,oldPassword,newPassword,confirmPassword)" :disabled="newPassword != confirmPassword || newPassword.length == 0 || confirmPassword.length == 0">
                             Modifier le mot de passe
                         </button>
         </div>
@@ -80,7 +80,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" >Modifier le mot de passe </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
                     </div>
                     <div class="modal-body">
                         <div class="col-12">
@@ -97,7 +97,7 @@
                             </div></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
                             <button type="button" class="btn btn-primary waves-effect waves-light" 
                             @click="editPassword(myprofil.id,oldPassword,newPassword,confirmPassword)" :disabled="newPassword != confirmPassword">
                             Modifier le mot de passe

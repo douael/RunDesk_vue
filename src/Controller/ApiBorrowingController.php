@@ -180,7 +180,7 @@ final class ApiBorrowingController extends AbstractController
        $em = $this->getDoctrine()->getManager();
        $borrowings = $borrowingRepository->findById($id);
        foreach ($borrowings as $borrowing) {
-        $this->writeLog("Suppression de l'emprunt de material : <strong>".$borrowing->getMaterial()->getName()."</strong> pour l'employee : <strong>".$borrowing->getEmployee()->getFirstName()." ".$borrowing->getEmployee()->getFirstName()."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Suppression de l'emprunt de material : ".$borrowing->getMaterial()->getName()." pour l'employee : ".$borrowing->getEmployee()->getFirstName()." ".$borrowing->getEmployee()->getFirstName()." # ".date('Y-m-d H:i:s'));
         $em->remove($borrowing);
         }
 
@@ -243,13 +243,13 @@ final class ApiBorrowingController extends AbstractController
     }
     
     public function writeLog($phrase) {
-        $chemin = $this->getParameter('logs_directory');
+        $chemin = $this->getParameter('ourlogs_directory');
         if (!is_dir($chemin)) {
             mkdir($chemin, 0775, true);
         }
         $chemin_url = $chemin . "/event-log.txt";
         $handle = fopen($chemin_url, "a+");
-        fputs($handle, $phrase."\n");
+        fputs($handle, "\n".$phrase);
     }
 
 }

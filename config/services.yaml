@@ -6,7 +6,7 @@
 parameters:
     locale: 'en'
     materials_directory: '%kernel.project_dir%/storage/materials'
-    logs_directory: '%kernel.project_dir%/storage/logs'
+    ourlogs_directory: '%kernel.project_dir%/storage/logs'
     history_directory: '%kernel.project_dir%/public/history'
     pdf_directory: '%kernel.project_dir%/public/pdf'
     employees_directory: '%kernel.project_dir%/storage/employees'

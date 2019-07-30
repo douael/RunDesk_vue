@@ -153,7 +153,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" >Valider la restitution</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
             </div>
             <div class="modal-body">
                 Etes-vous sûr de vouloir valider la restitution de l'article suivant ?
@@ -167,7 +167,7 @@
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
                 <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
                 @click.prevent="availableMaterial(borrowing.material.id,borrowing.id)">
                 Valider
@@ -296,6 +296,8 @@
                     borrowing.employee.lastname.toLowerCase().includes(this.search.toLowerCase()) ||
                     borrowing.material.category.name.toLowerCase().includes(this.search.toLowerCase()) ||
                     borrowing.material.name.toLowerCase().includes(this.search.toLowerCase());
+                    borrowing.dateStart.includes(this.search.toLowerCase());
+                    borrowing.dateEnd.includes(this.search.toLowerCase());
                 }).slice(start, end);
             },
 

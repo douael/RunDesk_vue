@@ -24,7 +24,7 @@
 
 
                         <div class="col-12" style="margin-top:10px;">
-                            <button @click="createEmployee()" :disabled="lastname.length === 0 || isLoading" type="button" class="btn btn-primary">Créer</button>
+                            <button @click="createEmployee()" :disabled="lastname.length === 0 || isLoading || firstname.length === 0|| site.length === 0" type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </form>
@@ -93,7 +93,7 @@
                         <td>{{employee.firstname }}</td>
                         <td>{{employee.site }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(employee.id)">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"   @click="openModal(employee.id)">
                                 <i class="fa fa-edit"></i> Modifier
                             </button>
                         </td>                      </tr>
@@ -106,7 +106,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" >Importation CSV des employés</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
                         </div>
                         <div class="modal-body">
                             Format du csv :<br><br>
@@ -120,7 +120,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
                             <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" v-on:click="submitForm()">
                                 Importer
                             </button>
@@ -134,25 +134,28 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title" >Modifier</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
                             </div>
                             <div class="modal-body">
                                 <div class="col-12">
-                                    <div class="col-6">
+                                    <div class="col-12">
+                                        <label class="mr-2"> Nom </label>
                                         <input v-model="employee.lastname" type="text" class="form-control">
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12">
+                                        <label class="mr-2"> Prenom </label>
                                         <input v-model="employee.firstname" type="text" class="form-control">
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12">
+                                        <label class="mr-2"> Site </label>
                                         <input v-model="employee.site" type="text" class="form-control">
                                     </div>
 
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" @click="editEmployee(employee.id,employee.firstname,employee.lastname,employee.site)">
+                                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
+                                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" :disabled="employee.lastname.length === 0 || employee.firstname.length === 0|| employee.site.length === 0"  @click="editEmployee(employee.id,employee.firstname,employee.lastname,employee.site)">
                                     Modifier
                                 </button>
                             </div>
@@ -165,7 +168,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title" >Suppression d'employé</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
                             </div>
                             <div class="modal-body">
                                 Etes -vous sûr de vouloir supprimer cet employé ?
@@ -176,7 +179,7 @@
                                 </ul>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
                                 <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" @click.prevent="deleteEmployee(employee.id)">
                                     Supprimer
                                 </button>

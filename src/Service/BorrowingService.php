@@ -53,7 +53,7 @@ final class BorrowingService extends AbstractController
         $borrowingEntity->setDateEnd($date_end);
 
         $this->em->persist($borrowingEntity);
-        $this->writeLog("Création de la demande du material : <strong>".$material->getName()."</strong> pour l'employee : <strong>".$employee->getFirstName().' '.$employee->getFirstName()."</strong> # ".date('Y-m-d H:i:s'));
+        $this->writeLog("Création de la demande du material : ".$material->getName()." pour l'employee : ".$employee->getFirstName().' '.$employee->getFirstName()." # ".date('Y-m-d H:i:s'));
 
         $this->em->flush();
         return $borrowingEntity;
@@ -114,13 +114,13 @@ final class BorrowingService extends AbstractController
     }
 
     public function writeLog($phrase) {
-        $chemin = $this->getParameter('logs_directory');
+        $chemin = $this->getParameter('ourlogs_directory');
         if (!is_dir($chemin)) {
             mkdir($chemin, 0775, true);
         }
         $chemin_url = $chemin . "/event-log.txt";
         $handle = fopen($chemin_url, "a+");
-        fputs($handle, $phrase."\n");
+        fputs($handle, "\n".$phrase);
     }
     
 }

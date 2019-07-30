@@ -115,7 +115,7 @@ private $em;
        $em = $this->getDoctrine()->getManager();
        $categorys = $categoryRepository->findById($id);
        foreach ($categorys as $category) {
-            $this->writeLog("Suppression de la catégorie : <strong>".$category->getName()."</strong> # ".date('Y-m-d H:i:s'));
+            $this->writeLog("Suppression de la catégorie : ".$category->getName()." # ".date('Y-m-d H:i:s'));
             $em->remove($category);
         }
 
@@ -145,12 +145,12 @@ private $em;
     }
 
     public function writeLog($phrase) {
-        $chemin = $this->getParameter('logs_directory');
+        $chemin = $this->getParameter('ourlogs_directory');
         if (!is_dir($chemin)) {
             mkdir($chemin, 0775, true);
         }
         $chemin_url = $chemin . "/event-log.txt";
         $handle = fopen($chemin_url, "a+");
-        fputs($handle, $phrase."\n");
+        fputs($handle, "\n".$phrase);
     }
 }

@@ -110,14 +110,14 @@
                             </div>
                             <div class="modal-body">
                                 <div class="col-12">
-                                    <div class="col-6">
-                                        <label>Nom</label>
+                                    <div class="col-12">
+                                        <label class="mr-2">Nom</label>
                                         <input v-model="category.name" type="text" class="form-control">
                                     </div>
 
-                                    <div class="col-6">
-                                        <label>Type</label>
-                                        <select class="form-control" name="type" v-model="category.type" >
+                                    <div class="col-12">
+                                        <label class="mr-2">Type : {{ category.type.name }}</label>
+                                        <select class="form-control" name="type" v-model="category.type"  required>
                                             <option v-for="Othertype in typesC" v-bind:value="Othertype.id" >
                                                 {{ Othertype.name }}
                                             </option>
@@ -129,7 +129,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" @click="editCategory(category.id,category.name,category.type)">
+                                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" :disabled="category.name.length === 0 ||  category.type.length == 0" @click="editCategory(category.id,category.name,category.type)">
                                     Modifier
                                 </button>
                             </div>

@@ -20,7 +20,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" >Modifier</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
                     </div>
                     <div class="modal-body">
                         <div class="col-12">
@@ -54,7 +54,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" >Delete Employee</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
             </div>
             <div class="modal-body">
                 Are you sure that you want to delete this employee ?
