@@ -7,7 +7,7 @@
       aria-controls="my-table"
     ></b-pagination>
 
-    <p class="mt-3">Page: {{ currentPage }} / {{ nbrPage }}</p>
+    <p class="mt-3">Page: {{ currentPage }} / {{ Math.ceil(rows / perPage) }}</p>
 
     <b-table striped hover
       id="my-table"
@@ -39,10 +39,6 @@
       dashboards () {
       return this.$store.getters['dashboard/dashboards'].reverse();
     },
-    nbrPage: function () {
-    let number = parseInt(this.rows) / parseInt(this.perPage);
-    return number.ceil();
-    }
     }
   }
 </script>
