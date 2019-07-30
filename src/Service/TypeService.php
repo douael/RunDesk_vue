@@ -71,8 +71,8 @@ final class TypeService extends AbstractController
             mkdir($chemin, 0775, true);
         }
         $chemin_url = $chemin . "/event-log.txt";
-        $handle = fopen($chemin_url, "r+");
-        fwrite($handle, $phrase."\n");
+        $handle = fopen($chemin_url, "a+");
+        fputs($handle, "\n".$phrase);
     }
 
 }
