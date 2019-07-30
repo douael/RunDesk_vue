@@ -139,8 +139,8 @@
                             <input v-model="material.serialNumber" type="text" class="form-control">
                         </div>
                                 <div class="col-12">
-                            <label :for="categoryS" class="mr-2">{{ labels.category }} : {{ material.category.name }}</label>
-                                    <select class="form-control" name="categoryS" v-model="categoryS" >
+                            <label :for="material.category" class="mr-2">{{ labels.category }} : {{ material.category.name }}</label>
+                                    <select class="form-control" name="category" v-model="material.category" required>
                                         <option v-for="Othercategory in categorysC" v-bind:value="Othercategory.id" >
                                             {{ Othercategory.name }}
                                         </option>
@@ -154,7 +154,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
                             <button type="submit" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
-                            @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,categoryS)" :disabled="material.name.length === 0 || material.serialNumber.length == 0 || categoryS.length == 0">
+                            @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)" :disabled="material.name.length === 0 || material.serialNumber.length == 0 || material.category.length == 0">
                             Modifier
                         </button>
                     </div>
@@ -242,7 +242,6 @@
                 serialNumber: '',
                 id: '',
                 category:'',
-                categoryS:'',
                 file: '',
                 labels: {
                     name: 'Nom du matériel',
