@@ -225,11 +225,17 @@
     import axios from 'axios';
     import vSelect from 'vue-select'
 
+    import Vue from 'vue';
+    import VeeValidate from 'vee-validate';
+    import { ValidationProvider } from 'vee-validate';
+    
+    import fr from "vee-validate/dist/locale/fr";
     Vue.component('v-select', vSelect)
     export default {
         name: 'materials',
         components: {
             ErrorMessage,
+            ValidationProvider
         },
         data () {
             return {
