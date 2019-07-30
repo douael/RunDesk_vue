@@ -9,7 +9,8 @@
       <div class="col-6 col-sm-3 placeholder">
         <b-card title="Catégories" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
           <b-card-text>
-            Nombres de Catégories
+            Nombres de Catégories*
+            <small>*Categorie Default compris dans le compte</small>
           </b-card-text>
 
           <b-progress :max="10" height="2rem">
