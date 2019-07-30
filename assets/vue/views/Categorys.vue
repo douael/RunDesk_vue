@@ -117,7 +117,7 @@
 
                                     <div class="col-6">
                                         <label>Type : {{ category.type.name }}</label>
-                                        <select class="form-control" name="type" v-model="typeQ"  required>
+                                        <select class="form-control" name="typeQ" v-model="typeQ"  required>
                                             <option v-for="Othertype in typesC" v-bind:value="Othertype.id" >
                                                 {{ Othertype.name }}
                                             </option>
