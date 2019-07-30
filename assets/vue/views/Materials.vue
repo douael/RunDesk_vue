@@ -242,6 +242,7 @@
                 serialNumber: '',
                 id: '',
                 category:'',
+                categoryS:'',
                 file: '',
                 labels: {
                     name: 'Nom du matériel',

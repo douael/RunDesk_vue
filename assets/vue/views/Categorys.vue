@@ -188,6 +188,7 @@
                 search:'',
                 name: '',
                 type: '',
+                typeQ:'',
                 id: '',
                 labels: {
                     name: 'Nom de la categorie',
