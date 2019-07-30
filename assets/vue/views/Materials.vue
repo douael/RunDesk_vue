@@ -376,9 +376,14 @@
                     $('#delete-material'+id).modal();
                 },
                 editMaterial(id,name,isActive,serialNumber,category){
+                    this.$validator.validate().then(valid => {
+                        
+                if (valid) {
                     let payload = {id: id,name:name, isActive: isActive,serialNumber: serialNumber,category: category};
 
                     this.$store.dispatch('material/updateMaterial', payload);
+                }
+                    });
                 },
                 deleteMaterial (id) {
                     this.$store.dispatch('material/deleteMaterial', id);
