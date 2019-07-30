@@ -37,7 +37,7 @@
         return this.dashboards.length
       },
       dashboards () {
-      return this.$store.getters['dashboard/dashboards'];
+      return this.$store.getters['dashboard/dashboards'].reverse();
     },
     }
   }
