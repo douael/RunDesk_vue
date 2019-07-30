@@ -41,7 +41,7 @@ final class DashboardService extends AbstractController
         $text = explode("\n", $text);
         $i = 0;
         $len = count($text);
-        foreach ($text as &$line) {
+        foreach (array_reverse ($text) as &$line) {
             
             
                 $line = explode("#", $line);
