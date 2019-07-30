@@ -168,7 +168,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" >Suppression de Materiel</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
                     </div>
                     <div class="modal-body">
                         Êtes-vous sûr de vouloir supprimer ce matériel ? 
@@ -179,7 +179,7 @@
                         </ul>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
                         <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" @click.prevent="deleteMaterial(material.id)">
                             Supprimer
                         </button>
@@ -193,7 +193,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" >Importer du matériels en CSV</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
                     </div>
                     <div class="modal-body">
                         Format du csv :<br><br>
@@ -208,7 +208,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
                         <button type="button" class="btn btn-danger waves-effect waves-light" data-dismiss="modal" v-on:click="submitForm()">
                             Importer
                         </button>
