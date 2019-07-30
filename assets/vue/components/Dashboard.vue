@@ -7,7 +7,7 @@
       aria-controls="my-table"
     ></b-pagination>
 
-    <p class="mt-3">Current Page: {{ currentPage }}</p>
+    <p class="mt-3">Page: {{ currentPage }} / {{ rows / perPage }}</p>
 
     <b-table striped hover
       id="my-table"
