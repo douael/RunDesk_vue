@@ -135,7 +135,7 @@
                                     <input v-model="material.serialNumber" type="text" class="form-control">
                                 </div>
                                 <div class="col-6">
-                                    <select class="form-control" name="category" v-model="material.category" >
+                                    <select class="form-control" name="category" v-model="material.category"  required>
                                         <option v-for="Othercategory in categorysC" v-bind:value="Othercategory.id" >
                                             {{ Othercategory.name }}
                                         </option>
