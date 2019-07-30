@@ -296,8 +296,8 @@
                     borrowing.employee.lastname.toLowerCase().includes(this.search.toLowerCase()) ||
                     borrowing.material.category.name.toLowerCase().includes(this.search.toLowerCase()) ||
                     borrowing.material.name.toLowerCase().includes(this.search.toLowerCase());
-                    borrowing.material.dateStart.toLowerCase().includes(this.search.toLowerCase());
-                    borrowing.material.dateEnd.toLowerCase().includes(this.search.toLowerCase());
+                    borrowing.dateStart.date('d/m/Y').includes(this.search.toLowerCase());
+                    borrowing.dateEnd.date('d/m/Y').includes(this.search.toLowerCase());
                 }).slice(start, end);
             },
 
