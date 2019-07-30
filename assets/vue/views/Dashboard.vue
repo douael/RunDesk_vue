@@ -57,7 +57,7 @@
              <strong>{{ materials.length - countAvailableMaterials }} / {{ borrowings.length }}</strong>
           <br/>
 
-          <b-buttonclass="purple-bg"><router-link to="/borrowings">
+          <b-button class="purple-bg"><router-link to="/borrowings">
                         <a >Voir plus</a>
                     </router-link></b-button>
         </b-card>
