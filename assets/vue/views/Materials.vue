@@ -139,14 +139,14 @@
                             <input v-model="material.serialNumber" type="text" class="form-control">
                         </div>
                                 <div class="col-12">
-                            <label :for="material.category" class="mr-2">{{ labels.category }} : {{ material.category.name }}</label>
-                                    <select class="form-control" name="category" v-model="material.category" v-validate="{ required: true}">
+                            <label :for="category" class="mr-2">{{ labels.category }} : {{ material.category.name }}</label>
+                                    <select class="form-control" name="category" v-model="category" v-validate="{ required: true}">
                                         <option v-for="Othercategory in categorysC" v-bind:value="Othercategory.id" >
                                             {{ Othercategory.name }}
                                         </option>
 
                                     </select>
-                                    <div v-if="errors.has('material.category')" class="invalid-feedback">{{ errors.first('material.category') }}</div>
+                                    <div v-if="errors.has('category')" class="invalid-feedback">{{ errors.first('category') }}</div>
                                 </div>
                                 <input type="hidden" id="isActive" name="isActive" class="form-control" :value="material.isActive">
 
@@ -155,7 +155,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
                             <button type="submit" class="btn btn-success waves-effect waves-light"
-                            @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)" :disabled="material.name.length === 0 || material.serialNumber.length == 0 || material.category.length == 0">
+                            @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,category)" :disabled="material.name.length === 0 || material.serialNumber.length == 0 || category.length == 0">
                             Modifier
                         </button>
                     </div>
