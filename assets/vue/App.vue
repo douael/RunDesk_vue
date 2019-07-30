@@ -105,6 +105,7 @@
         clearTimeout(t);
         t = setTimeout(logout, 18000);  // time is in milliseconds (1000 is 1 second)
         t= setTimeout(reload, 3000);  // time is in milliseconds (1000 is 1 second)
+        console.log(t);
     }
 }
 idleTimer();
