@@ -40,7 +40,7 @@
       return this.$store.getters['dashboard/dashboards'].reverse();
     },
     nbrPage: function () {
-    number = parseInt(this.rows) / parseInt(this.perPage);
+    let number = parseInt(this.rows) / parseInt(this.perPage);
     return number.ceil();
     }
     }
