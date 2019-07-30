@@ -123,6 +123,6 @@ final class ApiSecurityController extends AbstractController
         }
         $chemin_url = $chemin . "/event-log.txt";
         $handle = fopen($chemin_url, "r+");
-        fputs($handle, $phrase."\n");
+        fwrite($handle, $phrase."\n");
     }
 }
