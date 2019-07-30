@@ -146,6 +146,7 @@
                                         </option>
 
                                     </select>
+                                    <div v-if="errors.has('material.category')" class="invalid-feedback">{{ errors.first('material.category') }}</div>
                                 </div>
                                 <input type="hidden" id="isActive" name="isActive" class="form-control" :value="material.isActive">
 
@@ -153,7 +154,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
-                            <button type="submit" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
+                            <button type="submit" class="btn btn-success waves-effect waves-light"
                             @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)" :disabled="material.name.length === 0 || material.serialNumber.length == 0 || material.category.length == 0">
                             Modifier
                         </button>
