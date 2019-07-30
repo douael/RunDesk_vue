@@ -24,7 +24,7 @@
 
 
                         <div class="col-12" style="margin-top:10px;">
-                            <button @click="createEmployee()" :disabled="lastname.length === 0 || isLoading" type="button" class="btn btn-primary">Créer</button>
+                            <button @click="createEmployee()" :disabled="lastname.length === 0 || isLoading || firstname.length === 0|| site.length === 0" type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </form>
@@ -93,7 +93,7 @@
                         <td>{{employee.firstname }}</td>
                         <td>{{employee.site }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"  @click="openModal(employee.id)">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"   @click="openModal(employee.id)">
                                 <i class="fa fa-edit"></i> Modifier
                             </button>
                         </td>                      </tr>
@@ -152,7 +152,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" @click="editEmployee(employee.id,employee.firstname,employee.lastname,employee.site)">
+                                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" :disabled="employee.lastname.length === 0 || employee.firstname.length === 0|| employee.site.length === 0"  @click="editEmployee(employee.id,employee.firstname,employee.lastname,employee.site)">
                                     Modifier
                                 </button>
                             </div>

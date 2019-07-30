@@ -14,7 +14,7 @@
                         </div>
                         
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="createType()" :disabled="name.length === 0 || isLoading"type="button" class="btn btn-primary">Créer</button>
+                            <button @click="createType()" :disabled="name.length === 0 || isLoading" type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" @click="editType(type.id,type.name)"> 
+                    <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" :disabled="type.name.length === 0 " @click="editType(type.id,type.name)"> 
                         Modifier
                     </button>
                 </div>

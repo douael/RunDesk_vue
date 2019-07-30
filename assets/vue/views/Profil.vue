@@ -69,7 +69,7 @@
   </div>
 </div>
 <button type="button" class="btn btn-primary waves-effect waves-light" 
-                            @click="editPassword(myprofil.id,oldPassword,newPassword,confirmPassword)" :disabled="newPassword != confirmPassword">
+                            @click="editPassword(myprofil.id,oldPassword,newPassword,confirmPassword)" :disabled="newPassword != confirmPassword || newPassword.length == 0 || confirmPassword.length == 0">
                             Modifier le mot de passe
                         </button>
         </div>

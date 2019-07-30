@@ -23,7 +23,7 @@
                             <v-select :options="categorys" v-model="category"></v-select>
                         </div>
                         <div class="col-12" style="margin-top:10px;margin-bottom:10px;">
-                            <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0" type="button" class="btn btn-primary">Créer</button>
+                            <button @click="createMaterial()" :disabled="name.length === 0 || isLoading || serialNumber.length == 0 || category.length == 0" type="button" class="btn btn-primary">Créer</button>
                         </div>
                     </div>
                 </form>
@@ -149,7 +149,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
                             <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
-                            @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)">
+                            @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)" :disabled="material.name.length === 0 || material.serialNumber.length == 0 || material.category.length == 0">
                             Modifier
                         </button>
                     </div>

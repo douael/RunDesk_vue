@@ -129,7 +129,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" @click="editCategory(category.id,category.name,category.type)">
+                                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" :disabled="category.name.length === 0 ||  category.type.length == 0" @click="editCategory(category.id,category.name,category.type)">
                                     Modifier
                                 </button>
                             </div>
