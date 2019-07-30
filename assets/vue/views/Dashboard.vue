@@ -17,7 +17,7 @@
               <strong>{{ categorys.length }}</strong>
             </b-progress-bar>
           </b-progress>
-          <small>*La catégorie Default est comprise dans le compte</small>
+          <small>*La catégorie Default est comprise</small>
 
           <br/>
           <b-button href="/categorys" class="purple-bg">Voir plus</b-button>
