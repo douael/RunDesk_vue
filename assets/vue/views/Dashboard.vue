@@ -10,7 +10,6 @@
         <b-card title="Catégories" style="max-width: 20rem;" class="mb-2 darkblue green-bg">
           <b-card-text>
             Nombres de Catégories*
-            <small>*Categorie Default compris dans le compte</small>
           </b-card-text>
 
           <b-progress :max="10" height="2rem">
@@ -18,6 +17,8 @@
               <strong>{{ categorys.length }}</strong>
             </b-progress-bar>
           </b-progress>
+          <small>*La catégorie Default est comprise dans le compte</small>
+
           <br/>
           <b-button href="/categorys" class="purple-bg">Voir plus</b-button>
         </b-card>
