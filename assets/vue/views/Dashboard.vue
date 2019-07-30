@@ -37,8 +37,10 @@
           </b-progress>
           <strong>{{ countAvailableMaterialsAndActive }} / {{ materials.length }}</strong>
           <br/>
-
-          <b-button href="/materials" class="purple-bg">Voir plus</b-button>
+            <router-link class="purple-bg" tag="li" to="/materials" active-class="active">
+                        <a class="purple-bg">Voir plus</a>
+                    </router-link>
+          <b-button href="/materials" class="purple-bg"></b-button>
         </b-card>
       </div>
       <div class="col-6 col-sm-3 placeholder">
