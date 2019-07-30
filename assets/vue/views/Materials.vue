@@ -122,6 +122,7 @@
             <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" :id="'bv-modal-example'+material.id">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
+                        <form>
                         <div class="modal-header">
                             <h4 class="modal-title" >Modifier</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -139,7 +140,7 @@
                         </div>
                                 <div class="col-12">
                             <label :for="material.category" class="mr-2">{{ labels.category }} : {{ material.category.name }}</label>
-                                    <select class="form-control" name="category" v-model="material.category" >
+                                    <select class="form-control" name="category" v-model="material.category" required>
                                         <option v-for="Othercategory in categorysC" v-bind:value="Othercategory.id" >
                                             {{ Othercategory.name }}
                                         </option>
@@ -152,11 +153,12 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Annuler</button>
-                            <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
+                            <button type="submit" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
                             @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,material.category)" :disabled="material.name.length === 0 || material.serialNumber.length == 0 || material.category.length == 0">
                             Modifier
                         </button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
