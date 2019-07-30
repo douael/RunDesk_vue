@@ -110,13 +110,13 @@
                             </div>
                             <div class="modal-body">
                                 <div class="col-12">
-                                    <div class="col-6">
-                                        <label>Nom</label>
+                                    <div class="col-12">
+                                        <label class="mr-2">Nom</label>
                                         <input v-model="category.name" type="text" class="form-control">
                                     </div>
 
-                                    <div class="col-6">
-                                        <label>Type : {{ category.type.name }}</label>
+                                    <div class="col-12">
+                                        <label class="mr-2">Type : {{ category.type.name }}</label>
                                         <select class="form-control" name="type" v-model="category.type"  required>
                                             <option v-for="Othertype in typesC" v-bind:value="Othertype.id" >
                                                 {{ Othertype.name }}

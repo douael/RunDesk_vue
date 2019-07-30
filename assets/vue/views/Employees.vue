@@ -138,13 +138,16 @@
                             </div>
                             <div class="modal-body">
                                 <div class="col-12">
-                                    <div class="col-6">
+                                    <div class="col-12">
+                                        <label class="mr-2"> Nom </label>
                                         <input v-model="employee.lastname" type="text" class="form-control">
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12">
+                                        <label class="mr-2"> Prenom </label>
                                         <input v-model="employee.firstname" type="text" class="form-control">
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12">
+                                        <label class="mr-2"> Site </label>
                                         <input v-model="employee.site" type="text" class="form-control">
                                     </div>
 
