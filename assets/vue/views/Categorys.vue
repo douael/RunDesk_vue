@@ -117,7 +117,7 @@
 
                                     <div class="col-6">
                                         <label>Type</label>
-                                        <select class="form-control" name="type" v-model="category.type"  required>
+                                        <select class="form-control" name="type" v-model="type"  required>
                                             <option v-for="Othertype in typesC" v-bind:value="Othertype.id" >
                                                 {{ Othertype.name }}
                                             </option>
@@ -129,7 +129,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
-                                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" :disabled="category.name.length === 0 ||  category.type.length == 0" @click="editCategory(category.id,category.name,category.type)">
+                                <button type="button" class="btn btn-success waves-effect waves-light" data-dismiss="modal" :disabled="category.name.length === 0 ||  type.length == 0" @click="editCategory(category.id,category.name,category.type)">
                                     Modifier
                                 </button>
                             </div>

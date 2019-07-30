@@ -140,13 +140,12 @@
                         </div>
                                 <div class="col-12">
                             <label :for="category" class="mr-2">{{ labels.category }} : {{ material.category.name }}</label>
-                                    <select class="form-control" name="category" v-model="category" v-validate="{ required: true}">
+                                    <select class="form-control" name="category" v-model="category" >
                                         <option v-for="Othercategory in categorysC" v-bind:value="Othercategory.id" >
                                             {{ Othercategory.name }}
                                         </option>
 
                                     </select>
-                                    <div v-if="errors.has('category')" class="invalid-feedback">{{ errors.first('category') }}</div>
                                 </div>
                                 <input type="hidden" id="isActive" name="isActive" class="form-control" :value="material.isActive">
 
@@ -154,7 +153,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light waves-effect" data-dismiss="modal" onclick="javascript:window.location.reload()">Annuler</button>
-                            <button type="submit" class="btn btn-success waves-effect waves-light"
+                            <button type="submit" class="btn btn-success waves-effect waves-light" data-dismiss="modal"
                             @click="editMaterial(material.id,material.name,material.isActive,material.serialNumber,category)" :disabled="material.name.length === 0 || material.serialNumber.length == 0 || category.length == 0">
                             Modifier
                         </button>
@@ -226,17 +225,11 @@
     import axios from 'axios';
     import vSelect from 'vue-select'
 
-    import Vue from 'vue';
-    import VeeValidate from 'vee-validate';
-    import { ValidationProvider } from 'vee-validate';
-    
-    import fr from "vee-validate/dist/locale/fr";
     Vue.component('v-select', vSelect)
     export default {
         name: 'materials',
         components: {
             ErrorMessage,
-            ValidationProvider
         },
         data () {
             return {
@@ -377,14 +370,9 @@
                     $('#delete-material'+id).modal();
                 },
                 editMaterial(id,name,isActive,serialNumber,category){
-                    this.$validator.validate().then(valid => {
-                        
-                if (valid) {
                     let payload = {id: id,name:name, isActive: isActive,serialNumber: serialNumber,category: category};
 
                     this.$store.dispatch('material/updateMaterial', payload);
-                }
-                    });
                 },
                 deleteMaterial (id) {
                     this.$store.dispatch('material/deleteMaterial', id);
