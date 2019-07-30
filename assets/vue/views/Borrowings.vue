@@ -286,6 +286,7 @@
                 console.log(this.pageNumber);
                 console.log(Math.ceil(this.resultCount / this.size) + " totalPages");
                 return Math.ceil(this.resultCount / this.size); 
+                
             },
 
             filteredList() {
