@@ -29,14 +29,22 @@
           </div>
 
         <div v-if="isLoading" class="row col">
-            <div class="e-loadholder">
-                <div class="m-loader">
-                    <span class="e-text">Loading</span>
-                </div>
-            </div>
-            <div id="particleCanvas-Blue"></div>
-            <div id="particleCanvas-White"></div>
-        </div>
+        <div class="container">
+	<div class="row">
+		<div class="container">
+	<div class="row">
+	<a href="#" class="intro-banner-vdo-play-btn pinkBg" target="_blank">
+<i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+<span class="ripple pinkBg"></span>
+<span class="ripple pinkBg"></span>
+<span class="ripple pinkBg"></span>
+</a>
+	</div>
+</div>
+
+</div>
+</div>
+    </div>
 
         <div v-else-if="hasError" class="row col">
             <error-message :error="error"></error-message>
