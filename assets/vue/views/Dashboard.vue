@@ -40,8 +40,8 @@
 <router-link class="nav-item" tag="li" to="/materials" active-class="active">
                         <a class="nav-link">Matériels</a>
                     </router-link>
-          <b-button class="purple-bg"><router-link class="nav-item" tag="li" to="/materials" active-class="active">
-                        <a class="nav-link">Voir plus</a>
+          <b-button class="purple-bg"><router-link to="/materials">
+                        <a >Voir plus</a>
                     </router-link></b-button>
         </b-card>
       </div>
