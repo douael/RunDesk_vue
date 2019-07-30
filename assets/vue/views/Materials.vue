@@ -128,13 +128,18 @@
                         </div>
                         <div class="modal-body">
                             <div class="col-12">
-                                <div class="col-6">
+                                <div class="col-12">
+                            <label :for="material.name" class="mr-2">{{ labels.name }}</label>
+                                    
                                     <input v-model="material.name" type="text" class="form-control">
                                 </div>
-                                <div class="col-6">
-                                    <input v-model="material.serialNumber" type="text" class="form-control">
-                                </div>
-                                <div class="col-6">
+                                <div class="col-12">
+                            <label :for="material.serialNumber" class="mr-2">{{ labels.serialNumber }}</label>
+                            <input v-model="material.serialNumber" type="text" class="form-control">
+                        </div>
+                                <div class="col-12">
+                            <label :for="material.category" class="mr-2">{{ labels.category }}</label>
+
                                     <select class="form-control" name="category" v-model="material.category" >
                                         <option v-for="Othercategory in categorysC" v-bind:value="Othercategory.id" >
                                             {{ Othercategory.name }}
